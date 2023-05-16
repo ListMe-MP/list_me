@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -17,41 +18,118 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     return Scaffold(
       body: Stack(
         children: [
+          // background
           Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                  Color.fromRGBO(8, 230, 224, 1),
-                  Color.fromRGBO(2, 181, 174, 1),
-                  Color.fromRGBO(20, 103, 101, 1),
-                  Color.fromRGBO(29, 63, 64, 1)
-                ])),
-            child: PageView(
-              controller: _controller,
-              children: [
-                // screen 1
-                const Center(
-                  child:
-                      Text('Make Grocery Shopping A Breeze With Our List Me!'),
-                ),
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                Color.fromRGBO(8, 230, 224, 1),
+                Color.fromRGBO(2, 181, 174, 1),
+                Color.fromRGBO(20, 103, 101, 1),
+                Color.fromRGBO(29, 63, 64, 1)
+              ]))),
 
-                // screen 2
-                Container(),
-
-                // screen3
-                Container(),
-              ],
+          // logo image
+          Container(
+            alignment: const Alignment(0, -0.65),
+            child: SizedBox(
+              width: 180,
+              height: 180,
+              child: Image.asset('assets/images/logo.png'),
             ),
+          ),
+
+          // paragraph
+          PageView(
+            controller: _controller,
+            children: [
+              // screen 1
+              Center(
+                child: Container(
+                  alignment: const Alignment(0, 0.25),
+                  child: Text(
+                      '"Make\nGrocery Shopping\nA Breeze\nWith\nOur\nList Me!"',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.castoro(
+                        textStyle: const TextStyle(
+                            color: Color.fromRGBO(7, 222, 218, 1),
+                            fontSize: 24,
+                            fontWeight: FontWeight.w400,
+                            shadows: <Shadow>[
+                              Shadow(
+                                offset: Offset(4, 4),
+                                blurRadius: 4.0,
+                                color: Color.fromRGBO(0, 0, 0, 0.2),
+                              )
+                            ]),
+                      )),
+                ),
+              ),
+
+              // screen 2
+              Center(
+                child: Container(
+                  alignment: const Alignment(0, 0.3),
+                  child: Text('"List\nWith Your Voice,\nNot\nWith Your Hands!"',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.castoro(
+                        textStyle: const TextStyle(
+                            color: Color.fromRGBO(7, 222, 218, 1),
+                            fontSize: 24,
+                            fontWeight: FontWeight.w400,
+                            shadows: <Shadow>[
+                              Shadow(
+                                offset: Offset(4, 4),
+                                blurRadius: 4.0,
+                                color: Color.fromRGBO(0, 0, 0, 0.2),
+                              )
+                            ]),
+                      )),
+                ),
+              ),
+
+              // screen3
+              Center(
+                child: Container(
+                  alignment: const Alignment(0, 0.3),
+                  child: Text(
+                      '"Experience\nGrocery Shopping\nLike Never\nBefore!"',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.castoro(
+                        textStyle: const TextStyle(
+                            color: Color.fromRGBO(7, 222, 218, 1),
+                            fontSize: 24,
+                            fontWeight: FontWeight.w400,
+                            shadows: <Shadow>[
+                              Shadow(
+                                offset: Offset(4, 4),
+                                blurRadius: 4.0,
+                                color: Color.fromRGBO(0, 0, 0, 0.2),
+                              )
+                            ]),
+                      )),
+                ),
+              ),
+            ],
           ),
 
           // dot indicators
           Container(
               alignment: const Alignment(0, 0.75),
-              child: SmoothPageIndicator(controller: _controller, count: 3))
+              child: SmoothPageIndicator(
+                controller: _controller,
+                count: 3,
+                effect: const ScrollingDotsEffect(
+                  activeDotColor: Color.fromRGBO(1, 229, 217, 1),
+                  dotColor: Color.fromRGBO(29, 63, 64, 1),
+                ),
+              ))
         ],
       ),
     );
   }
+
+  GoogleFonts googlefonts() => GoogleFonts();
 }
