@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:list_me/screens/home_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,6 +13,9 @@ class OnBoardingScreen extends StatefulWidget {
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
   // controller to keep track of which page we're on
   final PageController _controller = PageController();
+
+  // keep track of if we are on the last page or not
+  bool onLastPage = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +48,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           // paragraph
           PageView(
             controller: _controller,
+            onPageChanged: (index) {
+              setState(() {
+                onLastPage = (index == 2);
+              });
+            },
             children: [
               // screen 1
               Center(
@@ -118,14 +127,58 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           // dot indicators
           Container(
               alignment: const Alignment(0, 0.75),
-              child: SmoothPageIndicator(
-                controller: _controller,
-                count: 3,
-                effect: const ScrollingDotsEffect(
-                  activeDotColor: Color.fromRGBO(1, 229, 217, 1),
-                  dotColor: Color.fromRGBO(29, 63, 64, 1),
-                ),
-              ))
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  // skip
+                  GestureDetector(
+                    onTap: () {
+                      _controller.jumpToPage(2);
+                    },
+                    child: Text(
+                      'skip',
+                      style: TextStyle(
+                          color: Color.fromRGBO(7, 222, 218, 1), fontSize: 20),
+                    ),
+                  ),
+                  // dot indicator
+                  SmoothPageIndicator(
+                    controller: _controller,
+                    count: 3,
+                    effect: const ScrollingDotsEffect(
+                      activeDotColor: Color.fromRGBO(1, 229, 217, 1),
+                      dotColor: Color.fromRGBO(29, 63, 64, 1),
+                    ),
+                  ),
+                  // next or done
+                  onLastPage
+                      ? GestureDetector(
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return HomePage();
+                            }));
+                          },
+                          child: Text(
+                            'done',
+                            style: TextStyle(
+                                color: Color.fromRGBO(7, 222, 218, 1),
+                                fontSize: 20),
+                          ))
+                      : GestureDetector(
+                          onTap: () {
+                            _controller.nextPage(
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.easeIn);
+                          },
+                          child: Text(
+                            'next',
+                            style: TextStyle(
+                                color: Color.fromRGBO(7, 222, 218, 1),
+                                fontSize: 20),
+                          )),
+                ],
+              )),
         ],
       ),
     );
