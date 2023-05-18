@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:list_me/components/background.dart';
+import 'package:list_me/components/fontstyle.dart';
 import 'package:list_me/screens/home_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,18 +25,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       body: Stack(
         children: [
           // background
-          Container(
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                Color.fromRGBO(8, 230, 224, 1),
-                Color.fromRGBO(2, 181, 174, 1),
-                Color.fromRGBO(20, 103, 101, 1),
-                Color.fromRGBO(29, 63, 64, 1)
-              ]))),
-
+          const Background(),
           // logo image
           Container(
             alignment: const Alignment(0, -0.65),
@@ -62,17 +53,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       '"Make\nGrocery Shopping\nA Breeze\nWith\nOur\nList Me!"',
                       textAlign: TextAlign.center,
                       style: GoogleFonts.castoro(
-                        textStyle: const TextStyle(
-                            color: Color.fromRGBO(7, 222, 218, 1),
-                            fontSize: 24,
-                            fontWeight: FontWeight.w400,
-                            shadows: <Shadow>[
-                              Shadow(
-                                offset: Offset(4, 4),
-                                blurRadius: 4.0,
-                                color: Color.fromRGBO(0, 0, 0, 0.2),
-                              )
-                            ]),
+                        textStyle: fstyle1,
                       )),
                 ),
               ),
@@ -84,17 +65,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   child: Text('"List\nWith Your Voice,\nNot\nWith Your Hands!"',
                       textAlign: TextAlign.center,
                       style: GoogleFonts.castoro(
-                        textStyle: const TextStyle(
-                            color: Color.fromRGBO(7, 222, 218, 1),
-                            fontSize: 24,
-                            fontWeight: FontWeight.w400,
-                            shadows: <Shadow>[
-                              Shadow(
-                                offset: Offset(4, 4),
-                                blurRadius: 4.0,
-                                color: Color.fromRGBO(0, 0, 0, 0.2),
-                              )
-                            ]),
+                        textStyle: fstyle1,
                       )),
                 ),
               ),
@@ -107,17 +78,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       '"Experience\nGrocery Shopping\nLike Never\nBefore!"',
                       textAlign: TextAlign.center,
                       style: GoogleFonts.castoro(
-                        textStyle: const TextStyle(
-                            color: Color.fromRGBO(7, 222, 218, 1),
-                            fontSize: 24,
-                            fontWeight: FontWeight.w400,
-                            shadows: <Shadow>[
-                              Shadow(
-                                offset: Offset(4, 4),
-                                blurRadius: 4.0,
-                                color: Color.fromRGBO(0, 0, 0, 0.2),
-                              )
-                            ]),
+                        textStyle: fstyle1,
                       )),
                 ),
               ),
