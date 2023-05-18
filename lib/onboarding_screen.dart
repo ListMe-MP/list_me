@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:list_me/components/background.dart';
+import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/fontstyle.dart';
 import 'package:list_me/screens/home_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -96,10 +97,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     onTap: () {
                       _controller.jumpToPage(2);
                     },
-                    child: Text(
+                    child: const Text(
                       'skip',
-                      style: TextStyle(
-                          color: Color.fromRGBO(7, 222, 218, 1), fontSize: 20),
+                      style: TextStyle(color: ttc1, fontSize: 20),
                     ),
                   ),
                   // dot indicator
@@ -107,7 +107,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     controller: _controller,
                     count: 3,
                     effect: const ScrollingDotsEffect(
-                      activeDotColor: Color.fromRGBO(1, 229, 217, 1),
+                      activeDotColor: ttc1,
                       dotColor: Color.fromRGBO(29, 63, 64, 1),
                     ),
                   ),
@@ -120,11 +120,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               return HomePage();
                             }));
                           },
-                          child: Text(
+                          child: const Text(
                             'done',
-                            style: TextStyle(
-                                color: Color.fromRGBO(7, 222, 218, 1),
-                                fontSize: 20),
+                            style: TextStyle(color: ttc1, fontSize: 20),
                           ))
                       : GestureDetector(
                           onTap: () {
@@ -132,11 +130,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                 duration: Duration(milliseconds: 500),
                                 curve: Curves.easeIn);
                           },
-                          child: Text(
+                          child: const Text(
                             'next',
-                            style: TextStyle(
-                                color: Color.fromRGBO(7, 222, 218, 1),
-                                fontSize: 20),
+                            style: TextStyle(color: ttc1, fontSize: 20),
                           )),
                 ],
               )),

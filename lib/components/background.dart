@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:list_me/components/colors.dart';
 
 class Background extends StatelessWidget {
   const Background({super.key});
@@ -12,12 +13,7 @@ class Background extends StatelessWidget {
                 gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [
-              Color.fromRGBO(8, 230, 224, 1),
-              Color.fromRGBO(2, 181, 174, 1),
-              Color.fromRGBO(20, 103, 101, 1),
-              Color.fromRGBO(29, 63, 64, 1)
-            ]))),
+                    colors: [tc4, tc3, tc2, tc1]))),
       ),
     );
   }
