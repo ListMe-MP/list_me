@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:list_me/model/button_model.dart';
+import 'package:provider/provider.dart';
 
 import 'onboarding_screen.dart';
 
@@ -11,9 +13,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: OnBoardingScreen(),
+    return ChangeNotifierProvider(
+      create: (context) => ButtonModel(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: OnBoardingScreen(),
+      ),
     );
   }
 }

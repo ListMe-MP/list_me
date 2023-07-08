@@ -99,7 +99,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     },
                     child: const Text(
                       'skip',
-                      style: TextStyle(color: ttc1, fontSize: 20),
+                      style: TextStyle(color: ttc1, fontSize: 24),
                     ),
                   ),
                   // dot indicator
@@ -122,17 +122,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           },
                           child: const Text(
                             'done',
-                            style: TextStyle(color: ttc1, fontSize: 20),
+                            style: TextStyle(color: ttc1, fontSize: 24),
                           ))
                       : GestureDetector(
                           onTap: () {
                             _controller.nextPage(
-                                duration: Duration(milliseconds: 500),
+                                duration: const Duration(milliseconds: 500),
                                 curve: Curves.easeIn);
                           },
                           child: const Text(
                             'next',
-                            style: TextStyle(color: ttc1, fontSize: 20),
+                            style: TextStyle(color: ttc1, fontSize: 24),
                           )),
                 ],
               )),
