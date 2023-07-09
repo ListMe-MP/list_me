@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:list_me/components/colors.dart';
 
 class ButtonItemTile extends StatelessWidget {
@@ -40,7 +41,7 @@ class ButtonItemTile extends StatelessWidget {
                 height: 100,
               ),
               // btn_name
-              Text(btnName),
+              Text(btnName, style: GoogleFonts.roboto(fontSize: 15,color: tc1, fontWeight: FontWeight.bold),),
             ],
           ),
         ),

@@ -6,3 +6,6 @@ const tc3 = Color.fromRGBO(2, 181, 174, 1);
 const tc4 = Color.fromRGBO(8, 230, 224, 1);
 
 const ttc1 = Color.fromRGBO(7, 222, 218, 1);
+
+const tc5 = Color.fromRGBO(1, 229, 217, 1);
+const tc6 = Color.fromRGBO(23, 89, 88, 1);
