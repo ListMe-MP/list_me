@@ -49,7 +49,6 @@ class HomePage extends StatelessWidget {
               children: [
                 // const Text("Voice enable"),
                 ToggleSwitch(
-                  
                   borderColor: [tc3],
                   minWidth: 70.0,
                   minHeight: 20,
@@ -131,9 +130,15 @@ class HomePage extends StatelessWidget {
                             crossAxisCount: 2),
                     itemBuilder: (context, index) {
                       return ButtonItemTile(
-                        btnName: value.buttonTypes[index][0],
-                        imgPath: value.buttonTypes[index][1],
-                      );
+                          btnName: value.buttonTypes[index][0],
+                          imgPath: value.buttonTypes[index][1],
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        value.buttonTypes[index][2]));
+                          });
                     });
               },
             )),
