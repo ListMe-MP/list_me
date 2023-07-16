@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:list_me/components/colors.dart';
 
+// ignore: must_be_immutable
 class ButtonItemTile extends StatelessWidget {
   final String btnName;
   final String imgPath;
