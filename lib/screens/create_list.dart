@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:list_me/components/colors.dart';
 import 'package:list_me/data/menu_items.dart';
 import 'package:list_me/model/menu_item.dart';
@@ -6,9 +7,14 @@ import 'package:list_me/screens/Settings_page.dart';
 import 'package:list_me/screens/Share_page.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
-class CreateList extends StatelessWidget {
+class CreateList extends StatefulWidget {
   const CreateList({super.key});
 
+  @override
+  State<CreateList> createState() => _CreateListState();
+}
+
+class _CreateListState extends State<CreateList> {
   PopupMenuItem<MenuItem> buildItem(MenuItem item) => PopupMenuItem<MenuItem>(
       value: item,
       child: Row(
@@ -90,9 +96,96 @@ class CreateList extends StatelessWidget {
             ),
           ),
 
+          // title
+          Padding(
+            padding: EdgeInsets.only(top: 30.0),
+            child: Stack(
+              children: <Widget>[
+                // Stroked text as border.
+                Text(
+                  'List Me',
+                  style: GoogleFonts.castoro(
+                    fontSize: 40,
+                    shadows: [
+                      Shadow(
+                          blurRadius: 10.0,
+                          color: Colors.black,
+                          offset: Offset(2, -2))
+                    ],
+                    foreground: Paint()
+                      ..style = PaintingStyle.stroke
+                      ..strokeWidth = 5
+                      ..color = tc5,
+                  ),
+                ),
+                // Solid text as fill.
+                Text(
+                  'List Me',
+                  style: GoogleFonts.castoro(
+                    fontSize: 40,
+                    color: tc6,
+                  ),
+                ),
+              ],
+            ),
+          ),
+
           // body
+          Container(
+              width: 299,
+              height: 37,
+              decoration: ShapeDecoration(
+                  color: Color(0x7FD4D4D4),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                  ),
+              ),
+              child: const Padding(
+                padding: EdgeInsets.only(left: 10, right: 10),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: "Untitled list-1",
+                    hintStyle: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w400, 
+                    ),
+                  ),
+                ),
+              ),
+          ),
 
+          const SizedBox(
+            height: 24,
+          ),
 
+          Container(
+              width: 299,
+              height: 410,
+              decoration: ShapeDecoration(
+                  color: Color(0x7FD4D4D4),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                  ),
+              ),
+              child: Column(
+                children: [
+                  Container(
+                      width: 299,
+                      height: 37,
+                      decoration: ShapeDecoration(
+                          color: const Color(0x7FD4D4D4),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                          ),
+                      ),
+                  ),
+                ],
+              ),
+          ),
+
+          
           
           // // horizontal line
           // const Padding(
