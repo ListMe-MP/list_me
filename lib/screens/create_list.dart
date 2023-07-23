@@ -36,7 +36,7 @@ class _CreateListState extends State<CreateList> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Create List", 
+          "Create List",
           style: TextStyle(color: tc1),
           textAlign: TextAlign.justify,
         ),
@@ -130,63 +130,111 @@ class _CreateListState extends State<CreateList> {
             ),
           ),
 
-          // body
+          // textfield for title of the list
           Container(
-              width: 299,
-              height: 37,
-              decoration: ShapeDecoration(
-                  color: Color(0x7FD4D4D4),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                  ),
+            width: 350,
+            height: 40,
+            decoration: ShapeDecoration(
+              color: Color(0x7FD4D4D4),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
-              child: const Padding(
-                padding: EdgeInsets.only(left: 10, right: 10),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: "Untitled list-1",
-                    hintStyle: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w400, 
-                    ),
+            ),
+            child: const Padding(
+              padding: EdgeInsets.only(left: 10, right: 10),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: "Untitled list-1",
+                  hintStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
               ),
+            ),
           ),
 
           const SizedBox(
             height: 24,
           ),
 
+          // text field for type the list items
           Container(
-              width: 299,
-              height: 410,
-              decoration: ShapeDecoration(
-                  color: Color(0x7FD4D4D4),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                  ),
+            width: 350,
+            height: 40,
+            decoration: ShapeDecoration(
+              color: Colors.white.withOpacity(0.35),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
-              child: Column(
-                children: [
-                  Container(
-                      width: 299,
-                      height: 37,
-                      decoration: ShapeDecoration(
-                          color: const Color(0x7FD4D4D4),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                          ),
-                      ),
+            ),
+            child: const Padding(
+              padding: EdgeInsets.only(left: 10, right: 10),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: "Type Here",
+                  hintStyle: TextStyle(
+                    color: Colors.black26,
+                    fontSize: 15,
+                    fontFamily: 'Castoro',
+                    fontWeight: FontWeight.w400,
+                    letterSpacing: 3,
                   ),
-                ],
+                ),
               ),
+            ),
           ),
 
-          
-          
+          // item list
+          Container(
+            width: 350,
+            height: 390,
+            decoration: ShapeDecoration(
+              color: Color(0x7FD4D4D4),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            child: Stack(
+              children: [
+                ListView.separated(
+                  padding: EdgeInsets.all(10),
+                  itemBuilder: (context, index) {
+                    return ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      child: Container(
+                        color: Colors.white.withOpacity(0.1),
+                        child: ListTile(
+                          // contentPadding: EdgeInsets.all(8.0),
+                          title: Text(
+                            'Item $index',
+                          ),
+                          subtitle: Text(
+                            '\$ 20',
+                          ),
+                          trailing: Icon(Icons.edit),
+                          onTap: () {
+                            // Add your onTap logic here
+                          },
+                        ),
+                      ),
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return SizedBox(
+                        height:
+                            10); // Adjust the height as per your padding needs
+                  },
+                  itemCount: 10,
+                  scrollDirection: Axis
+                      .vertical, // Replace this with the number of ListTiles you want
+                ),
+              ],
+            ),
+          ),
+
           // // horizontal line
           // const Padding(
           //   padding: EdgeInsets.all(25.0),
