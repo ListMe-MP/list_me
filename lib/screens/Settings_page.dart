@@ -7,10 +7,28 @@ import 'package:list_me/data/menu_items.dart';
 import 'package:list_me/model/menu_item.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'Share_page.dart';
+
 
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
+
+  PopupMenuItem<MenuItem> buildItem(MenuItem item) => PopupMenuItem<MenuItem>(
+      value: item,
+      child: Row(
+        children: [
+          Icon(
+            item.icon,
+            color: Colors.black,
+            size: 20,
+          ),
+          const SizedBox(
+            width: 12,
+          ),
+          Text(item.text),
+        ],
+      ));
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +45,7 @@ class SettingsPage extends StatelessWidget {
                 child: Column(
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Icon(Icons.arrow_back),
                         
@@ -51,18 +70,18 @@ class SettingsPage extends StatelessWidget {
                         },
                         ),
 
-                        // PopupMenuButton<MenuItem>(
-                        //   icon: Icon(
-                        //     Icons.menu_rounded,
-                        //     color: tc1,
-                        //     size: 36,
-                        //   ),
-                        //   onSelected: (item) => onSelected(context, item),
-                        //   itemBuilder: (context) => [
-                        //     ...MenuItems.itemsFirst.map(buildItem).toList(),
-                        //   PopupMenuDivider(),
-                        //   ...MenuItems.itemsSecond.map(buildItem).toList(),
-                        // ])
+                        PopupMenuButton<MenuItem>(
+                          icon: Icon(
+                            Icons.menu_rounded,
+                            color: tc1,
+                            size: 36,
+                          ),
+                          onSelected: (item) => onSelected(context, item),
+                          itemBuilder: (context) => [
+                            ...MenuItems.itemsFirst.map(buildItem).toList(),
+                          PopupMenuDivider(),
+                          ...MenuItems.itemsSecond.map(buildItem).toList(),
+                        ])
                       ],
                     ),
 
@@ -342,3 +361,19 @@ class SettingsPage extends StatelessWidget {
     );
   }
 }
+
+onSelected(BuildContext context, MenuItem item) {
+    switch (item) {
+      case MenuItems.itemSettings:
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => SettingsPage()),
+        );
+        break;
+      case MenuItems.itemShare:
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => SharePage()),
+        );
+        break;
+      default:
+    }
+  }
