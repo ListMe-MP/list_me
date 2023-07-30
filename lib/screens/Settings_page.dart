@@ -1,3 +1,6 @@
+
+
+
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:list_me/components/background.dart';
@@ -7,28 +10,10 @@ import 'package:list_me/data/menu_items.dart';
 import 'package:list_me/model/menu_item.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'Share_page.dart';
-
 
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
-
-  PopupMenuItem<MenuItem> buildItem(MenuItem item) => PopupMenuItem<MenuItem>(
-      value: item,
-      child: Row(
-        children: [
-          Icon(
-            item.icon,
-            color: Colors.black,
-            size: 20,
-          ),
-          const SizedBox(
-            width: 12,
-          ),
-          Text(item.text),
-        ],
-      ));
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +30,6 @@ class SettingsPage extends StatelessWidget {
                 child: Column(
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Icon(Icons.arrow_back),
                         
@@ -70,18 +54,18 @@ class SettingsPage extends StatelessWidget {
                         },
                         ),
 
-                        PopupMenuButton<MenuItem>(
-                          icon: Icon(
-                            Icons.menu_rounded,
-                            color: tc1,
-                            size: 36,
-                          ),
-                          onSelected: (item) => onSelected(context, item),
-                          itemBuilder: (context) => [
-                            ...MenuItems.itemsFirst.map(buildItem).toList(),
-                          PopupMenuDivider(),
-                          ...MenuItems.itemsSecond.map(buildItem).toList(),
-                        ])
+                        // PopupMenuButton<MenuItem>(
+                        //   icon: Icon(
+                        //     Icons.menu_rounded,
+                        //     color: tc1,
+                        //     size: 36,
+                        //   ),
+                        //   onSelected: (item) => onSelected(context, item),
+                        //   itemBuilder: (context) => [
+                        //     ...MenuItems.itemsFirst.map(buildItem).toList(),
+                        //   PopupMenuDivider(),
+                        //   ...MenuItems.itemsSecond.map(buildItem).toList(),
+                        // ])
                       ],
                     ),
 
@@ -89,21 +73,83 @@ class SettingsPage extends StatelessWidget {
                       height: 50,
                     ),
 
-                    Text(
-                      "Settings",
-                      style: GoogleFonts.castoro(
-                        fontSize: 40, 
-                        fontWeight: FontWeight.w400, 
-                        shadows: [
-                          Shadow(
-                            offset: Offset(2, -2),
-                            blurRadius: 4,
-                          ),
-                        ],
-                        color: Color.fromRGBO(1, 229, 217, 1),
+                    // Text(
+                    //   "Settings",
+                    //   style: GoogleFonts.castoro(
+                    //     fontSize: 40, 
+                    //     fontWeight: FontWeight.w400, 
+                    //     shadows: [
+                    //       Shadow(
+                    //         offset: Offset(2, -2),
+                    //         blurRadius: 4,
+                    //       ),
+                    //     ],
+                    //     color: Color.fromRGBO(1, 229, 217, 1),
     
-                      ),
+                    //   ),
+                    // ),
+
+
+            Padding(
+              padding: EdgeInsets.only(top: 60.0),
+                child: Stack(
+                  children: <Widget>[
+                // Stroked text as border.
+                    Text(
+                      'Settings',
+                          style: GoogleFonts.castoro(
+                            fontSize: 40,
+                            shadows: [
+                              Shadow(
+                                blurRadius: 10.0,
+                                color: Colors.black,
+                                offset: Offset(2, -2))
+                              ],
+                            foreground: Paint()
+                              ..style = PaintingStyle.stroke
+                              ..strokeWidth = 5
+                              ..color = tc5,
+                          ),
                     ),
+                // Solid text as fill.
+                    Text(
+                      'Settings',
+                      style: GoogleFonts.castoro(
+                      fontSize: 40,
+                      color: tc6,
+                    ),
+                    ),
+                  ],
+                ),
+            ),
+
+
+
+                //   Text(
+                //   'Settings',
+                //   style: GoogleFonts.castoro(
+                //     fontSize: 40,
+                //     shadows: [
+                //       Shadow(
+                //           blurRadius: 10.0,
+                //           color: Colors.black,
+                //           offset: Offset(2, -2))
+                //     ],
+                //     foreground: Paint()
+                //       ..style = PaintingStyle.stroke
+                //       ..strokeWidth = 5
+                //       ..color = tc5,
+                //   ),
+                // ),
+                // // Solid text as fill.
+                // Text(
+                //   'Settings',
+                //   style: GoogleFonts.castoro(
+                //     fontSize: 40,
+                //     color: tc6,
+                //   ),
+                // ),
+
       
                     const SizedBox(
                       height: 50,
@@ -362,18 +408,5 @@ class SettingsPage extends StatelessWidget {
   }
 }
 
-onSelected(BuildContext context, MenuItem item) {
-    switch (item) {
-      case MenuItems.itemSettings:
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => SettingsPage()),
-        );
-        break;
-      case MenuItems.itemShare:
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => SharePage()),
-        );
-        break;
-      default:
-    }
-  }
+
+
