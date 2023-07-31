@@ -185,9 +185,12 @@ class SettingsPage extends StatelessWidget {
                               child: Text("Profile", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
                             ),
                             Spacer(),
-                            Icon(
-                              Ionicons.chevron_forward, 
-                              color: Colors.black,
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Icon(
+                                Ionicons.chevron_forward, 
+                                color: Colors.black,
+                              ),
                             ),   
                         ],
                       ),
@@ -226,9 +229,12 @@ class SettingsPage extends StatelessWidget {
                               child: Text("Notifications", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
                             ),
                             Spacer(),
-                            Icon(
-                              Ionicons.chevron_forward, 
-                              color: Colors.black,
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Icon(
+                                Ionicons.chevron_forward, 
+                                color: Colors.black,
+                              ),
                             ),   
                         ],
                       ),
@@ -267,9 +273,12 @@ class SettingsPage extends StatelessWidget {
                             child: Text("Visibility", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
                           ),
                           Spacer(),
-                          Icon(
-                            Ionicons.chevron_forward, 
-                            color: Colors.black,
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(
+                              Ionicons.chevron_forward, 
+                              color: Colors.black,
+                            ),
                           ),   
                         ],
                       ),
@@ -308,9 +317,12 @@ class SettingsPage extends StatelessWidget {
                             child: Text("Help & Support", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
                           ),
                           Spacer(),
-                          Icon(
-                            Ionicons.chevron_forward, 
-                            color: Colors.black,
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(
+                              Ionicons.chevron_forward, 
+                              color: Colors.black,
+                            ),
                           ),   
                         ],
                       ),
@@ -349,9 +361,12 @@ class SettingsPage extends StatelessWidget {
                             child: Text("About", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
                           ),
                           Spacer(),
-                          Icon(
-                            Ionicons.chevron_forward, 
-                            color: Colors.black,
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(
+                              Ionicons.chevron_forward, 
+                              color: Colors.black,
+                            ),
                           ),   
                         ],
                       ),
@@ -390,9 +405,12 @@ class SettingsPage extends StatelessWidget {
                             child: Text("Data Privacy", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
                           ),
                           Spacer(),
-                            Icon(
-                              Ionicons.chevron_forward, 
-                              color: Colors.black,
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Icon(
+                                Ionicons.chevron_forward, 
+                                color: Colors.black,
+                              ),
                             ),   
                         ],
                       ),
