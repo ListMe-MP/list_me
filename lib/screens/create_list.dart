@@ -43,7 +43,7 @@ class _CreateListState extends State<CreateList> {
 
                       // title
                       Padding(
-                        padding: EdgeInsets.only(top: 30.0),
+                        padding: EdgeInsets.only(top: 0.0),
                         child: Stack(
                           children: <Widget>[
                             // Stroked text as border.
@@ -102,7 +102,7 @@ class _CreateListState extends State<CreateList> {
                       ),
 
                       const SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
 
                       // text field for type the list items
@@ -134,17 +134,20 @@ class _CreateListState extends State<CreateList> {
                                   ),
                                 ),
                               ),
+
+                              // add button
                               IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.add_box_outlined,
-                                    color: tc1,
-                                  ))
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.add_box_outlined,
+                                  color: tc1,
+                                ),
+                              )
                             ],
                           )),
 
                       const SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
 
                       // item list
@@ -210,6 +213,44 @@ class _CreateListState extends State<CreateList> {
                         ),
                       ),
                     ]),
+              ),
+            ),
+
+            // Create button
+            Positioned(
+              bottom: 16.0,
+              right: 16.0,
+              child: Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black54,
+                      spreadRadius: 2,
+                      blurRadius: 4,
+                      offset: Offset(2, 2)
+                    )
+                  ],
+                  shape: BoxShape.circle,
+                ),
+                child: RawMaterialButton(
+                  onPressed: () {
+                    // submit 
+                  },
+                  shape: CircleBorder(
+                    side: BorderSide(
+                      color: tc3,
+                      width: 5.0
+                    )
+                  ),   
+                  padding: EdgeInsets.all(10.0),
+                  fillColor: tc1,
+                  splashColor: tc2,
+                  child: Icon(
+                    Icons.add,
+                    color: tc5,
+                    size: 40.0,
+                  ),
+                ),
               ),
             )
           ],
