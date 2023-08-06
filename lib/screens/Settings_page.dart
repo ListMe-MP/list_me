@@ -1,20 +1,22 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
+import 'package:list_me/components/settings_bar.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../utils/navigationMenu.dart';
 
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
+  
+  Function(MenuItem e)? get buildItem => null;
 
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -30,6 +32,7 @@ class SettingsPage extends StatelessWidget {
                     Row(
                       children: [
                         Icon(Icons.arrow_back),
+                        
                         
                        ToggleSwitch(
                         borderColor: [tc3],
@@ -51,19 +54,21 @@ class SettingsPage extends StatelessWidget {
                           print('switched to: $index');
                         },
                         ),
-
-                        // PopupMenuButton<MenuItem>(
-                        //   icon: Icon(
-                        //     Icons.menu_rounded,
-                        //     color: tc1,
-                        //     size: 36,
-                        //   ),
-                        //   onSelected: (item) => onSelected(context, item),
-                        //   itemBuilder: (context) => [
-                        //     ...MenuItems.itemsFirst.map(buildItem).toList(),
-                        //   PopupMenuDivider(),
-                        //   ...MenuItems.itemsSecond.map(buildItem).toList(),
-                        // ])
+                        
+                        const Spacer(),
+                        //Menubar
+                        PopupMenuButton<MenuItem>(
+                          icon: Icon(
+                            Icons.menu_rounded,
+                            color: tc1,
+                            size: 36,
+                          ),
+                          onSelected: (item) => onSelected(context, item),
+                          itemBuilder: (context) => [
+                            ...MenuItems.itemsFirst.map(buildItem!).toList(),
+                          PopupMenuDivider(),
+                          ...MenuItems.itemsSecond.map(buildItem!).toList(),
+                        ])
                       ],
                     ),
 
@@ -153,266 +158,48 @@ class SettingsPage extends StatelessWidget {
                       height: 50,
                     ),
       
-                    Container(
-                      width: 299,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color.fromRGBO(131, 193, 193, 1),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black,
-                            blurRadius: 4,
-                            offset: Offset(0, 4),
-                            spreadRadius: 0,
-                          ),
-                        ]
-                      ),
-                      
-                      child: const Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Icon(
-                              Ionicons.person_outline, 
-                              color: Colors.black,
-                              ),
-                          ),
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text("Profile", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
-                            ),
-                            Spacer(),
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Icon(
-                                Ionicons.chevron_forward, 
-                                color: Colors.black,
-                              ),
-                            ),   
-                        ],
-                      ),
+
+                    SettingsBar(
+                      icon: Ionicons.person_outline, 
+                      title: "Profile"
                     ),
-      
-                    const SizedBox(
-                      height: 10,
+
+                    SizedBox(
+                      height: 15,
                     ),
-            
-                    Container(
-                      width: 299,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color.fromRGBO(131, 193, 193, 1),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black,
-                            blurRadius: 4,
-                            offset: Offset(0, 4),
-                            spreadRadius: 0,
-                          ),
-                        ]
-                      ),
-                      child: const Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Icon(
-                              Ionicons.notifications_outline, 
-                              color: Colors.black,
-                            ),
-                          ),
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text("Notifications", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
-                            ),
-                            Spacer(),
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Icon(
-                                Ionicons.chevron_forward, 
-                                color: Colors.black,
-                              ),
-                            ),   
-                        ],
-                      ),
+
+                    SettingsBar(
+                      icon: Ionicons.notifications_outline, 
+                      title: "Notification"
                     ),
-            
-                    const SizedBox(
-                      height: 10,
+
+                     SizedBox(
+                      height: 15,
                     ),
-            
-                    Container(
-                      width: 299,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color.fromRGBO(131, 193, 193, 1),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black,
-                            blurRadius: 4,
-                            offset: Offset(0, 4),
-                            spreadRadius: 0,
-                          ),
-                        ]
-                      ),
-                      child: const Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Icon(
-                              Ionicons.eye_outline, 
-                              color: Colors.black,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text("Visibility", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
-                          ),
-                          Spacer(),
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Icon(
-                              Ionicons.chevron_forward, 
-                              color: Colors.black,
-                            ),
-                          ),   
-                        ],
-                      ),
+
+                    SettingsBar(
+                      icon: Ionicons.shield_outline, 
+                      title: "Data Privacy"
                     ),
-                        
-                    const SizedBox(
-                      height: 10,
+
+                     SizedBox(
+                      height: 15,
                     ),
-            
-                    Container(
-                      width: 299,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color.fromRGBO(131, 193, 193, 1),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black,
-                            blurRadius: 4,
-                            offset: Offset(0, 4),
-                            spreadRadius: 0,
-                          ),
-                        ]
-                      ),
-                      child: const Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Icon(
-                              Ionicons.headset_outline, 
-                              color: Colors.black,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text("Help & Support", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
-                          ),
-                          Spacer(),
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Icon(
-                              Ionicons.chevron_forward, 
-                              color: Colors.black,
-                            ),
-                          ),   
-                        ],
-                      ),
+
+                    SettingsBar(
+                      icon: Ionicons.headset_outline, 
+                      title: "Help & Support"
                     ),
-            
-                   const SizedBox(
-                      height: 10,
+
+                     SizedBox(
+                      height: 15,
                     ),
-            
-                    Container(
-                      width: 299,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color.fromRGBO(131, 193, 193, 1),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black,
-                            blurRadius: 4,
-                            offset: Offset(0, 4),
-                            spreadRadius: 0,
-                          ),
-                        ]
-                      ),
-                      child: const Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Icon(
-                              Ionicons.help_circle_outline, 
-                              color: Colors.black,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text("About", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
-                          ),
-                          Spacer(),
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Icon(
-                              Ionicons.chevron_forward, 
-                              color: Colors.black,
-                            ),
-                          ),   
-                        ],
-                      ),
+
+                    SettingsBar(
+                      icon: Ionicons.help_circle_outline, 
+                      title: "About"
                     ),
-            
-                    const SizedBox(
-                      height: 10,
-                    ),
-            
-                    Container(
-                      width: 299,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color.fromRGBO(131, 193, 193, 1),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black,
-                            blurRadius: 4,
-                            offset: Offset(0, 4),
-                            spreadRadius: 0,
-                          ),
-                        ]
-                      ),
-                      child: const Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Icon(
-                              Ionicons.shield_outline, 
-                              color: Colors.black,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text("Data Privacy", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
-                          ),
-                          Spacer(),
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Icon(
-                                Ionicons.chevron_forward, 
-                                color: Colors.black,
-                              ),
-                            ),   
-                        ],
-                      ),
-                    ),
+           
                 ],
               ),
             ),
