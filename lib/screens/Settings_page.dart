@@ -4,8 +4,6 @@ import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/settings_bar.dart';
 import 'package:toggle_switch/toggle_switch.dart';
-import 'package:list_me/data/menu_items.dart';
-import 'package:list_me/model/menu_item.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../utils/navigationMenu.dart';
