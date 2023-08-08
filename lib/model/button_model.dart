@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:list_me/screens/Settings_page.dart';
 import 'package:list_me/screens/check_list.dart';
 import 'package:list_me/screens/create_list.dart';
-import 'package:list_me/screens/review_page.dart';
+import 'package:list_me/screens/analyse_page.dart';
 
 class ButtonModel extends ChangeNotifier {
   final List _buttonTypes = [
@@ -10,7 +10,7 @@ class ButtonModel extends ChangeNotifier {
     ["Create List", "assets/images/createList.png", const CreateList()],
     ["Check List", "assets/images/check.png", const CheckList()],
     ["Settings", "assets/images/settings.png", const SettingsPage()],
-    ["Review", "assets/images/review.png", const Review()]
+    ["Analyse", "assets/images/review.png", const Analyse()]
   ];
   get buttonTypes => _buttonTypes;
 
