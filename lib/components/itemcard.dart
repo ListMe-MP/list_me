@@ -1,0 +1,65 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:list_me/components/colors.dart';
+
+class ItemCrad extends StatelessWidget {
+ final  String item_name;
+  final String quantity;
+  final String amount;
+
+  const ItemCrad({super.key,required this.item_name,required this.quantity,required this.amount});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+      child: Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  item_name,
+                  style: TextStyle(fontSize: 15),
+                  
+                ),
+              ),
+              height: 35,
+              width: 190,
+              alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10), color: Color(0x7FD4D4D4)),
+            ),
+            SizedBox(width: 10),
+
+            Container(
+              child: Text(quantity),
+              height: 35,
+              width: 50,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10), color: Color(0x7FD4D4D4)),
+            ),
+            SizedBox(width: 10),
+
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(amount),
+              ),
+              height: 35,
+              width: 90,
+              alignment: Alignment.centerRight,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10), color: Color(0x7FD4D4D4)),
+            ),
+            SizedBox(width: 5),
+          ],
+        ),
+      ),
+    );
+  }
+}
+

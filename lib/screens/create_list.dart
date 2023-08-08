@@ -43,7 +43,9 @@ class _CreateListState extends State<CreateList> {
 
                       // title
                       Padding(
+
                         padding: EdgeInsets.only(top: 0.0),
+
                         child: Stack(
                           children: <Widget>[
                             // Stroked text as border.
@@ -102,7 +104,9 @@ class _CreateListState extends State<CreateList> {
                       ),
 
                       const SizedBox(
+
                         height: 5,
+
                       ),
 
                       // text field for type the list items
