@@ -6,6 +6,8 @@ import 'package:list_me/components/settings_bar.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../data/menu_items.dart';
+import '../model/menu_item.dart';
 import '../utils/navigationMenu.dart';
 
 
