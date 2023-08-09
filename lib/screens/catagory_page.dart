@@ -1,13 +1,9 @@
-import 'dart:ffi';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/itemcard.dart';
-import 'package:list_me/screens/Settings_page.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../components/top_bar.dart';
 import '../utils/navigationMenu.dart';

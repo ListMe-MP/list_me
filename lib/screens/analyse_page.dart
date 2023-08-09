@@ -1,11 +1,8 @@
-import 'dart:ffi';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
-import 'package:list_me/screens/Settings_page.dart';
 import 'package:list_me/screens/catagory_page.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -70,125 +67,123 @@ class _AnalyseState extends State<Analyse> {
       ),
       body: Stack(children: [
         Background(),
-        Container(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                TopBar(
-                  onToggle: (index) {
-                    print('switched to:$index');
-                  },
-                  onMenuItemSelected: (item) => onSelected(context, item),
+        SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              TopBar(
+                onToggle: (index) {
+                  print('switched to:$index');
+                },
+                onMenuItemSelected: (item) => onSelected(context, item),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 30.0),
+                child: Stack(
+                  children: [
+                    Text(
+                      'Analysis',
+                      style: GoogleFonts.castoro(
+                          fontSize: 40.0,
+                          foreground: Paint()
+                            ..style = PaintingStyle.stroke
+                            ..strokeWidth = 5
+                            ..color = tc5),
+                    ),
+                    Text('Analysis',
+                        style: GoogleFonts.castoro(
+                          fontSize: 40.0,
+                          color: tc6,
+                        )),
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 30.0),
-                  child: Stack(
+              ),
+              SizedBox(
+                height: 25.0,
+              ),
+              Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Analysis',
-                        style: GoogleFonts.castoro(
-                            fontSize: 40.0,
-                            foreground: Paint()
-                              ..style = PaintingStyle.stroke
-                              ..strokeWidth = 5
-                              ..color = tc5),
+                        'Your Total Monthly Cost',
+                        style: TextStyle(
+                          fontSize: 17.0,
+                        ),
                       ),
-                      Text('Analysis',
-                          style: GoogleFonts.castoro(
-                            fontSize: 40.0,
-                            color: tc6,
-                          )),
+                      Text(
+                        'LKR 12500.00',
+                        style: TextStyle(
+                          fontSize: 40.0,
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 25.0,
-                ),
-                Container(
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Your Total Monthly Cost',
-                          style: TextStyle(
-                            fontSize: 17.0,
-                          ),
-                        ),
-                        Text(
-                          'LKR 12500.00',
-                          style: TextStyle(
-                            fontSize: 40.0,
-                          ),
-                        ),
-                      ],
-                    ),
+                width: 350,
+                height: 90,
+                decoration: ShapeDecoration(
+                    color: Color(0x7FD4D4D4),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    )),
+              ),
+              SfCircularChart(
+                series: <CircularSeries>[
+                  DoughnutSeries<CatData, String>(
+                    dataSource: _chartData,
+                    xValueMapper: (CatData data, _) => data.item,
+                    yValueMapper: (CatData data, _) => data.price,
+                    //dataLabelSettings: DataLabelSettings(isVisible: true)
                   ),
-                  width: 350,
-                  height: 90,
-                  decoration: ShapeDecoration(
-                      color: Color(0x7FD4D4D4),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      )),
-                ),
-                SfCircularChart(
-                  series: <CircularSeries>[
-                    DoughnutSeries<CatData, String>(
-                      dataSource: _chartData,
-                      xValueMapper: (CatData data, _) => data.item,
-                      yValueMapper: (CatData data, _) => data.price,
-                      //dataLabelSettings: DataLabelSettings(isVisible: true)
-                    ),
-                  ],
-                  legend: Legend(
-                      isVisible: true,
-                      overflowMode: LegendItemOverflowMode.wrap),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color(0X7fd4d4d4)),
-                    height: 400,
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      itemCount: catagorys.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final category = catagorys[index];
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> CategoryPage()));
-                          },
-                          child: Card(
-                            child: ListTile(
-                              leading: CircleAvatar(
-                                radius: 28,
-                                backgroundColor: Colors.amber,
-                              ),
-                              title: Text(category.catname),
-                              subtitle:
-                                  Text('LKR ' + category.price.toString()),
-                              trailing: const Icon(Icons.arrow_forward),
-
-                              // onTap: (){
-                              //   Navigator.of(context).push(MaterialPageRoute(
-                              //     builder: CatagoryPage())
-                              //   ),
-                              // },
+                ],
+                legend: Legend(
+                    isVisible: true,
+                    overflowMode: LegendItemOverflowMode.wrap),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Color(0X7fd4d4d4)),
+                  height: 400,
+                  child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemCount: catagorys.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final category = catagorys[index];
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=> CategoryPage()));
+                        },
+                        child: Card(
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              radius: 28,
+                              backgroundColor: Colors.amber,
                             ),
+                            title: Text(category.catname),
+                            subtitle:
+                                Text('LKR ' + category.price.toString()),
+                            trailing: const Icon(Icons.arrow_forward),
+
+                            // onTap: (){
+                            //   Navigator.of(context).push(MaterialPageRoute(
+                            //     builder: CatagoryPage())
+                            //   ),
+                            // },
                           ),
-                        );
-                      },
-                    ),
+                        ),
+                      );
+                    },
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ]),

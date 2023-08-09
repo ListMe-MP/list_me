@@ -1,6 +1,5 @@
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
-import 'package:list_me/components/colors.dart';
 
 class ItemCrad extends StatelessWidget {
  final  String item_name;
