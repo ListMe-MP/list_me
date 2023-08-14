@@ -3,10 +3,11 @@ import 'package:ionicons/ionicons.dart';
 import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/settings_bar.dart';
-import 'package:toggle_switch/toggle_switch.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
-import '../data/menu_items.dart';
+import '../components/top_bar.dart';
+
 import '../model/menu_item.dart';
 import '../utils/navigationMenu.dart';
 
@@ -20,6 +21,15 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
    
     return Scaffold(
+      appBar: AppBar(
+          title: const Text(
+            "Settings",
+            style: TextStyle(color: tc1),
+            textAlign: TextAlign.justify,
+          ),
+          backgroundColor: tc4,
+          foregroundColor: tc1,
+        ),
       body: SafeArea(
         child: Stack(
           children: [
@@ -31,51 +41,18 @@ class SettingsPage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        Icon(Icons.arrow_back),
-                        
-                        
-                       ToggleSwitch(
-                        borderColor: [tc3],
-                        minWidth: 70.0,
-                        minHeight: 20,
-                        cornerRadius: 20.0,
-                        activeBgColors: [
-                          [tc1],
-                          [tc3]
-                        ],
-                        activeFgColor: ttc1,
-                        inactiveBgColor: tc4,
-                        inactiveFgColor: tc1,
-                        initialLabelIndex: 1,
-                        totalSwitches: 2,
-                        labels: ['Voice', ' enable'],
-                        radiusStyle: true,
-                        onToggle: (index) {
-                          print('switched to: $index');
-                        },
+                    //Top Bar
+                     TopBar(
+                          onToggle: (index){
+                            print('switched to:$index');
+                           
+                          }, onMenuItemSelected: (item ) => onSelected(context, item),
                         ),
+                    
                         
-                        const Spacer(),
-                        //Menubar
-                        PopupMenuButton<MenuItem>(
-                          icon: Icon(
-                            Icons.menu_rounded,
-                            color: tc1,
-                            size: 36,
-                          ),
-                          onSelected: (item) => onSelected(context, item),
-                          itemBuilder: (context) => [
-                            ...MenuItems.itemsFirst.map(buildItem!).toList(),
-                          PopupMenuDivider(),
-                          ...MenuItems.itemsSecond.map(buildItem!).toList(),
-                        ])
-                      ],
-                    ),
 
                     const SizedBox(
-                      height: 50,
+                      height: 10,
                     ),
 
                     // Text(
@@ -101,7 +78,7 @@ class SettingsPage extends StatelessWidget {
                   children: <Widget>[
                 // Stroked text as border.
                     Text(
-                      'Settings',
+                      'List Me',
                           style: GoogleFonts.castoro(
                             fontSize: 40,
                             shadows: [
@@ -118,7 +95,7 @@ class SettingsPage extends StatelessWidget {
                     ),
                 // Solid text as fill.
                     Text(
-                      'Settings',
+                      'List Me',
                       style: GoogleFonts.castoro(
                       fontSize: 40,
                       color: tc6,
