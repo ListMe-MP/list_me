@@ -13,6 +13,8 @@ class CreateList extends StatefulWidget {
 }
 
 class _CreateListState extends State<CreateList> {
+  int _quntity = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,9 +45,7 @@ class _CreateListState extends State<CreateList> {
 
                       // title
                       Padding(
-
                         padding: EdgeInsets.only(top: 0.0),
-
                         child: Stack(
                           children: <Widget>[
                             // Stroked text as border.
@@ -104,9 +104,7 @@ class _CreateListState extends State<CreateList> {
                       ),
 
                       const SizedBox(
-
                         height: 5,
-
                       ),
 
                       // text field for type the list items
@@ -188,11 +186,43 @@ class _CreateListState extends State<CreateList> {
                                         fontWeight: FontWeight.w500,
                                         color: tc1),
                                   ),
-                                  subtitle: Text(
-                                    '\$ 20',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        color: tc2),
+                                  subtitle: Row(
+                                    children: [
+                                      Text(
+                                        '\$ 20',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            color: tc2),
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      // quantity
+                                      Container(
+                                        width: 60,
+                                        child: TextField(
+                                          keyboardType: TextInputType.number,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(color: tc2),
+                                          decoration: InputDecoration(
+                                              contentPadding: EdgeInsets.all(8),
+                                              hintText: 'Qty',
+                                              hintStyle: TextStyle(
+                                                  color: tc2.withOpacity(0.5)),
+                                              enabledBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: tc2
+                                                          .withOpacity(0.5)))),
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _quntity =
+                                                  int.tryParse(value) ?? 0;
+                                            });
+                                          },
+                                          controller: TextEditingController(text: _quntity.toString()),
+                                        ),
+                                      )
+                                    ],
                                   ),
 
                                   trailing: Icon(
@@ -228,24 +258,18 @@ class _CreateListState extends State<CreateList> {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black54,
-                      spreadRadius: 2,
-                      blurRadius: 4,
-                      offset: Offset(2, 2)
-                    )
+                        color: Colors.black54,
+                        spreadRadius: 2,
+                        blurRadius: 4,
+                        offset: Offset(2, 2))
                   ],
                   shape: BoxShape.circle,
                 ),
                 child: RawMaterialButton(
                   onPressed: () {
-                    // submit 
+                    // submit
                   },
-                  shape: CircleBorder(
-                    side: BorderSide(
-                      color: tc3,
-                      width: 5.0
-                    )
-                  ),   
+                  shape: CircleBorder(side: BorderSide(color: tc3, width: 5.0)),
                   padding: EdgeInsets.all(10.0),
                   fillColor: tc1,
                   splashColor: tc2,
