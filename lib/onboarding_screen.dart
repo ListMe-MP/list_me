@@ -49,7 +49,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               // screen 1
               Center(
                 child: Container(
-                  alignment: const Alignment(0, 0.25),
+                  alignment: const Alignment(0, 0.3),
                   child: Text(
                       '"Make\nGrocery Shopping\nA Breeze\nWith\nOur\nList Me!"',
                       textAlign: TextAlign.center,

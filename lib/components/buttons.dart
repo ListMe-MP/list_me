@@ -18,7 +18,7 @@ class ButtonItemTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(12.0),
+      padding: const EdgeInsets.all(5.0),
       child: Container(
         decoration: BoxDecoration(
             color: Color.fromRGBO(4, 177, 170, 1),
@@ -39,21 +39,23 @@ class ButtonItemTile extends StatelessWidget {
           padding: const EdgeInsets.all(0.0),
           child: MaterialButton(
             onPressed: onPressed,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                // image
-                Image.asset(
-                  imgPath,
-                  height: 100,
-                ),
-                // btn_name
-                Text(
-                  btnName,
-                  style: GoogleFonts.roboto(
-                      fontSize: 15, color: tc1, fontWeight: FontWeight.bold),
-                ),
-              ],
+            child: Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  // image
+                  Image.asset(
+                    imgPath,
+                    height: 100,
+                  ),
+                  // btn_name
+                  Text(
+                    btnName,
+                    style: GoogleFonts.roboto(
+                        fontSize: 15, color: tc1, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
