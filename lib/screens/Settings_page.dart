@@ -46,8 +46,8 @@ class SettingsPage extends StatelessWidget {
                      TopBar(
                           onToggle: (index){
                             print('switched to:$index');
-                           
-                          }, onMenuItemSelected: (item ) => onSelected(context, item),
+                          }, 
+                          onMenuItemSelected: (item ) => onSelected(context, item),
                         ),
                     
                         
