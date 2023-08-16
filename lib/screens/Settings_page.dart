@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
+import 'package:list_me/components/maintitle.dart';
 import 'package:list_me/components/settings_bar.dart';
 
 import 'package:google_fonts/google_fonts.dart';
@@ -72,38 +73,40 @@ class SettingsPage extends StatelessWidget {
                     // ),
 
 
-            Padding(
-              padding: EdgeInsets.only(top: 60.0),
-                child: Stack(
-                  children: <Widget>[
-                // Stroked text as border.
-                    Text(
-                      'List Me',
-                          style: GoogleFonts.castoro(
-                            fontSize: 40,
-                            shadows: [
-                              Shadow(
-                                blurRadius: 10.0,
-                                color: Colors.black,
-                                offset: Offset(2, -2))
-                              ],
-                            foreground: Paint()
-                              ..style = PaintingStyle.stroke
-                              ..strokeWidth = 5
-                              ..color = tc5,
-                          ),
-                    ),
-                // Solid text as fill.
-                    Text(
-                      'List Me',
-                      style: GoogleFonts.castoro(
-                      fontSize: 40,
-                      color: tc6,
-                    ),
-                    ),
-                  ],
-                ),
-            ),
+            MainTitle(),
+
+            // Padding(
+            //   padding: EdgeInsets.only(top: 60.0),
+            //     child: Stack(
+            //       children: <Widget>[
+            //     // Stroked text as border.
+            //         Text(
+            //           'List Me',
+            //               style: GoogleFonts.castoro(
+            //                 fontSize: 40,
+            //                 shadows: [
+            //                   Shadow(
+            //                     blurRadius: 10.0,
+            //                     color: Colors.black,
+            //                     offset: Offset(2, -2))
+            //                   ],
+            //                 foreground: Paint()
+            //                   ..style = PaintingStyle.stroke
+            //                   ..strokeWidth = 5
+            //                   ..color = tc5,
+            //               ),
+            //         ),
+            //     // Solid text as fill.
+            //         Text(
+            //           'List Me',
+            //           style: GoogleFonts.castoro(
+            //           fontSize: 40,
+            //           color: tc6,
+            //         ),
+            //         ),
+            //       ],
+            //     ),
+            // ),
 
 
 
