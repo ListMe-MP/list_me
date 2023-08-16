@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
+import 'package:list_me/components/maintitle.dart';
 import '../components/top_bar.dart';
 import '../utils/navigationMenu.dart';
 
@@ -13,7 +14,7 @@ class CreateList extends StatefulWidget {
 }
 
 class _CreateListState extends State<CreateList> {
-  int _quntity = 1;
+int _quntity = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -44,38 +45,7 @@ class _CreateListState extends State<CreateList> {
                       ),
 
                       // title
-                      Padding(
-                        padding: EdgeInsets.only(top: 0.0),
-                        child: Stack(
-                          children: <Widget>[
-                            // Stroked text as border.
-                            Text(
-                              'List Me',
-                              style: GoogleFonts.castoro(
-                                fontSize: 40,
-                                shadows: [
-                                  Shadow(
-                                      blurRadius: 10.0,
-                                      color: Colors.black,
-                                      offset: Offset(2, -2))
-                                ],
-                                foreground: Paint()
-                                  ..style = PaintingStyle.stroke
-                                  ..strokeWidth = 5
-                                  ..color = tc5,
-                              ),
-                            ),
-                            // Solid text as fill.
-                            Text(
-                              'List Me',
-                              style: GoogleFonts.castoro(
-                                fontSize: 40,
-                                color: tc6,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      MainTitle(),
 
                       // textfield for title of the list
                       Container(
@@ -104,7 +74,9 @@ class _CreateListState extends State<CreateList> {
                       ),
 
                       const SizedBox(
+
                         height: 5,
+
                       ),
 
                       // text field for type the list items
@@ -189,12 +161,12 @@ class _CreateListState extends State<CreateList> {
                                   subtitle: Row(
                                     children: [
                                       Text(
-                                        '\$ 20',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            color: tc2),
-                                      ),
-                                      SizedBox(
+                                    '\$ 20',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        color: tc2),
+                                  ),
+SizedBox(
                                         width: 10,
                                       ),
                                       // quantity
@@ -258,18 +230,18 @@ class _CreateListState extends State<CreateList> {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                        color: Colors.black54,
-                        spreadRadius: 2,
-                        blurRadius: 4,
-                        offset: Offset(2, 2))
+                      color: Colors.black54,
+                      spreadRadius: 2,
+                      blurRadius: 4,
+                      offset: Offset(2, 2))
                   ],
                   shape: BoxShape.circle,
                 ),
                 child: RawMaterialButton(
                   onPressed: () {
-                    // submit
+                    // submit 
                   },
-                  shape: CircleBorder(side: BorderSide(color: tc3, width: 5.0)),
+                  shape: CircleBorder(side: BorderSide(color: tc3, width: 5.0)),   
                   padding: EdgeInsets.all(10.0),
                   fillColor: tc1,
                   splashColor: tc2,
@@ -285,3 +257,4 @@ class _CreateListState extends State<CreateList> {
         ));
   }
 }
+
