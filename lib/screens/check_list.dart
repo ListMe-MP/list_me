@@ -35,15 +35,22 @@ class CheckList extends StatelessWidget {
                         Expanded(
                           child: ListView(
                             scrollDirection: Axis.vertical,
-                            children: <Widget> [
-                              Expanded(
+                            children: <Widget> [ 
+                             
+
+                              Expanded( 
                                 child: Row(
                                   children: [
-                                    Expanded(
-                                    child: ListTile(
-                                      title: Text('Untitled list 01 '),
-                                      trailing: Icon(Icons.arrow_forward),
-                                      onTap: () {},
+                                    Expanded(  
+                                      
+                                      
+                                    child: Container(
+                                      color:Colors.black12,
+                                      child: ListTile(
+                                        title: Text('Untitled list 01 '),
+                                        trailing: Icon(Icons.arrow_forward),
+                                        onTap: () {},
+                                      ),
                                     ),),
                                     IconButton(onPressed: () {}, 
                                     icon: Icon(Icons.mode_edit_outline_sharp),
@@ -61,10 +68,14 @@ class CheckList extends StatelessWidget {
                                  Row ( 
                                   children: <Widget> [
                                     Expanded(
-                                    child: ListTile(
-                                      title: Text('Untitled list 02 '),
-                                      trailing: Icon(Icons.arrow_forward),
-                                      onTap: () {},
+                                      
+                                    child: Container(
+                                      color:Colors.black12,
+                                      child: ListTile(
+                                        title: Text('Untitled list 02 '),
+                                        trailing: Icon(Icons.arrow_forward),
+                                        onTap: () {},
+                                      ),
                                     ),),
                                     IconButton(onPressed: () {}, 
                                     icon: Icon(Icons.mode_edit_outline_sharp),
@@ -82,10 +93,13 @@ class CheckList extends StatelessWidget {
                                  Row(
                                   children: [
                                     Expanded(
-                                    child: ListTile(
-                                      title: Text('Untitled list 03 '),
-                                      trailing: Icon(Icons.arrow_forward),
-                                      onTap: () {},
+                                    child: Container(
+                                      color:Colors.black12,
+                                      child: ListTile(
+                                        title: Text('Untitled list 03 '),
+                                        trailing: Icon(Icons.arrow_forward),
+                                        onTap: () {},
+                                      ),
                                     ),),
                                     IconButton(onPressed: () {}, 
                                     icon: Icon(Icons.mode_edit_outline_sharp),
@@ -103,10 +117,13 @@ class CheckList extends StatelessWidget {
                                 Row(
                                   children: [
                                     Expanded(
-                                    child: ListTile(
-                                      title: Text('Untitled list 04 '),
-                                      trailing: Icon(Icons.arrow_forward),
-                                      onTap: () {},
+                                    child: Container(
+                                      color:Colors.black12,
+                                      child: ListTile(
+                                        title: Text('Untitled list 04 '),
+                                        trailing: Icon(Icons.arrow_forward),
+                                        onTap: () {},
+                                      ),
                                     ),),
                                     IconButton(onPressed: () {}, 
                                     icon: Icon(Icons.mode_edit_outline_sharp),
