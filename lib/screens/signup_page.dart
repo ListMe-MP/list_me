@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:list_me/components/top_bar.dart';
-import 'package:list_me/screens/signup_page.dart';
+import 'package:list_me/screens/signin_page.dart';
 
 import '../components/background.dart';
 import '../components/colors.dart';
@@ -9,8 +9,8 @@ import '../utils/navigationMenu.dart';
 
 
 
-class SignInPage extends StatelessWidget {
-  const SignInPage({super.key});
+class SignUpPage extends StatelessWidget {
+  const SignUpPage({super.key});
 
 
   @override
@@ -45,7 +45,7 @@ class SignInPage extends StatelessWidget {
                       children: <Widget>[
                         // Stroked text as border.
                         Text(
-                          'Sign In',
+                          'Sign Up',
                           style: GoogleFonts.castoro(
                             fontSize: 40,
                             shadows: [
@@ -62,7 +62,7 @@ class SignInPage extends StatelessWidget {
                         ),
                       // Solid text as fill.
                         Text(
-                          'Sign In',
+                          'Sign Up',
                           style: GoogleFonts.castoro(
                             fontSize: 40,
                             color: tc6,
@@ -144,11 +144,44 @@ class SignInPage extends StatelessWidget {
                     height: 50,
                   ),
 
+                  //email
+                  Container(
+                    width: 299,
+                    height: 37,
+                    decoration: ShapeDecoration(
+                      color: Color(0x7FD4D4D4),
+                      shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                     child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                      obscureText: true,
+                      style: TextStyle(
+                        color: Colors.white
+                      ),
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.only(bottom: 10, left: 12, right: 2, top: 2),
+                        hintText: 'email',
+                        hintStyle: TextStyle(
+                          color: Colors.white
+                        )
+                      ),
+                    )
+                    )
+                  ),
+
+                  SizedBox(height: 50),
+
+
                   //sign in button
                   ElevatedButton(
                     onPressed: (){}, 
+                    
                     child: const Text(
-                      'Sign In',
+                      'Sign Up',
                       style: TextStyle(
                         color: Colors.black
                       ),
@@ -167,7 +200,7 @@ class SignInPage extends StatelessWidget {
 
                   Container(
                     child: Text(
-                      "New to List Me?",
+                      "Already have an account?",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 15,
@@ -177,20 +210,19 @@ class SignInPage extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(
-                    height: 10,
-                  ),
 
-                  //Sign up text button
+                  SizedBox(height: 10),
+                  
+                  //sign up text button
                   GestureDetector(
                     onTap: (){
                       Navigator.push(
                         context, 
-                        MaterialPageRoute(builder: (context) => SignUpPage()),
+                        MaterialPageRoute(builder: (context) => SignInPage()),
                         );
                     },
                     child: Text(
-                      "Sign Up",
+                      "Sign In",
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 15,
@@ -199,7 +231,6 @@ class SignInPage extends StatelessWidget {
                        ),
                     ),
                   ),
-
                 ],
               ),
             )
