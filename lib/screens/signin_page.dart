@@ -10,6 +10,7 @@ import '../utils/navigationMenu.dart';
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,8 +72,8 @@ class SignInPage extends StatelessWidget {
                     height: 50,
                   ),
 
-                  //username field
-                  Container(
+                //username
+                Container(
                     width: 299,
                     height: 37,
                     decoration: ShapeDecoration(
@@ -81,26 +82,24 @@ class SignInPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: Padding(
+                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'username',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w400,
-                        ),
+                      child: TextField(
+                      keyboardType: TextInputType.name,
+                      style: TextStyle(
+                        color: Colors.white
                       ),
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.only(bottom: 2, left: 2, right: 2, top: 2),
+                        hintText: 'username',
+                        hintStyle: TextStyle(
+                          color: Colors.white
+                        )
+                      ),
+                      
                     )
-
-                    // child: Padding(
-                    //   padding: const EdgeInsets.all(8.0),
-                    //   child: Text(
-                    //     "username",
-                    //     style: TextStyle(color: Colors.white),
-                    //   ),
-                    // ),
+                    )
                   ),
 
                   SizedBox(
@@ -119,19 +118,23 @@ class SignInPage extends StatelessWidget {
                     ),
                      child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'password',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w400,
-                        ),
+                      child: TextField(
+                      obscureText: true,
+                      style: TextStyle(
+                        color: Colors.white
+                      ),
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.only(top: 14),
+                        hintText: 'password',
+                        hintStyle: TextStyle(
+                          color: Colors.white
+                        )
                       ),
                     )
+                    )
                   ),
-
-
+                  
                 ],
               ),
             )
@@ -140,4 +143,6 @@ class SignInPage extends StatelessWidget {
       ),
     );
   }
+  
+  
 }
