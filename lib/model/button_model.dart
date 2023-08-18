@@ -8,7 +8,7 @@ class ButtonModel extends ChangeNotifier {
   final List _buttonTypes = [
     // [buttonName, imagePath]
     ["Create List", "assets/images/createList.png", const CreateList()],
-    ["Check List", "assets/images/check.png", const CheckList()],
+    ["Check List", "assets/images/check.png",  CheckList()],
     ["Settings", "assets/images/settings.png", const SettingsPage()],
     ["Analyse", "assets/images/review.png", const Analyse()]
   ];
