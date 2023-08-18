@@ -7,6 +7,7 @@ import '../components/colors.dart';
 import '../utils/navigationMenu.dart';
 
 
+
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
 
@@ -18,7 +19,9 @@ class SignInPage extends StatelessWidget {
         child: Stack(
           children: [
             const Background(),
-            Center(
+            Container(
+              child: SingleChildScrollView(
+               child: Center(
               child: Column(
                 children: [
                   //Top Bar
@@ -72,6 +75,7 @@ class SignInPage extends StatelessWidget {
                     height: 50,
                   ),
 
+               
                 //username
                 Container(
                     width: 299,
@@ -91,7 +95,7 @@ class SignInPage extends StatelessWidget {
                       ),
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        contentPadding: EdgeInsets.only(bottom: 2, left: 2, right: 2, top: 2),
+                        contentPadding: EdgeInsets.only(bottom: 10, left: 12, right: 2, top: 2),
                         hintText: 'username',
                         hintStyle: TextStyle(
                           color: Colors.white
@@ -125,7 +129,7 @@ class SignInPage extends StatelessWidget {
                       ),
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        contentPadding: EdgeInsets.only(top: 14),
+                        contentPadding: EdgeInsets.only(bottom: 10, left: 12, right: 2, top: 2),
                         hintText: 'password',
                         hintStyle: TextStyle(
                           color: Colors.white
@@ -134,15 +138,73 @@ class SignInPage extends StatelessWidget {
                     )
                     )
                   ),
-                  
+
+                  SizedBox(
+                    height: 50,
+                  ),
+
+                  //sign in button
+                  ElevatedButton(
+                    onPressed: (){}, 
+                    
+                    child: const Text(
+                      'Sign In',
+                      style: TextStyle(
+                        color: Colors.black
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)
+                      )
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 50,
+                  ),
+
+                  Container(
+                    child: Text(
+                      "New to List Me?",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+
+                  //sign up text button
+                  TextButton(
+                    onPressed: (){}, 
+                    child: Text(
+                      "Sign Up",
+                       style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w400
+                       ),
+                      )
+                    )
                 ],
               ),
             )
+              ),
+            )
+            
           ],
         ),
-      ),
+      
+      )
+      
     );
   }
   
   
 }
+
+               

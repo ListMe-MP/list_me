@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  sign_in_button: ^3.0.0
   flutter:
     sdk: flutter
   syncfusion_flutter_charts: ^22.2.7
