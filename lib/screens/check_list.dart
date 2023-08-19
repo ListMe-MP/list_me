@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
+import 'package:list_me/components/itemcard.dart';
 import 'package:list_me/components/maintitle.dart';
 import 'package:list_me/components/top_bar.dart';
 import 'package:list_me/screens/Untitled_List_04_page.dart';
 
 import '../utils/navigationMenu.dart';
+import 'create_list.dart';
 
 class CheckList extends StatelessWidget {
    CheckList({super.key});
@@ -69,9 +71,7 @@ class CheckList extends StatelessWidget {
                                         title: Text(items[index]),
                                         trailing:  IconButton(onPressed: () {
                                           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-                                            
-                                          
-                                            return CheckList04(data:items[index]);
+                                           return CheckList04(data:items[index]);
                                           },),);
                                         }, 
                                    icon: Icon(Icons.arrow_forward),
@@ -83,11 +83,25 @@ class CheckList extends StatelessWidget {
                                  ),
                                  
                                  ),
-                                  IconButton(onPressed: () {}, 
+                                  IconButton(onPressed: () {
+                                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+                                       return CreateList();
+                                    },),);
+                                  }, 
                                  icon: Icon(Icons.mode_edit_outline_sharp),
                                   color:Colors.black,
                               ),
-                                IconButton(onPressed: () {}, 
+                                IconButton(onPressed: () {
+                                  // void removeItem(int index) {
+                                  //   final Item = items.removeAt(index);
+
+                               
+                                  // key?.currentState.removeItem(
+                                  //   index, 
+                                  //   (context, Animation) => buildItem (items, index)
+                                  // );
+                                  // },
+                                }, 
                                icon: Icon(Icons.delete),
                                color:Colors.black,
                              ),
@@ -107,4 +121,6 @@ class CheckList extends StatelessWidget {
       ),
     );
   }
+  
+  buildItem(List<String> items, int index) {}
 }
