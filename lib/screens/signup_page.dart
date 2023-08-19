@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:list_me/components/top_bar.dart';
+import 'package:list_me/screens/SignInSignUp_Bar.dart';
 import 'package:list_me/screens/signin_page.dart';
 
 import '../components/background.dart';
@@ -76,102 +77,112 @@ class SignUpPage extends StatelessWidget {
                     height: 50,
                   ),
 
+                  SignInSignUpBar(hintText: "Username"),
+
+                  SizedBox(height: 20,),
+
+                  SignInSignUpBar(hintText: "Password"),
+
+                  SizedBox(height: 20,),
+
+                  SignInSignUpBar(hintText: "Email"),
+
                
                 //username
-                Container(
-                    width: 299,
-                    height: 37,
-                    decoration: ShapeDecoration(
-                      color: Color(0x7FD4D4D4),
-                      shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                      keyboardType: TextInputType.name,
-                      style: TextStyle(
-                        color: Colors.white
-                      ),
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.only(bottom: 10, left: 12, right: 2, top: 2),
-                        hintText: 'username',
-                        hintStyle: TextStyle(
-                          color: Colors.white
-                        )
-                      ),
+                // Container(
+                //     width: 299,
+                //     height: 37,
+                //     decoration: ShapeDecoration(
+                //       color: Color(0x7FD4D4D4),
+                //       shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.circular(10),
+                //       ),
+                //     ),
+                //      child: Padding(
+                //       padding: const EdgeInsets.all(8.0),
+                //       child: TextField(
+                //       keyboardType: TextInputType.name,
+                //       style: TextStyle(
+                //         color: Colors.white
+                //       ),
+                //       decoration: InputDecoration(
+                //         border: InputBorder.none,
+                //         contentPadding: EdgeInsets.only(bottom: 10, left: 12, right: 2, top: 2),
+                //         hintText: 'username',
+                //         hintStyle: TextStyle(
+                //           color: Colors.white
+                //         )
+                //       ),
                       
-                    )
-                    )
-                  ),
+                //     )
+                //     )
+                //   ),
 
-                  SizedBox(
-                    height: 50,
-                  ),
+                //   SizedBox(
+                //     height: 50,
+                //   ),
 
-                  //password field
-                  Container(
-                    width: 299,
-                    height: 37,
-                    decoration: ShapeDecoration(
-                      color: Color(0x7FD4D4D4),
-                      shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                      obscureText: true,
-                      style: TextStyle(
-                        color: Colors.white
-                      ),
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.only(bottom: 10, left: 12, right: 2, top: 2),
-                        hintText: 'password',
-                        hintStyle: TextStyle(
-                          color: Colors.white
-                        )
-                      ),
-                    )
-                    )
-                  ),
+                //   //password field
+                //   Container(
+                //     width: 299,
+                //     height: 37,
+                //     decoration: ShapeDecoration(
+                //       color: Color(0x7FD4D4D4),
+                //       shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.circular(10),
+                //       ),
+                //     ),
+                //      child: Padding(
+                //       padding: const EdgeInsets.all(8.0),
+                //       child: TextField(
+                //       obscureText: true,
+                //       style: TextStyle(
+                //         color: Colors.white
+                //       ),
+                //       decoration: InputDecoration(
+                //         border: InputBorder.none,
+                //         contentPadding: EdgeInsets.only(bottom: 10, left: 12, right: 2, top: 2),
+                //         hintText: 'password',
+                //         hintStyle: TextStyle(
+                //           color: Colors.white
+                //         )
+                //       ),
+                //     )
+                //     )
+                //   ),
 
-                  SizedBox(
-                    height: 50,
-                  ),
+                //   SizedBox(
+                //     height: 50,
+                //   ),
 
-                  //email
-                  Container(
-                    width: 299,
-                    height: 37,
-                    decoration: ShapeDecoration(
-                      color: Color(0x7FD4D4D4),
-                      shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                      obscureText: true,
-                      style: TextStyle(
-                        color: Colors.white
-                      ),
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.only(bottom: 10, left: 12, right: 2, top: 2),
-                        hintText: 'email',
-                        hintStyle: TextStyle(
-                          color: Colors.white
-                        )
-                      ),
-                    )
-                    )
-                  ),
+                //   //email
+                //   Container(
+                //     width: 299,
+                //     height: 37,
+                //     decoration: ShapeDecoration(
+                //       color: Color(0x7FD4D4D4),
+                //       shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.circular(10),
+                //       ),
+                //     ),
+                //      child: Padding(
+                //       padding: const EdgeInsets.all(8.0),
+                //       child: TextField(
+                //       obscureText: true,
+                //       style: TextStyle(
+                //         color: Colors.white
+                //       ),
+                //       decoration: InputDecoration(
+                //         border: InputBorder.none,
+                //         contentPadding: EdgeInsets.only(bottom: 10, left: 12, right: 2, top: 2),
+                //         hintText: 'email',
+                //         hintStyle: TextStyle(
+                //           color: Colors.white
+                //         )
+                //       ),
+                //     )
+                //     )
+                //   ),
 
                   SizedBox(height: 50),
 
