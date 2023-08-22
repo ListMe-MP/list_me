@@ -91,7 +91,7 @@ class _CheckList04State extends State<CheckList04> {
          width: double.infinity,
          child: IconButton(onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { 
-            return CreateList();
+            return CreateList();  
            },),);
          }, 
            icon: Icon(Icons.mode_edit_outline_sharp),
@@ -136,7 +136,7 @@ class _CheckList04State extends State<CheckList04> {
                 trailing: Checkbox(
                  value: widget.foodItems[index]['ischecked']== true,
                     activeColor: Color.fromRGBO(131, 193, 193, 1),
-                    checkColor: Colors.black,
+                    checkColor: const Color.fromARGB(255, 1, 1, 1),
                    tristate: true, // Fix typo here
                   onChanged: (newBool) {
                   setState(() {
