@@ -4,6 +4,7 @@ import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/maintitle.dart';
 import '../components/top_bar.dart';
+import '../services/api.dart';
 import '../utils/navigationMenu.dart';
 
 class CreateList extends StatefulWidget {
@@ -14,7 +15,10 @@ class CreateList extends StatefulWidget {
 }
 
 class _CreateListState extends State<CreateList> {
-int _quntity = 1;
+  int _quntity = 1;
+  var titleController = TextEditingController();
+  var itemController = TextEditingController();
+  List<String> itemList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +61,10 @@ int _quntity = 1;
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        child: const Padding(
+                        child: Padding(
                           padding: EdgeInsets.only(left: 10, right: 10),
                           child: TextField(
+                            controller: titleController,
                             decoration: InputDecoration(
                               hintText: "Untitled list-1",
                               hintStyle: TextStyle(
@@ -74,9 +79,7 @@ int _quntity = 1;
                       ),
 
                       const SizedBox(
-
                         height: 5,
-
                       ),
 
                       // text field for type the list items
@@ -91,10 +94,11 @@ int _quntity = 1;
                           ),
                           child: Row(
                             children: [
-                              const Expanded(
+                              Expanded(
                                 child: Padding(
                                   padding: EdgeInsets.only(left: 10, right: 10),
                                   child: TextField(
+                                    controller: itemController,
                                     decoration: InputDecoration(
                                       hintText: "Type Here",
                                       hintStyle: TextStyle(
@@ -111,7 +115,31 @@ int _quntity = 1;
 
                               // add button
                               IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  if (itemController.text.isNotEmpty) {
+                                    setState(() {
+                                      // itemList.addAll(itemController.text
+                                      //     .split(RegExp(r'[,\s]| and '))
+                                      //     .where((item) => item.isNotEmpty));
+                                      // itemController.clear();
+
+                                      final rawItems = itemController.text
+                                          .split(RegExp(r'[,\s]'));
+                                      final parsedItems = <String>[];
+
+                                      for (final rawItem in rawItems) {
+                                        if (rawItem.trim().toLowerCase() !=
+                                            'and') {
+                                          parsedItems.add(rawItem.trim());
+                                        }
+                                      }
+
+                                      itemList.addAll(parsedItems
+                                          .where((item) => item.isNotEmpty));
+                                      itemController.clear();
+                                    });
+                                  }
+                                },
                                 icon: Icon(
                                   Icons.add_box_outlined,
                                   color: tc1,
@@ -135,8 +163,9 @@ int _quntity = 1;
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        child: ListView.separated(
+                        child: ListView.builder(
                           shrinkWrap: true,
+                          itemCount: itemList.length,
                           padding: EdgeInsets.all(10),
                           itemBuilder: (context, index) {
                             return ClipRRect(
@@ -145,15 +174,12 @@ int _quntity = 1;
                               child: Container(
                                 color: Colors.white.withOpacity(0.1),
                                 child: ListTile(
-                                  // contentPadding: EdgeInsets.all(8.0),
                                   leading: Image.asset(
                                     'assets/images/items/item0.png',
-                                    // width: 40,
-                                    // height: 40,
                                     fit: BoxFit.cover,
                                   ),
                                   title: Text(
-                                    'Item $index',
+                                    itemList[index],
                                     style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         color: tc1),
@@ -161,12 +187,12 @@ int _quntity = 1;
                                   subtitle: Row(
                                     children: [
                                       Text(
-                                    '\$ 20',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        color: tc2),
-                                  ),
-SizedBox(
+                                        '\$ 20',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            color: tc2),
+                                      ),
+                                      SizedBox(
                                         width: 10,
                                       ),
                                       // quantity
@@ -191,12 +217,13 @@ SizedBox(
                                                   int.tryParse(value) ?? 0;
                                             });
                                           },
-                                          controller: TextEditingController(text: _quntity.toString()),
+                                          controller: TextEditingController(
+                                              text: _quntity.toString()),
                                         ),
                                       )
                                     ],
                                   ),
-
+                                  // edit button
                                   trailing: Icon(
                                     Icons.edit,
                                     color: tc1,
@@ -208,12 +235,12 @@ SizedBox(
                               ),
                             );
                           },
-                          separatorBuilder: (context, index) {
-                            return SizedBox(
-                                height:
-                                    10); // Adjust the height as per your padding needs
-                          },
-                          itemCount: 10,
+                          // separatorBuilder: (context, index) {
+                          //   return SizedBox(
+                          //       height:
+                          //           10); // Adjust the height as per your padding needs
+                          // },
+                          // itemCount: 10,
                           scrollDirection: Axis
                               .vertical, // Replace this with the number of ListTiles you want
                         ),
@@ -230,18 +257,50 @@ SizedBox(
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black54,
-                      spreadRadius: 2,
-                      blurRadius: 4,
-                      offset: Offset(2, 2))
+                        color: Colors.black54,
+                        spreadRadius: 2,
+                        blurRadius: 4,
+                        offset: Offset(2, 2))
                   ],
                   shape: BoxShape.circle,
                 ),
                 child: RawMaterialButton(
                   onPressed: () {
-                    // submit 
+                    // submit
+                    // if (titleController.text.isNotEmpty &&
+                    //     itemList.isNotEmpty) {
+                    //   var data = {
+                    //     "lTitle": titleController.text,
+                    //     "pname": itemList.join(', '),
+                    //     "pimage": itemController.text,
+                    //     "pprice": itemController.text,
+                    //     "pquantity": itemController.text
+                    //   };
+
+                    //   Api.addProduct(data);
+                    // }
+
+                    if (titleController.text.isNotEmpty &&
+                        itemList.isNotEmpty) {
+                      List<Map<String, dynamic>> itemsData =
+                          itemList.map((itemName) {
+                        return {
+                          "pname": itemName,
+                          "pimage": "", // Add image data if needed
+                          "pprice": "", // Add price data if needed
+                          "pquantity": "", // Add quantity data if needed
+                        };
+                      }).toList();
+
+                      var data = {
+                        "lTitle": titleController.text,
+                        "items": itemsData,
+                      };
+
+                      Api.addProduct(data);
+                    }
                   },
-                  shape: CircleBorder(side: BorderSide(color: tc3, width: 5.0)),   
+                  shape: CircleBorder(side: BorderSide(color: tc3, width: 5.0)),
                   padding: EdgeInsets.all(10.0),
                   fillColor: tc1,
                   splashColor: tc2,
@@ -257,4 +316,3 @@ SizedBox(
         ));
   }
 }
-
