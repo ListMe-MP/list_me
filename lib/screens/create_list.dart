@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/maintitle.dart';
@@ -118,11 +117,6 @@ class _CreateListState extends State<CreateList> {
                                 onPressed: () {
                                   if (itemController.text.isNotEmpty) {
                                     setState(() {
-                                      // itemList.addAll(itemController.text
-                                      //     .split(RegExp(r'[,\s]| and '))
-                                      //     .where((item) => item.isNotEmpty));
-                                      // itemController.clear();
-
                                       final rawItems = itemController.text
                                           .split(RegExp(r'[,\s]'));
                                       final parsedItems = <String>[];
@@ -173,17 +167,22 @@ class _CreateListState extends State<CreateList> {
                                   BorderRadius.all(Radius.circular(10)),
                               child: Container(
                                 color: Colors.white.withOpacity(0.1),
+                                // image of the item
                                 child: ListTile(
                                   leading: Image.asset(
                                     'assets/images/items/item0.png',
                                     fit: BoxFit.cover,
                                   ),
+
+                                  // item name
                                   title: Text(
                                     itemList[index],
                                     style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         color: tc1),
                                   ),
+
+                                  // item price
                                   subtitle: Row(
                                     children: [
                                       Text(
@@ -264,40 +263,25 @@ class _CreateListState extends State<CreateList> {
                   ],
                   shape: BoxShape.circle,
                 ),
+
+                // submit
                 child: RawMaterialButton(
                   onPressed: () {
-                    // submit
-                    // if (titleController.text.isNotEmpty &&
-                    //     itemList.isNotEmpty) {
-                    //   var data = {
-                    //     "lTitle": titleController.text,
-                    //     "pname": itemList.join(', '),
-                    //     "pimage": itemController.text,
-                    //     "pprice": itemController.text,
-                    //     "pquantity": itemController.text
-                    //   };
-
-                    //   Api.addProduct(data);
-                    // }
-
                     if (titleController.text.isNotEmpty &&
                         itemList.isNotEmpty) {
-                      List<Map<String, dynamic>> itemsData =
-                          itemList.map((itemName) {
-                        return {
-                          "pname": itemName,
-                          "pimage": "", // Add image data if needed
-                          "pprice": "", // Add price data if needed
-                          "pquantity": "", // Add quantity data if needed
-                        };
-                      }).toList();
-
+                      print("itemList: $itemList");
                       var data = {
-                        "lTitle": titleController.text,
-                        "items": itemsData,
+                        "ltitle": titleController.text,
+                        "items": itemList,
                       };
 
                       Api.addProduct(data);
+
+                      setState(() {
+                        itemList.clear();
+                      });
+
+                      titleController.clear();
                     }
                   },
                   shape: CircleBorder(side: BorderSide(color: tc3, width: 5.0)),
