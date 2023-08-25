@@ -1,5 +1,7 @@
 
 
+import 'package:another_flushbar/flushbar.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:list_me/components/background.dart';
@@ -10,6 +12,7 @@ import 'package:list_me/components/maintitle.dart';
 import 'package:list_me/components/top_bar.dart';
 import 'package:list_me/screens/Untitled_List_04_page.dart';
 
+import '../components/flushbars.dart';
 import '../utils/navigationMenu.dart';
 import 'create_list.dart';
 
@@ -98,11 +101,12 @@ class CheckList extends StatelessWidget {
                                     message: "You still have a chance to undo it",
                                     onUndo: () {
                                       Navigator.pop (context);
-                                      items.insert(index, temp);
+                                      items.insert(index, temp); 
 
                                     },
                                     duration: const Duration(seconds: 6),
                                   ). show (context);
+
 
                                   // void removeItem(int index) {
                                   //   final Item = items.removeAt(index);
