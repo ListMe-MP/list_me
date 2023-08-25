@@ -17,6 +17,10 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       appBar: AppBar(
+          backgroundColor: tc4,
+          foregroundColor: tc1,
+        ),
       body: SafeArea(
         child: Stack(
           children: [
