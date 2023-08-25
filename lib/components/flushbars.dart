@@ -10,7 +10,7 @@ import 'package:another_flushbar/flushbar_route.dart';
 
 
 class FlushBars {
- edited_deleteFunction
+
     dynamic undo( {
 
     required String message,
