@@ -10,7 +10,9 @@ class Api {
     var url = Uri.parse("${baseUrl}add_product");
 
     try {
-      final res = await http.post(url, body: pdata);
+      final res = await http.post(url, headers: {
+        "Content-Type":"application/json",
+      }, body: json.encode(pdata));
 
       if (res.statusCode == 200) {
         var data = jsonDecode(res.body.toString());
