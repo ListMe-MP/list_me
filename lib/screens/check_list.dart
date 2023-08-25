@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
+import 'package:list_me/components/flushbars.dart';
 import 'package:list_me/components/itemcard.dart';
 import 'package:list_me/components/maintitle.dart';
 import 'package:list_me/components/top_bar.dart';
@@ -100,12 +101,13 @@ class CheckList extends StatelessWidget {
                                     message: "You still have a chance to undo it",
                                     onUndo: () {
                                       Navigator.pop (context);
-                                      items.insert(index, temp);
-                                     
+                                      items.insert(index, temp); 
+
                                     },
                                     duration: const Duration(seconds: 6),
+                                  ). show (context);
 
-                                   ).show(context);
+
                                   // void removeItem(int index) {
                                   //   final Item = items.removeAt(index);
 

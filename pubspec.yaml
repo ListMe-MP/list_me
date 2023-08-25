@@ -43,6 +43,7 @@ dependencies:
   toggle_switch: ^2.1.0
   ionicons: ^0.2.2
   http: ^1.1.0
+  another_flushbar: ^1.12.30
 
 dev_dependencies:
   flutter_test:
