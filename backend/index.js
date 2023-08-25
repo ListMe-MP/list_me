@@ -19,19 +19,19 @@ app.listen(2000, ()=>{
 app.post("/api/add_product", (req, res)=>{
     console.log("Result", req.body);
 
-    // const itemArray = req.body.items.map(item => {
-    //     return {
-    //         "pname": req.body.pname,
-    //         "pimage": "",
-    //         "pprice": "",
-    //         "pquantity": "",
-    //     }
-    // })
+    const itemArray = req.body.items.map(item => {
+        return {
+            "pname": item,
+            "pimage": "",
+            "pprice": "",
+            "pquantity": "",
+        }
+    })
 
     const pdata = {
         "id": productList.length+1,
         "lTitle": req.body.ltitle,
-        "items": req.body.items
+        "items": itemArray
 
     };
 
