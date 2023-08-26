@@ -14,125 +14,127 @@ class CheckList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Check List", style: TextStyle(color: tc1),textAlign: TextAlign.justify,),
-      backgroundColor: tc4,
-          foregroundColor: tc1,
-      ),
-      body: Stack(
-        children: [
-          Background(),
-          Container(
-            child: Column(
-              children: [
-                TopBar(onToggle: (index) {
-                          print('switched to:$index');
-                        },
-                        onMenuItemSelected: (item) => onSelected(context, item),
-                        ),
-
-                        MainTitle(),
-                        Expanded(
-                          child: ListView(
-                            scrollDirection: Axis.vertical,
-                            children: <Widget> [
-                              Expanded(
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                    child: ListTile(
-                                      title: Text('Untitled list 01 '),
-                                      trailing: Icon(Icons.arrow_forward),
-                                      onTap: () {},
-                                    ),),
-                                    IconButton(onPressed: () {}, 
-                                    icon: Icon(Icons.mode_edit_outline_sharp),
-                                    color:Colors.black,
-                                    ),
-                                    IconButton(onPressed: () {}, 
-                                    icon: Icon(Icons.delete),
-                                    color:Colors.black,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Divider(),
-                             
-                                 Row ( 
-                                  children: <Widget> [
-                                    Expanded(
-                                    child: ListTile(
-                                      title: Text('Untitled list 02 '),
-                                      trailing: Icon(Icons.arrow_forward),
-                                      onTap: () {},
-                                    ),),
-                                    IconButton(onPressed: () {}, 
-                                    icon: Icon(Icons.mode_edit_outline_sharp),
-                                    color:Colors.black,
-                                    ),
-                                    IconButton(onPressed: () {}, 
-                                    icon: Icon(Icons.delete),
-                                    color:Colors.black,
-                                                  ), 
-                            ],
-                                ),
-                              
-                              Divider(),
-                              
-                                 Row(
-                                  children: [
-                                    Expanded(
-                                    child: ListTile(
-                                      title: Text('Untitled list 03 '),
-                                      trailing: Icon(Icons.arrow_forward),
-                                      onTap: () {},
-                                    ),),
-                                    IconButton(onPressed: () {}, 
-                                    icon: Icon(Icons.mode_edit_outline_sharp),
-                                    color:Colors.black,
-                                    ),
-                                    IconButton(onPressed: () {}, 
-                                    icon: Icon(Icons.delete),
-                                    color:Colors.black,
-                                    ),
-                                  ],
-                                ),
-                              
-                               Divider(),
-                             
-                                Row(
-                                  children: [
-                                    Expanded(
-                                    child: ListTile(
-                                      title: Text('Untitled list 04 '),
-                                      trailing: Icon(Icons.arrow_forward),
-                                      onTap: () {},
-                                    ),),
-                                    IconButton(onPressed: () {}, 
-                                    icon: Icon(Icons.mode_edit_outline_sharp),
-                                    color:Colors.black,
-                                    ),
-                                    IconButton(onPressed: () {}, 
-                                    icon: Icon(Icons.delete),
-                                    color:Colors.black,
-                                    ),
-                                  ],
-                                ),
-                              
-                              
-
-                            ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(title: Text("Check List", style: TextStyle(color: tc1),textAlign: TextAlign.justify,),
+        backgroundColor: tc4,
+            foregroundColor: tc1,
+        ),
+        body: Stack(
+          children: [
+            Background(),
+            Container(
+              child: Column(
+                children: [
+                  TopBar(onToggle: (index) {
+                            print('switched to:$index');
+                          },
+                          onMenuItemSelected: (item) => onSelected(context, item),
                           ),
-                        ),
-                       
-
-
-
-                
-              ],
+    
+                          MainTitle(),
+                          Expanded(
+                            child: ListView(
+                              scrollDirection: Axis.vertical,
+                              children: <Widget> [
+                                Expanded(
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                      child: ListTile(
+                                        title: Text('Untitled list 01 '),
+                                        trailing: Icon(Icons.arrow_forward),
+                                        onTap: () {},
+                                      ),),
+                                      IconButton(onPressed: () {}, 
+                                      icon: Icon(Icons.mode_edit_outline_sharp),
+                                      color:Colors.black,
+                                      ),
+                                      IconButton(onPressed: () {}, 
+                                      icon: Icon(Icons.delete),
+                                      color:Colors.black,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Divider(),
+                               
+                                   Row ( 
+                                    children: <Widget> [
+                                      Expanded(
+                                      child: ListTile(
+                                        title: Text('Untitled list 02 '),
+                                        trailing: Icon(Icons.arrow_forward),
+                                        onTap: () {},
+                                      ),),
+                                      IconButton(onPressed: () {}, 
+                                      icon: Icon(Icons.mode_edit_outline_sharp),
+                                      color:Colors.black,
+                                      ),
+                                      IconButton(onPressed: () {}, 
+                                      icon: Icon(Icons.delete),
+                                      color:Colors.black,
+                                                    ), 
+                              ],
+                                  ),
+                                
+                                Divider(),
+                                
+                                   Row(
+                                    children: [
+                                      Expanded(
+                                      child: ListTile(
+                                        title: Text('Untitled list 03 '),
+                                        trailing: Icon(Icons.arrow_forward),
+                                        onTap: () {},
+                                      ),),
+                                      IconButton(onPressed: () {}, 
+                                      icon: Icon(Icons.mode_edit_outline_sharp),
+                                      color:Colors.black,
+                                      ),
+                                      IconButton(onPressed: () {}, 
+                                      icon: Icon(Icons.delete),
+                                      color:Colors.black,
+                                      ),
+                                    ],
+                                  ),
+                                
+                                 Divider(),
+                               
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                      child: ListTile(
+                                        title: Text('Untitled list 04 '),
+                                        trailing: Icon(Icons.arrow_forward),
+                                        onTap: () {},
+                                      ),),
+                                      IconButton(onPressed: () {}, 
+                                      icon: Icon(Icons.mode_edit_outline_sharp),
+                                      color:Colors.black,
+                                      ),
+                                      IconButton(onPressed: () {}, 
+                                      icon: Icon(Icons.delete),
+                                      color:Colors.black,
+                                      ),
+                                    ],
+                                  ),
+                                
+                                
+    
+                              ],
+                            ),
+                          ),
+                         
+    
+    
+    
+                  
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

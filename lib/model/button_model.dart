@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:list_me/screens/Settings_page.dart';
 import 'package:list_me/screens/check_list.dart';
 import 'package:list_me/screens/create_list.dart';
-import 'package:list_me/screens/analyse_page.dart';
+import 'package:list_me/screens/analysis/analyse_page.dart';
 
 class ButtonModel extends ChangeNotifier {
   final List _buttonTypes = [
