@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:list_me/components/top_bar.dart';
+import 'package:list_me/screens/SignInSignUp_Bar.dart';
+import 'package:list_me/screens/signup_page.dart';
 
 import '../components/background.dart';
 import '../components/colors.dart';
@@ -10,14 +12,21 @@ import '../utils/navigationMenu.dart';
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          backgroundColor: tc4,
+          foregroundColor: tc1,
+        ),
       body: SafeArea(
         child: Stack(
           children: [
             const Background(),
-            Center(
+            Container(
+              child: SingleChildScrollView(
+               child: Center(
               child: Column(
                 children: [
                   //Top Bar
@@ -28,9 +37,7 @@ class SignInPage extends StatelessWidget {
                           onMenuItemSelected: (item ) => onSelected(context, item),
                     ),
 
-                     const SizedBox(
-                      height: 50,
-                    ),
+                     const SizedBox(height: 50,),
 
                   //Sign In title
                   Padding(
@@ -67,77 +74,80 @@ class SignInPage extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(
-                    height: 50,
-                  ),
+                  SizedBox( height: 50,),
 
-                  //username field
-                  Container(
-                    width: 299,
-                    height: 37,
-                    decoration: ShapeDecoration(
-                      color: Color(0x7FD4D4D4),
-                      shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                  SignInSignUpBar(hintText: "Username",),
+
+                  SizedBox(height: 20,),
+
+                  SignInSignUpBar(hintText: "Password",),
+              
+                  SizedBox(height: 50),
+
+                  //sign in button
+                  ElevatedButton(
+                    onPressed: (){}, 
+                    child: const Text(
+                      'Sign In',
+                      style: TextStyle(
+                        color: Colors.black
                       ),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'username',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    )
-
-                    // child: Padding(
-                    //   padding: const EdgeInsets.all(8.0),
-                    //   child: Text(
-                    //     "username",
-                    //     style: TextStyle(color: Colors.white),
-                    //   ),
-                    // ),
-                  ),
-
-                  SizedBox(
-                    height: 50,
-                  ),
-
-                  //password field
-                  Container(
-                    width: 299,
-                    height: 37,
-                    decoration: ShapeDecoration(
-                      color: Color(0x7FD4D4D4),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
                       shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(10)
+                      )
+                    ),
+                  ),
+
+                  SizedBox(height: 50),
+
+                  Container(
+                    child: Text(
+                      "New to List Me?",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
-                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'password',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    )
                   ),
 
+                  SizedBox(height: 10),
+
+                  //Sign up text button
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(
+                        context, 
+                        MaterialPageRoute(builder: (context) => SignUpPage()),
+                        );
+                    },
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w400
+                       ),
+                    ),
+                  ),
 
                 ],
               ),
             )
+              ),
+            )
           ],
         ),
-      ),
+      ) 
     );
   }
+  
+  
 }
+
+               

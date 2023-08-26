@@ -5,8 +5,6 @@ import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/maintitle.dart';
 import 'package:list_me/components/settings_bar.dart';
 
-import 'package:google_fonts/google_fonts.dart';
-
 import '../components/top_bar.dart';
 
 import '../model/menu_item.dart';

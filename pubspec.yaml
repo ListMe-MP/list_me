@@ -28,9 +28,11 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  sign_in_button: ^3.0.0
   flutter:
     sdk: flutter
   syncfusion_flutter_charts: ^22.2.7
+  another_flushbar: ^1.12.30
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -41,6 +43,7 @@ dependencies:
   toggle_switch: ^2.1.0
   ionicons: ^0.2.2
   http: ^1.1.0
+  
 
 dev_dependencies:
   flutter_test:
@@ -98,3 +101,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+ # or the latest version
