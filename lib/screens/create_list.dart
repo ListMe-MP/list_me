@@ -60,10 +60,9 @@ class _CreateListState extends State<CreateList> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        child: Padding(
+                        child: const Padding(
                           padding: EdgeInsets.only(left: 10, right: 10),
                           child: TextField(
-                            controller: titleController,
                             decoration: InputDecoration(
                               hintText: "Untitled list-1",
                               hintStyle: TextStyle(
@@ -78,7 +77,9 @@ class _CreateListState extends State<CreateList> {
                       ),
 
                       const SizedBox(
+
                         height: 5,
+
                       ),
 
                       // text field for type the list items
@@ -93,11 +94,10 @@ class _CreateListState extends State<CreateList> {
                           ),
                           child: Row(
                             children: [
-                              Expanded(
+                              const Expanded(
                                 child: Padding(
                                   padding: EdgeInsets.only(left: 10, right: 10),
                                   child: TextField(
-                                    controller: itemController,
                                     decoration: InputDecoration(
                                       hintText: "Type Here",
                                       hintStyle: TextStyle(
@@ -114,26 +114,7 @@ class _CreateListState extends State<CreateList> {
 
                               // add button
                               IconButton(
-                                onPressed: () {
-                                  if (itemController.text.isNotEmpty) {
-                                    setState(() {
-                                      final rawItems = itemController.text
-                                          .split(RegExp(r'[,\s]'));
-                                      final parsedItems = <String>[];
-
-                                      for (final rawItem in rawItems) {
-                                        if (rawItem.trim().toLowerCase() !=
-                                            'and') {
-                                          parsedItems.add(rawItem.trim());
-                                        }
-                                      }
-
-                                      itemList.addAll(parsedItems
-                                          .where((item) => item.isNotEmpty));
-                                      itemController.clear();
-                                    });
-                                  }
-                                },
+                                onPressed: () {},
                                 icon: Icon(
                                   Icons.add_box_outlined,
                                   color: tc1,
@@ -157,9 +138,8 @@ class _CreateListState extends State<CreateList> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        child: ListView.builder(
+                        child: ListView.separated(
                           shrinkWrap: true,
-                          itemCount: itemList.length,
                           padding: EdgeInsets.all(10),
                           itemBuilder: (context, index) {
                             return ClipRRect(
@@ -167,31 +147,29 @@ class _CreateListState extends State<CreateList> {
                                   BorderRadius.all(Radius.circular(10)),
                               child: Container(
                                 color: Colors.white.withOpacity(0.1),
-                                // image of the item
                                 child: ListTile(
+                                  // contentPadding: EdgeInsets.all(8.0),
                                   leading: Image.asset(
                                     'assets/images/items/item0.png',
+                                    // width: 40,
+                                    // height: 40,
                                     fit: BoxFit.cover,
                                   ),
-
-                                  // item name
                                   title: Text(
-                                    itemList[index],
+                                    'Item $index',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         color: tc1),
                                   ),
-
-                                  // item price
                                   subtitle: Row(
                                     children: [
                                       Text(
-                                        '\$ 20',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            color: tc2),
-                                      ),
-                                      SizedBox(
+                                    '\$ 20',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        color: tc2),
+                                  ),
+SizedBox(
                                         width: 10,
                                       ),
                                       // quantity
@@ -216,13 +194,12 @@ class _CreateListState extends State<CreateList> {
                                                   int.tryParse(value) ?? 0;
                                             });
                                           },
-                                          controller: TextEditingController(
-                                              text: _quntity.toString()),
+                                          controller: TextEditingController(text: _quntity.toString()),
                                         ),
                                       )
                                     ],
                                   ),
-                                  // edit button
+
                                   trailing: Icon(
                                     Icons.edit,
                                     color: tc1,
@@ -234,12 +211,12 @@ class _CreateListState extends State<CreateList> {
                               ),
                             );
                           },
-                          // separatorBuilder: (context, index) {
-                          //   return SizedBox(
-                          //       height:
-                          //           10); // Adjust the height as per your padding needs
-                          // },
-                          // itemCount: 10,
+                          separatorBuilder: (context, index) {
+                            return SizedBox(
+                                height:
+                                    10); // Adjust the height as per your padding needs
+                          },
+                          itemCount: 10,
                           scrollDirection: Axis
                               .vertical, // Replace this with the number of ListTiles you want
                         ),
@@ -256,35 +233,18 @@ class _CreateListState extends State<CreateList> {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                        color: Colors.black54,
-                        spreadRadius: 2,
-                        blurRadius: 4,
-                        offset: Offset(2, 2))
+                      color: Colors.black54,
+                      spreadRadius: 2,
+                      blurRadius: 4,
+                      offset: Offset(2, 2))
                   ],
                   shape: BoxShape.circle,
                 ),
-
-                // submit
                 child: RawMaterialButton(
                   onPressed: () {
-                    if (titleController.text.isNotEmpty &&
-                        itemList.isNotEmpty) {
-                      print("itemList: $itemList");
-                      var data = {
-                        "ltitle": titleController.text,
-                        "items": itemList,
-                      };
-
-                      Api.addProduct(data);
-
-                      setState(() {
-                        itemList.clear();
-                      });
-
-                      titleController.clear();
-                    }
+                    // submit 
                   },
-                  shape: CircleBorder(side: BorderSide(color: tc3, width: 5.0)),
+                  shape: CircleBorder(side: BorderSide(color: tc3, width: 5.0)),   
                   padding: EdgeInsets.all(10.0),
                   fillColor: tc1,
                   splashColor: tc2,

@@ -14,99 +14,101 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          // backkground style
-          Background(),
-
-          // components
-          Container(
-            padding: EdgeInsets.only(top: 10, bottom: 10),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // TopBar
-                  TopBar(
-                    onToggle: (index) {
-                      print('switched to:$index');
-                    },
-                    onMenuItemSelected: (item) => onSelected(context, item),
-                  ),
-
-                  // title
-                  Padding(
-                    padding: EdgeInsets.only(top: 60.0),
-                    child: Stack(
-                      children: <Widget>[
-                        // Stroked text as border.
-                        Text(
-                          'List Me',
-                          style: GoogleFonts.castoro(
-                            fontSize: 40,
-                            shadows: [
-                              Shadow(
-                                  blurRadius: 10.0,
-                                  color: Colors.black,
-                                  offset: Offset(2, -2))
-                            ],
-                            foreground: Paint()
-                              ..style = PaintingStyle.stroke
-                              ..strokeWidth = 5
-                              ..color = tc5,
-                          ),
-                        ),
-                        // Solid text as fill.
-                        Text(
-                          'List Me',
-                          style: GoogleFonts.castoro(
-                            fontSize: 40,
-                            color: tc6,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  // grid
-                  Container(
-                    child: Expanded(child: Consumer<ButtonModel>(
-                      builder: (context, value, child) {
-                        return GridView.builder(
-                            itemCount: value.buttonTypes.length,
-                            padding: EdgeInsets.all(36.0),
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2),
-                            itemBuilder: (context, index) {
-                              return ButtonItemTile(
-                                  btnName: value.buttonTypes[index][0],
-                                  imgPath: value.buttonTypes[index][1],
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                value.buttonTypes[index][2]));
-                                  });
-                            });
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: [
+            // backkground style
+            Background(),
+    
+            // components
+            Container(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // TopBar
+                    TopBar(
+                      onToggle: (index) {
+                        print('switched to:$index');
                       },
-                    )),
-                  ),
-                  // horizontal line
-                  const Padding(
-                    padding: EdgeInsets.all(25.0),
-                    child: Divider(
-                      thickness: 1,
-                      color: Color.fromRGBO(188, 253, 250, 1),
+                      onMenuItemSelected: (item) => onSelected(context, item),
                     ),
-                  ),
-                  // child: Color.fromRGBO(188, 253, 250, 1),
-
-                  // help button
-                  const Text("help"),
-                ]),
-          )
-        ],
+    
+                    // title
+                    Padding(
+                      padding: EdgeInsets.only(top: 60.0),
+                      child: Stack(
+                        children: <Widget>[
+                          // Stroked text as border.
+                          Text(
+                            'List Me',
+                            style: GoogleFonts.castoro(
+                              fontSize: 40,
+                              shadows: [
+                                Shadow(
+                                    blurRadius: 10.0,
+                                    color: Colors.black,
+                                    offset: Offset(2, -2))
+                              ],
+                              foreground: Paint()
+                                ..style = PaintingStyle.stroke
+                                ..strokeWidth = 5
+                                ..color = tc5,
+                            ),
+                          ),
+                          // Solid text as fill.
+                          Text(
+                            'List Me',
+                            style: GoogleFonts.castoro(
+                              fontSize: 40,
+                              color: tc6,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // grid
+                    Container(
+                      child: Expanded(child: Consumer<ButtonModel>(
+                        builder: (context, value, child) {
+                          return GridView.builder(
+                              itemCount: value.buttonTypes.length,
+                              padding: EdgeInsets.all(36.0),
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2),
+                              itemBuilder: (context, index) {
+                                return ButtonItemTile(
+                                    btnName: value.buttonTypes[index][0],
+                                    imgPath: value.buttonTypes[index][1],
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  value.buttonTypes[index][2]));
+                                    });
+                              });
+                        },
+                      )),
+                    ),
+                    // horizontal line
+                    const Padding(
+                      padding: EdgeInsets.all(25.0),
+                      child: Divider(
+                        thickness: 1,
+                        color: Color.fromRGBO(188, 253, 250, 1),
+                      ),
+                    ),
+                    // child: Color.fromRGBO(188, 253, 250, 1),
+    
+                    // help button
+                    const Text("help"),
+                  ]),
+            )
+          ],
+        ),
       ),
     );
   }

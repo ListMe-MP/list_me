@@ -48,85 +48,100 @@ class CheckList extends StatelessWidget {
                         ),
 
                         MainTitle(),
-                       Expanded(child:   ListView.builder(
-                            itemCount: items.length ,
-                            itemBuilder: (context, int index) { 
-                            return   Container(
-                                      margin: EdgeInsets.fromLTRB(0, 0,0, 10),
-                                      child: Row(
-                                       children: [
-                                        Expanded( child:
-                                         Container(
-                                        margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                        decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Color.fromRGBO(131, 193, 193, 1),
-                                     boxShadow: [
-                                    BoxShadow(
-                                     color: Colors.black,
-                                     blurRadius: 4,
-                                    offset: Offset(0, 4),
-                                      spreadRadius: 0,
-                                      ),
-                                    ]
-                                     ),
-                                      
-                                       child: ListTile(
-                                        title: Text(items[index]),
-                                        trailing:  IconButton(onPressed: () {
-                                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-                                           return CheckList04(data:items[index]);
-                                          },),);
-                                        }, 
-                                   icon: Icon(Icons.arrow_forward),
-                                     color:Colors.black,
-                                     ),
-                                        iconColor: Colors.black,
-                                        onTap: () {},
-                                      ),
-                                 ),
-                                 
-                                 ),
-                                  IconButton(onPressed: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-                                       return CreateList();
-                                    },),);
-                                  }, 
-                                 icon: Icon(Icons.mode_edit_outline_sharp),
-                                  color:Colors.black,
+                        Expanded(
+                          child: ListView(
+                            scrollDirection: Axis.vertical,
+                            children: <Widget> [
+                              Expanded(
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                    child: ListTile(
+                                      title: Text('Untitled list 01 '),
+                                      trailing: Icon(Icons.arrow_forward),
+                                      onTap: () {},
+                                    ),),
+                                    IconButton(onPressed: () {}, 
+                                    icon: Icon(Icons.mode_edit_outline_sharp),
+                                    color:Colors.black,
+                                    ),
+                                    IconButton(onPressed: () {}, 
+                                    icon: Icon(Icons.delete),
+                                    color:Colors.black,
+                                    ),
+                                  ],
+                                ),
                               ),
-                                IconButton(onPressed: () {
-                                  final temp = items.removeAt(index);
-                                  FlushBars().undo(
-                                    message: "You still have a chance to undo it",
-                                    onUndo: () {
-                                      Navigator.pop (context);
-                                      items.insert(index, temp); 
+                              Divider(),
+                             
+                                 Row ( 
+                                  children: <Widget> [
+                                    Expanded(
+                                    child: ListTile(
+                                      title: Text('Untitled list 02 '),
+                                      trailing: Icon(Icons.arrow_forward),
+                                      onTap: () {},
+                                    ),),
+                                    IconButton(onPressed: () {}, 
+                                    icon: Icon(Icons.mode_edit_outline_sharp),
+                                    color:Colors.black,
+                                    ),
+                                    IconButton(onPressed: () {}, 
+                                    icon: Icon(Icons.delete),
+                                    color:Colors.black,
+                                                  ), 
+                            ],
+                                ),
+                              
+                              Divider(),
+                              
+                                 Row(
+                                  children: [
+                                    Expanded(
+                                    child: ListTile(
+                                      title: Text('Untitled list 03 '),
+                                      trailing: Icon(Icons.arrow_forward),
+                                      onTap: () {},
+                                    ),),
+                                    IconButton(onPressed: () {}, 
+                                    icon: Icon(Icons.mode_edit_outline_sharp),
+                                    color:Colors.black,
+                                    ),
+                                    IconButton(onPressed: () {}, 
+                                    icon: Icon(Icons.delete),
+                                    color:Colors.black,
+                                    ),
+                                  ],
+                                ),
+                              
+                               Divider(),
+                             
+                                Row(
+                                  children: [
+                                    Expanded(
+                                    child: ListTile(
+                                      title: Text('Untitled list 04 '),
+                                      trailing: Icon(Icons.arrow_forward),
+                                      onTap: () {},
+                                    ),),
+                                    IconButton(onPressed: () {}, 
+                                    icon: Icon(Icons.mode_edit_outline_sharp),
+                                    color:Colors.black,
+                                    ),
+                                    IconButton(onPressed: () {}, 
+                                    icon: Icon(Icons.delete),
+                                    color:Colors.black,
+                                    ),
+                                  ],
+                                ),
+                              
+                              
 
-                                    },
-                                    duration: const Duration(seconds: 6),
-                                  ). show (context);
+                            ],
+                          ),
+                        ),
+                       
 
-
-                                  // void removeItem(int index) {
-                                  //   final Item = items.removeAt(index);
-
-                               
-                                  // key?.currentState.removeItem(
-                                  //   index, 
-                                  //   (context, Animation) => buildItem (items, index)
-                                  // );
-                                  // },
-                                }, 
-                               icon: Icon(Icons.delete),
-                               color:Colors.black,
-                             ),
-                                 ],
-                               ),
-                              );
-                            },
-                           ),)
-                      
 
 
                 
