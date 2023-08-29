@@ -5,8 +5,8 @@ import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/itemcard.dart';
 
-import '../components/top_bar.dart';
-import '../utils/navigationMenu.dart';
+import '../../components/top_bar.dart';
+import '../../utils/navigationMenu.dart';
 
 class CategoryPage extends StatefulWidget {
   const CategoryPage({super.key});
@@ -16,13 +16,10 @@ class CategoryPage extends StatefulWidget {
 }
 
 class _CategoryPageState extends State<CategoryPage> {
-  late List<CatData> _chartData;
-
-  @override
- 
 
   List<Catagory> catagorys = [
     const Catagory(
+
       item_name: 'Rice',
       quantity: '10 kg',
       amount: '1200.00',
