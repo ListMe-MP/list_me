@@ -45,6 +45,31 @@ class _ChartState extends State<Chart> {
       price: 1000,
       urlAvatar: '',
     ),
+    const Catagory(
+      catname: 'Grosery',
+      price: 5125,
+      urlAvatar: '',
+    ),
+    const Catagory(
+      catname: 'Cosmatics',
+      price: 2750,
+      urlAvatar: '',
+    ),
+    const Catagory(
+      catname: 'Fruit',
+      price: 2250,
+      urlAvatar: '',
+    ),
+    const Catagory(
+      catname: 'Vegetable',
+      price: 1375,
+      urlAvatar: '',
+    ),
+    const Catagory(
+      catname: 'Meat',
+      price: 1000,
+      urlAvatar: '',
+    ),
   ];
 
 
@@ -146,6 +171,11 @@ class _ChartState extends State<Chart> {
 
   List<CatData> getChartData() {
     final List<CatData> chartData = [
+      CatData('Grosery', 5125),
+      CatData('Cosmatics', 2750),
+      CatData('Fruit', 2250),
+      CatData('Vegetable', 1375),
+      CatData('Meat', 1000),
       CatData('Grosery', 5125),
       CatData('Cosmatics', 2750),
       CatData('Fruit', 2250),
