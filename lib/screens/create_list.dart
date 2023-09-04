@@ -55,7 +55,7 @@ class _CreateListState extends State<CreateList> {
                         width: 350,
                         height: 40,
                         decoration: ShapeDecoration(
-                          color: Color(0x7FD4D4D4),
+                          color: tf,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -86,7 +86,7 @@ class _CreateListState extends State<CreateList> {
                           width: 350,
                           height: 40,
                           decoration: ShapeDecoration(
-                            color: Colors.white.withOpacity(0.35),
+                            color: tf.withOpacity(0.75),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
@@ -152,7 +152,7 @@ class _CreateListState extends State<CreateList> {
                         width: 350,
                         height: 390,
                         decoration: ShapeDecoration(
-                          color: Color(0x7FD4D4D4),
+                          color: tf.withOpacity(0.35),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
