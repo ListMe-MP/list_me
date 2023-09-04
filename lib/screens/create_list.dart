@@ -152,7 +152,7 @@ class _CreateListState extends State<CreateList> {
                         width: 350,
                         height: 390,
                         decoration: ShapeDecoration(
-                          color: tf.withOpacity(0.35),
+                          color: tf.withOpacity(0.1),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -165,71 +165,74 @@ class _CreateListState extends State<CreateList> {
                             return ClipRRect(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10)),
-                              child: Container(
-                                color: Colors.white.withOpacity(0.1),
-                                // image of the item
-                                child: ListTile(
-                                  leading: Image.asset(
-                                    'assets/images/items/item0.png',
-                                    fit: BoxFit.cover,
-                                  ),
-
-                                  // item name
-                                  title: Text(
-                                    itemList[index],
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        color: tc1),
-                                  ),
-
-                                  // item price
-                                  subtitle: Row(
-                                    children: [
-                                      Text(
-                                        '\$ 20',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            color: tc2),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      // quantity
-                                      Container(
-                                        width: 60,
-                                        child: TextField(
-                                          keyboardType: TextInputType.number,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(color: tc2),
-                                          decoration: InputDecoration(
-                                              contentPadding: EdgeInsets.all(8),
-                                              hintText: 'Qty',
-                                              hintStyle: TextStyle(
-                                                  color: tc2.withOpacity(0.5)),
-                                              enabledBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      color: tc2
-                                                          .withOpacity(0.5)))),
-                                          onChanged: (value) {
-                                            setState(() {
-                                              _quntity =
-                                                  int.tryParse(value) ?? 0;
-                                            });
-                                          },
-                                          controller: TextEditingController(
-                                              text: _quntity.toString()),
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 5),
+                                child: Container(
+                                  color: tf.withOpacity(0.35),
+                                  // image of the item
+                                  child: ListTile(
+                                    leading: Image.asset(
+                                      'assets/images/items/item0.png',
+                                      fit: BoxFit.cover,
+                                    ),
+                              
+                                    // item name
+                                    title: Text(
+                                      itemList[index],
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          color: tc1),
+                                    ),
+                              
+                                    // item price
+                                    subtitle: Row(
+                                      children: [
+                                        Text(
+                                          '\$ 20',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              color: tc2),
                                         ),
-                                      )
-                                    ],
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        // quantity
+                                        Container(
+                                          width: 60,
+                                          child: TextField(
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(color: tc2),
+                                            decoration: InputDecoration(
+                                                contentPadding: EdgeInsets.all(8),
+                                                hintText: 'Qty',
+                                                hintStyle: TextStyle(
+                                                    color: tc2.withOpacity(0.5)),
+                                                enabledBorder: OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: tc2
+                                                            .withOpacity(0.5)))),
+                                            onChanged: (value) {
+                                              setState(() {
+                                                _quntity =
+                                                    int.tryParse(value) ?? 0;
+                                              });
+                                            },
+                                            controller: TextEditingController(
+                                                text: _quntity.toString()),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    // edit button
+                                    trailing: Icon(
+                                      Icons.edit,
+                                      color: tc1,
+                                    ),
+                                    onTap: () {
+                                      // Add your onTap logic here
+                                    },
                                   ),
-                                  // edit button
-                                  trailing: Icon(
-                                    Icons.edit,
-                                    color: tc1,
-                                  ),
-                                  onTap: () {
-                                    // Add your onTap logic here
-                                  },
                                 ),
                               ),
                             );
