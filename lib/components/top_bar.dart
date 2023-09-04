@@ -21,7 +21,7 @@ class TopBar extends StatelessWidget {
           children: [
             Icon(
               item.icon,
-              color: Colors.black,
+              color: tc2,
               size: 20,
             ),
             const SizedBox(
@@ -40,7 +40,7 @@ class TopBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ToggleSwitch(
-            borderColor: [tc3],
+            borderColor: [tc2],
             minWidth: 70.0,
             minHeight: 20,
             cornerRadius: 20.0,
