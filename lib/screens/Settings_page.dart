@@ -10,6 +10,9 @@ import '../components/top_bar.dart';
 
 import '../model/menu_item.dart';
 import '../utils/navigationMenu.dart';
+import 'Share_page.dart';
+import 'appearance.dart';
+import 'categories.dart';
 
 
 class SettingsPage extends StatelessWidget {
@@ -51,93 +54,14 @@ class SettingsPage extends StatelessWidget {
                     
                         
 
-                    const SizedBox(
-                      height: 10,
-                    ),
-
-                    // Text(
-                    //   "Settings",
-                    //   style: GoogleFonts.castoro(
-                    //     fontSize: 40, 
-                    //     fontWeight: FontWeight.w400, 
-                    //     shadows: [
-                    //       Shadow(
-                    //         offset: Offset(2, -2),
-                    //         blurRadius: 4,
-                    //       ),
-                    //     ],
-                    //     color: Color.fromRGBO(1, 229, 217, 1),
-    
-                    //   ),
-                    // ),
-
-
-            MainTitle(),
-
-            // Padding(
-            //   padding: EdgeInsets.only(top: 60.0),
-            //     child: Stack(
-            //       children: <Widget>[
-            //     // Stroked text as border.
-            //         Text(
-            //           'List Me',
-            //               style: GoogleFonts.castoro(
-            //                 fontSize: 40,
-            //                 shadows: [
-            //                   Shadow(
-            //                     blurRadius: 10.0,
-            //                     color: Colors.black,
-            //                     offset: Offset(2, -2))
-            //                   ],
-            //                 foreground: Paint()
-            //                   ..style = PaintingStyle.stroke
-            //                   ..strokeWidth = 5
-            //                   ..color = tc5,
-            //               ),
-            //         ),
-            //     // Solid text as fill.
-            //         Text(
-            //           'List Me',
-            //           style: GoogleFonts.castoro(
-            //           fontSize: 40,
-            //           color: tc6,
-            //         ),
-            //         ),
-            //       ],
-            //     ),
-            // ),
+                    SizedBox(height: 10,),
 
 
 
-                //   Text(
-                //   'Settings',
-                //   style: GoogleFonts.castoro(
-                //     fontSize: 40,
-                //     shadows: [
-                //       Shadow(
-                //           blurRadius: 10.0,
-                //           color: Colors.black,
-                //           offset: Offset(2, -2))
-                //     ],
-                //     foreground: Paint()
-                //       ..style = PaintingStyle.stroke
-                //       ..strokeWidth = 5
-                //       ..color = tc5,
-                //   ),
-                // ),
-                // // Solid text as fill.
-                // Text(
-                //   'Settings',
-                //   style: GoogleFonts.castoro(
-                //     fontSize: 40,
-                //     color: tc6,
-                //   ),
-                // ),
+                    MainTitle(),
 
-      
-                    const SizedBox(
-                      height: 50,
-                    ),
+        
+                    SizedBox(height: 50,),
       
 
                     SettingsBar(
@@ -146,15 +70,13 @@ class SettingsPage extends StatelessWidget {
                       onTap: (){
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => NotificationPage()
+                            builder: (context) => AppearancePage()
                           )
                         );
                       },
                     ),
 
-                    SizedBox(
-                      height: 15,
-                    ),
+                    SizedBox(height: 15,),
 
                     SettingsBar(
                       icon: Ionicons.notifications_outline, 
@@ -169,9 +91,36 @@ class SettingsPage extends StatelessWidget {
                       },
                     ),
 
-                     SizedBox(
-                      height: 15,
+                    SizedBox(height: 15,),
+
+                    SettingsBar(
+                      icon: Ionicons.share_social_outline, 
+                      title: "Share List",
+                      onTap: (){
+                        print('Tapped on title'); 
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const SharePage()
+                          )
+                        );
+                      },
                     ),
+
+                      SizedBox(height: 15),
+
+                    SettingsBar(
+                      icon: Ionicons.person_outline, 
+                      title: "Categories",
+                      onTap: (){
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => CategoriesPage()
+                          )
+                        );
+                      },
+                    ),
+
+                    SizedBox(height: 15,),
 
                     SettingsBar(
                       icon: Ionicons.shield_outline, 
@@ -185,9 +134,7 @@ class SettingsPage extends StatelessWidget {
                       },
                     ),
 
-                     SizedBox(
-                      height: 15,
-                    ),
+                     SizedBox(height: 15,),
 
                     SettingsBar(
                       icon: Ionicons.headset_outline, 
@@ -201,9 +148,8 @@ class SettingsPage extends StatelessWidget {
                       },
                     ),
 
-                     SizedBox(
-                      height: 15,
-                    ),
+                    SizedBox(height: 15,),
+
 
                     SettingsBar(
                       icon: Ionicons.help_circle_outline, 
