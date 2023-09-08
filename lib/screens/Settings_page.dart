@@ -4,6 +4,7 @@ import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/maintitle.dart';
 import 'package:list_me/components/settings_bar.dart';
+import 'package:list_me/screens/notifications.dart';
 
 import '../components/top_bar.dart';
 
@@ -141,7 +142,14 @@ class SettingsPage extends StatelessWidget {
 
                     SettingsBar(
                       icon: Ionicons.person_outline, 
-                      title: "Profile"
+                      title: "Appearance",
+                      onTap: (){
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => NotificationPage()
+                          )
+                        );
+                      },
                     ),
 
                     SizedBox(
@@ -150,7 +158,15 @@ class SettingsPage extends StatelessWidget {
 
                     SettingsBar(
                       icon: Ionicons.notifications_outline, 
-                      title: "Notification"
+                      title: "Notification",
+                      onTap: (){
+                        print('Tapped on title'); 
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const NotificationPage()
+                          )
+                        );
+                      },
                     ),
 
                      SizedBox(
@@ -159,7 +175,14 @@ class SettingsPage extends StatelessWidget {
 
                     SettingsBar(
                       icon: Ionicons.shield_outline, 
-                      title: "Data Privacy"
+                      title: "Data Privacy",
+                      onTap: (){
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => NotificationPage()
+                          )
+                        );
+                      },
                     ),
 
                      SizedBox(
@@ -168,7 +191,14 @@ class SettingsPage extends StatelessWidget {
 
                     SettingsBar(
                       icon: Ionicons.headset_outline, 
-                      title: "Help & Support"
+                      title: "Help & Support",
+                      onTap: (){
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => NotificationPage()
+                          )
+                        );
+                      },
                     ),
 
                      SizedBox(
@@ -177,7 +207,14 @@ class SettingsPage extends StatelessWidget {
 
                     SettingsBar(
                       icon: Ionicons.help_circle_outline, 
-                      title: "About"
+                      title: "About",
+                      onTap: (){
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => NotificationPage()
+                          )
+                        );
+                      },
                     ),
            
                 ],
