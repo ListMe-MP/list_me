@@ -56,14 +56,11 @@ class SettingsPage extends StatelessWidget {
 
                     SizedBox(height: 10,),
 
-
-
                     MainTitle(),
 
-        
                     SizedBox(height: 50,),
-      
 
+                    //Appearance bar
                     SettingsBar(
                       icon: Ionicons.person_outline, 
                       title: "Appearance",
@@ -78,6 +75,7 @@ class SettingsPage extends StatelessWidget {
 
                     SizedBox(height: 15,),
 
+                    //Notification bar
                     SettingsBar(
                       icon: Ionicons.notifications_outline, 
                       title: "Notification",
@@ -93,6 +91,7 @@ class SettingsPage extends StatelessWidget {
 
                     SizedBox(height: 15,),
 
+                    //Share List bar
                     SettingsBar(
                       icon: Ionicons.share_social_outline, 
                       title: "Share List",
@@ -107,45 +106,37 @@ class SettingsPage extends StatelessWidget {
                             actions: [
                               TextButton(
                                 onPressed: (){
-                                  Navigator.of(ctx).pop();
+                                  Navigator.of(ctx).pop(); //close the dialog
                                 }, 
-                                child: Container(
-                                  padding: EdgeInsets.all(14),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Container(
-                                        child: Text(
-                                        "Cancel",
-                                        style: TextStyle(color: Colors.teal[900]),
-                                      ),
-                                      ),
-                                       Container(
-                                        child: Text(
-                                        "Okay",
-                                        style: TextStyle(color: Colors.teal[900]),
-                                      ),
-                                      )
-                                    ],
+                                child: Text(
+                                  "Cancel",
+                                  style: TextStyle(color: Colors.green
                                   ),
-                                  
-                                  // child: Text(
-                                  //   "Okay",
-                                  //   style: TextStyle(color: Colors.teal[900]
-                                  //   ),
-                                  // ),
                                 )
-                              )
+                              ),
+                              TextButton(
+                                onPressed: (){
+                                  Navigator.of(ctx).pop(); //close the dialog
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => SharePage(), //Navigate to share page
+                                      ),
+                                  );
+                                },
+                                child: Text(
+                                  "Ok",
+                                  style: TextStyle(color: Colors.green),
+                                ),
+                              )           
                             ],
                           )
                         );
-                         
-                        
                       },
                     ),
 
-                      SizedBox(height: 15),
+                    SizedBox(height: 15),
 
+                    //Categories bar
                     SettingsBar(
                       icon: Ionicons.person_outline, 
                       title: "Categories",
@@ -160,6 +151,7 @@ class SettingsPage extends StatelessWidget {
 
                     SizedBox(height: 15,),
 
+                    //Data privacy bar
                     SettingsBar(
                       icon: Ionicons.shield_outline, 
                       title: "Data Privacy",
@@ -172,8 +164,9 @@ class SettingsPage extends StatelessWidget {
                       },
                     ),
 
-                     SizedBox(height: 15,),
+                    SizedBox(height: 15,),
 
+                    //Help & support bar
                     SettingsBar(
                       icon: Ionicons.headset_outline, 
                       title: "Help & Support",
@@ -188,7 +181,7 @@ class SettingsPage extends StatelessWidget {
 
                     SizedBox(height: 15,),
 
-
+                    //About bar
                     SettingsBar(
                       icon: Ionicons.help_circle_outline, 
                       title: "About",
@@ -200,7 +193,6 @@ class SettingsPage extends StatelessWidget {
                         );
                       },
                     ),
-           
                 ],
               ),
             ),
