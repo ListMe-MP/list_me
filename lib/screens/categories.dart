@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-
 import '../components/categories_bar.dart';
 import '../components/colors.dart';
 
@@ -31,15 +29,16 @@ class CategoriesPage extends StatelessWidget {
         Container(
           child: Row(
             children: [
-              
             ],
           ),
         )
           
         ],
       ),
-
-      
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        child: const Icon(Icons.add),
+        ),
     );
   }
 }
