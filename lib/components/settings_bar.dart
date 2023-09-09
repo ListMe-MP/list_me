@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:list_me/screens/notifications.dart';
 
 class SettingsBar extends StatelessWidget {
   final IconData icon;

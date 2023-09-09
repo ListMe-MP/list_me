@@ -5,12 +5,12 @@ import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/maintitle.dart';
 import 'package:list_me/components/settings_bar.dart';
 import 'package:list_me/screens/notifications.dart';
+import 'package:list_me/screens/signup_page.dart';
 
 import '../components/top_bar.dart';
 
 import '../model/menu_item.dart';
 import '../utils/navigationMenu.dart';
-import 'Share_page.dart';
 import 'appearance.dart';
 import 'categories.dart';
 
@@ -119,7 +119,7 @@ class SettingsPage extends StatelessWidget {
                                   Navigator.of(ctx).pop(); //close the dialog
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
-                                      builder: (context) => SharePage(), //Navigate to share page
+                                      builder: (context) => SignUpPage(), //Navigate to share page
                                       ),
                                   );
                                 },

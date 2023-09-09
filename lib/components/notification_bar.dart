@@ -24,19 +24,11 @@ class _NotificationBarState extends State<NotificationBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
+      height: 70,
       width: 500,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Color.fromRGBO(131, 193, 193, 1),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black,
-            blurRadius: 4,
-            offset: Offset(0, 4),
-            spreadRadius: 0,
-          ),
-        ],
+        color: Colors.blueGrey,
+        border: Border.all(color: Colors.black)
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -45,7 +37,7 @@ class _NotificationBarState extends State<NotificationBar> {
           children: [
             Text(
               widget.text,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
             IconButton(
               icon: Icon(
@@ -53,6 +45,7 @@ class _NotificationBarState extends State<NotificationBar> {
                 color: Colors.black,
               ),
               onPressed: toggleSwitch,
+              iconSize: 40,
             )
           ],
         ),
