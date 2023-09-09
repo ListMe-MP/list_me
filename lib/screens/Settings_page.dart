@@ -97,12 +97,50 @@ class SettingsPage extends StatelessWidget {
                       icon: Ionicons.share_social_outline, 
                       title: "Share List",
                       onTap: (){
-                        print('Tapped on title'); 
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const SharePage()
+                        showDialog(
+                          context: context, 
+                          builder: (ctx) => AlertDialog(
+                            title: Text("List Me Account Needed"),
+                            content: Text(
+                              "To share your lists, you need an account. You can create new account or sign in an existing account"
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: (){
+                                  Navigator.of(ctx).pop();
+                                }, 
+                                child: Container(
+                                  padding: EdgeInsets.all(14),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Container(
+                                        child: Text(
+                                        "Cancel",
+                                        style: TextStyle(color: Colors.teal[900]),
+                                      ),
+                                      ),
+                                       Container(
+                                        child: Text(
+                                        "Okay",
+                                        style: TextStyle(color: Colors.teal[900]),
+                                      ),
+                                      )
+                                    ],
+                                  ),
+                                  
+                                  // child: Text(
+                                  //   "Okay",
+                                  //   style: TextStyle(color: Colors.teal[900]
+                                  //   ),
+                                  // ),
+                                )
+                              )
+                            ],
                           )
                         );
+                         
+                        
                       },
                     ),
 
