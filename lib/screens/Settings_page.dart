@@ -13,6 +13,7 @@ import '../model/menu_item.dart';
 import '../utils/navigationMenu.dart';
 import 'appearance.dart';
 import 'categories.dart';
+import 'feedback.dart';
 
 
 class SettingsPage extends StatelessWidget {
@@ -153,12 +154,12 @@ class SettingsPage extends StatelessWidget {
 
                     //Data privacy bar
                     SettingsBar(
-                      icon: Ionicons.shield_outline, 
-                      title: "Data Privacy",
+                      icon: Icons.feedback_outlined, 
+                      title: "Feedback",
                       onTap: (){
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => NotificationPage()
+                            builder: (context) => FeedbackPage()
                           )
                         );
                       },

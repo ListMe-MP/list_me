@@ -22,9 +22,9 @@ class NotificationPage extends StatelessWidget {
       body: Column(
         children: [
           //push notifications
-          NotificationBar(text: "PUSH NOTIFICATIONS"),
+          NotificationBar(text: "PUSH NOTIFICATIONS", showToggleSwitch: false),
           NotificationBar(text: "Notifictions"),
-          NotificationBar(text: "LIST SHARING"),
+          NotificationBar(text: "LIST SHARING", showToggleSwitch: false),
           NotificationBar(text: "New Shared Lists"),
           NotificationBar(text: "New List Items"),
          

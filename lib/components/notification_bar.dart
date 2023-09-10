@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class NotificationBar extends StatefulWidget {
   final String text;
+  final bool showToggleSwitch;
 
   const NotificationBar({
     Key? key,
     required this.text,
+    this.showToggleSwitch = true, //Default to true if not specified
   }) : super(key: key);
 
   @override
@@ -39,14 +41,16 @@ class _NotificationBarState extends State<NotificationBar> {
               widget.text,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
-            IconButton(
-              icon: Icon(
-                isSwitchedOn ? Icons.toggle_on : Icons.toggle_off,
-                color: Colors.black,
-              ),
-              onPressed: toggleSwitch,
-              iconSize: 40,
-            )
+            if(widget.showToggleSwitch)
+              IconButton(
+               icon: Icon(
+               isSwitchedOn ? Icons.toggle_on : Icons.toggle_off,
+               color: Colors.black,
+               ),
+               onPressed: toggleSwitch,
+               iconSize: 40,
+             )
+             //conditionally show the toggle 
           ],
         ),
       ),
