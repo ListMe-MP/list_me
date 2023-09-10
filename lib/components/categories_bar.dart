@@ -13,14 +13,9 @@ class CategoriesBar extends StatefulWidget {
 }
 
 class _CategoriesBarState extends State<CategoriesBar> {
-  bool isSwitchedOn = false;
+  get onPressed => null;
 
-  void toggleSwitch() {
-    setState(() {
-      isSwitchedOn = !isSwitchedOn;
-    });
-  }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,14 +34,7 @@ class _CategoriesBarState extends State<CategoriesBar> {
               widget.text,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
-            IconButton(
-              icon: Icon(
-                isSwitchedOn ? Icons.toggle_on : Icons.toggle_off,
-                color: Colors.black,
-              ),
-              onPressed: toggleSwitch,
-              iconSize: 40,
-            )
+            
           ],
         ),
       ),

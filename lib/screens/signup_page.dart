@@ -202,7 +202,7 @@ class SignUpPage extends StatelessWidget {
                       ),
                     ),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
+                      primary: Colors.greenAccent,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)
                       )
@@ -217,7 +217,7 @@ class SignUpPage extends StatelessWidget {
                     child: Text(
                       "Already have an account?",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontSize: 15,
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w400,
@@ -239,10 +239,10 @@ class SignUpPage extends StatelessWidget {
                     child: Text(
                       "Sign In",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.blueGrey,
                         fontSize: 15,
                         fontFamily: 'Inter',
-                        fontWeight: FontWeight.w400
+                        fontWeight: FontWeight.w600
                        ),
                     ),
                   ),

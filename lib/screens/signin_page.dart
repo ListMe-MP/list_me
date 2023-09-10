@@ -94,7 +94,7 @@ class SignInPage extends StatelessWidget {
                       ),
                     ),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
+                      primary: Colors.greenAccent,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)
                       )
@@ -107,7 +107,7 @@ class SignInPage extends StatelessWidget {
                     child: Text(
                       "New to List Me?",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontSize: 15,
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w400,
@@ -128,10 +128,10 @@ class SignInPage extends StatelessWidget {
                     child: Text(
                       "Sign Up",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.blueGrey,
                         fontSize: 15,
                         fontFamily: 'Inter',
-                        fontWeight: FontWeight.w400
+                        fontWeight: FontWeight.w600
                        ),
                     ),
                   ),
