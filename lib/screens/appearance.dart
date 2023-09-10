@@ -23,14 +23,11 @@ class AppearancePage extends StatelessWidget {
         ),
       body: Column(
         children: [
-         
-          AppearanceBar(text: "Theme"),
-          AppearanceBar(text: "Font"),
-          AppearanceBar(text: "Font Size"),
-          AppearanceBar(text: "Font Style"),
-          AppearanceBar(text: "Theme"),
-          AppearanceBar(text: "Theme"),
-         
+          AppearanceBar(text: "Dark Theme"),
+          AppearanceBar(text: "Font", showToggleSwitch: false),
+          AppearanceBar(text: "Font Size", showToggleSwitch: false),
+          AppearanceBar(text: "Font Style", showToggleSwitch: false),
+
         ],
       ),
     );
