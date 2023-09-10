@@ -14,7 +14,7 @@ class SignInSignUpBar extends StatelessWidget {
       width: 299,
       height: 37,
       decoration: ShapeDecoration(
-        color: Color(0x7FD4D4D4),
+        color: Colors.grey,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
@@ -24,14 +24,14 @@ class SignInSignUpBar extends StatelessWidget {
         child: TextField(
           keyboardType: TextInputType.name,
           style: TextStyle(
-            color: Colors.white
+            color: Colors.black
           ),
-        decoration: InputDecoration(
+          decoration: InputDecoration(
           border: InputBorder.none,
           contentPadding: EdgeInsets.only(bottom: 10, left: 12, right: 2, top: 2),
           hintText: hintText,
           hintStyle: TextStyle(
-            color: Colors.white
+            color: Colors.black
           )
         ),
                       

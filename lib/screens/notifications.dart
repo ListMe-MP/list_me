@@ -26,7 +26,7 @@ class NotificationPage extends StatelessWidget {
           NotificationBar(text: "Notifictions"),
           NotificationBar(text: "LIST SHARING", showToggleSwitch: false),
           NotificationBar(text: "New Shared Lists"),
-          NotificationBar(text: "New List Items"),
+          // NotificationBar(text: "New List Items"),
          
         ],
       ),
