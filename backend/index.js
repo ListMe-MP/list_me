@@ -44,3 +44,24 @@ app.post("/api/add_product", (req, res)=>{
         "product": pdata
     })
 })
+
+// get Api
+
+app.get("/api/get_product",(req,res)=> {
+
+
+    if (productList.length > 0 ){
+        res.status(200).send({
+            'status_code':200,
+            'products': productList
+        });
+    } else {
+        res.status(200).send({
+            'status_code':200,
+            'products': []
+
+    })
+
+
+}})
+
