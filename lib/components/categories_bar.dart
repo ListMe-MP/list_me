@@ -32,7 +32,7 @@ class _CategoriesBarState extends State<CategoriesBar> {
           children: [
             Text(
               widget.text,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
             
           ],

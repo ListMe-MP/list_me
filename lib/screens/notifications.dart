@@ -19,7 +19,7 @@ class NotificationPage extends StatelessWidget {
           backgroundColor: tc4,
           foregroundColor: tc1,
         ),
-      body: Column(
+      body: const Column(
         children: [
           //push notifications
           NotificationBar(text: "PUSH NOTIFICATIONS", showToggleSwitch: false),

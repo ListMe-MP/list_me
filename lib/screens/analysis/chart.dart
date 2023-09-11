@@ -78,12 +78,19 @@ class _ChartState extends State<Chart> {
   Widget build(BuildContext context) {
     return Column(
       children:[
-        SizedBox(
+        const SizedBox(
         height: 25.0,
       ),
       Container(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
+        width: 350,
+        height: 90,
+        decoration: ShapeDecoration(
+            color: const Color(0x7FD4D4D4),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            )),
+        child: const Padding(
+          padding: EdgeInsets.all(10.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -102,13 +109,6 @@ class _ChartState extends State<Chart> {
             ],
           ),
         ),
-        width: 350,
-        height: 90,
-        decoration: ShapeDecoration(
-            color: Color(0x7FD4D4D4),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            )),
       ),
 
       
@@ -122,14 +122,14 @@ class _ChartState extends State<Chart> {
           ),
         ],
         legend:
-            Legend(isVisible: true, overflowMode: LegendItemOverflowMode.wrap),
+            const Legend(isVisible: true, overflowMode: LegendItemOverflowMode.wrap),
       ),
       Padding(
         padding: const EdgeInsets.all(10.0),
         child: Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Color(0X7fd4d4d4)),
+              color: const Color(0X7fd4d4d4)),
           height: 400,
           child: ListView.builder(
             scrollDirection: Axis.vertical,
@@ -140,16 +140,16 @@ class _ChartState extends State<Chart> {
               return GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => CategoryPage()));
+                      MaterialPageRoute(builder: (context) => const CategoryPage()));
                 },
                 child: Card(
                   child: ListTile(
-                    leading: CircleAvatar(
+                    leading: const CircleAvatar(
                       radius: 28,
                       backgroundColor: Colors.amber,
                     ),
                     title: Text(category.catname),
-                    subtitle: Text('LKR ' + category.price.toString()),
+                    subtitle: Text('LKR ${category.price}'),
                     trailing: const Icon(Icons.arrow_forward),
 
                     // onTap: (){

@@ -11,7 +11,7 @@ class MainTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
 
-      padding: EdgeInsets.only(top: 0.0),
+      padding: const EdgeInsets.only(top: 0.0),
 
       child: Stack(
         children: <Widget>[
@@ -21,7 +21,7 @@ class MainTitle extends StatelessWidget {
             style: GoogleFonts.castoro(
               fontSize: 40,
               shadows: [
-                Shadow(
+                const Shadow(
                     blurRadius: 10.0,
                     color: Colors.black,
                     offset: Offset(2, -2))

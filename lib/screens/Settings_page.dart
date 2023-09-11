@@ -55,11 +55,11 @@ class SettingsPage extends StatelessWidget {
                     
                         
 
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
 
-                    MainTitle(),
+                    const MainTitle(),
 
-                    SizedBox(height: 50,),
+                    const SizedBox(height: 50,),
 
                     //Appearance bar
                     SettingsBar(
@@ -68,13 +68,13 @@ class SettingsPage extends StatelessWidget {
                       onTap: (){
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => AppearancePage()
+                            builder: (context) => const AppearancePage()
                           )
                         );
                       },
                     ),
 
-                    SizedBox(height: 15,),
+                    const SizedBox(height: 15,),
 
                     //Notification bar
                     SettingsBar(
@@ -90,7 +90,7 @@ class SettingsPage extends StatelessWidget {
                       },
                     ),
 
-                    SizedBox(height: 15,),
+                    const SizedBox(height: 15,),
 
                     //Share List bar
                     SettingsBar(
@@ -100,8 +100,8 @@ class SettingsPage extends StatelessWidget {
                         showDialog(
                           context: context, 
                           builder: (ctx) => AlertDialog(
-                            title: Text("List Me Account Needed"),
-                            content: Text(
+                            title: const Text("List Me Account Needed"),
+                            content: const Text(
                               "To share your lists, you need an account. You can create new account or sign in an existing account"
                             ),
                             actions: [
@@ -109,7 +109,7 @@ class SettingsPage extends StatelessWidget {
                                 onPressed: (){
                                   Navigator.of(ctx).pop(); //close the dialog
                                 }, 
-                                child: Text(
+                                child: const Text(
                                   "Cancel",
                                   style: TextStyle(color: Colors.green
                                   ),
@@ -120,11 +120,11 @@ class SettingsPage extends StatelessWidget {
                                   Navigator.of(ctx).pop(); //close the dialog
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
-                                      builder: (context) => SignUpPage(), //Navigate to share page
+                                      builder: (context) => const SignUpPage(), //Navigate to share page
                                       ),
                                   );
                                 },
-                                child: Text(
+                                child: const Text(
                                   "Ok",
                                   style: TextStyle(color: Colors.green),
                                 ),
@@ -135,7 +135,7 @@ class SettingsPage extends StatelessWidget {
                       },
                     ),
 
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
 
                     //Categories bar
                     SettingsBar(
@@ -144,13 +144,13 @@ class SettingsPage extends StatelessWidget {
                       onTap: (){
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => CategoriesPage()
+                            builder: (context) => const CategoriesPage()
                           )
                         );
                       },
                     ),
 
-                    SizedBox(height: 15,),
+                    const SizedBox(height: 15,),
 
                     //Data privacy bar
                     SettingsBar(
@@ -159,13 +159,13 @@ class SettingsPage extends StatelessWidget {
                       onTap: (){
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => FeedbackPage()
+                            builder: (context) => const FeedbackPage()
                           )
                         );
                       },
                     ),
 
-                    SizedBox(height: 15,),
+                    const SizedBox(height: 15,),
 
                     //Help & support bar
                     SettingsBar(
@@ -174,13 +174,13 @@ class SettingsPage extends StatelessWidget {
                       onTap: (){
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => NotificationPage()
+                            builder: (context) => const NotificationPage()
                           )
                         );
                       },
                     ),
 
-                    SizedBox(height: 15,),
+                    const SizedBox(height: 15,),
 
                     //About bar
                     SettingsBar(
@@ -189,7 +189,7 @@ class SettingsPage extends StatelessWidget {
                       onTap: (){
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => NotificationPage()
+                            builder: (context) => const NotificationPage()
                           )
                         );
                       },

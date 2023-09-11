@@ -37,7 +37,7 @@ class _AnalyseState extends State<Analyse> with TickerProviderStateMixin {
             foregroundColor: tc1,
           ),
           body: Stack(children: [
-            Background(),
+            const Background(),
             SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -49,7 +49,7 @@ class _AnalyseState extends State<Analyse> with TickerProviderStateMixin {
                     onMenuItemSelected: (item) => onSelected(context, item),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 30.0),
+                    padding: const EdgeInsets.only(top: 30.0),
                     child: Stack(
                       children: [
                         Text(
@@ -69,7 +69,7 @@ class _AnalyseState extends State<Analyse> with TickerProviderStateMixin {
                       ],
                     ),
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
       
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -91,7 +91,7 @@ class _AnalyseState extends State<Analyse> with TickerProviderStateMixin {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     color: index_color == index 
-                                    ? Color.fromARGB(255, 47, 125, 121) 
+                                    ? const Color.fromARGB(255, 47, 125, 121) 
                                     : Colors.white
                                     ),
                                 alignment: Alignment.center,
@@ -112,10 +112,10 @@ class _AnalyseState extends State<Analyse> with TickerProviderStateMixin {
                     ),
                   ),                  
                  
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  Chart(),
+                  const Chart(),
                 ],
               ),
             ),

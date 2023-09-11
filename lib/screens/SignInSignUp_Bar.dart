@@ -23,14 +23,14 @@ class SignInSignUpBar extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: TextField(
           keyboardType: TextInputType.name,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black
           ),
           decoration: InputDecoration(
           border: InputBorder.none,
-          contentPadding: EdgeInsets.only(bottom: 10, left: 12, right: 2, top: 2),
+          contentPadding: const EdgeInsets.only(bottom: 10, left: 12, right: 2, top: 2),
           hintText: hintText,
-          hintStyle: TextStyle(
+          hintStyle: const TextStyle(
             color: Colors.black
           )
         ),
