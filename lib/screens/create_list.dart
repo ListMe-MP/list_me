@@ -33,7 +33,7 @@ class _CreateListState extends State<CreateList> {
         ),
         body: Stack(
           children: [
-            Background(),
+            const Background(),
             Container(
               child: SingleChildScrollView(
                 child: Column(
@@ -48,7 +48,7 @@ class _CreateListState extends State<CreateList> {
                       ),
 
                       // title
-                      MainTitle(),
+                      const MainTitle(),
 
                       // textfield for title of the list
                       Container(
@@ -61,10 +61,10 @@ class _CreateListState extends State<CreateList> {
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.only(left: 10, right: 10),
+                          padding: const EdgeInsets.only(left: 10, right: 10),
                           child: TextField(
                             controller: titleController,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               hintText: "Untitled list-1",
                               hintStyle: TextStyle(
                                 color: Colors.white,
@@ -95,10 +95,10 @@ class _CreateListState extends State<CreateList> {
                             children: [
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsets.only(left: 10, right: 10),
+                                  padding: const EdgeInsets.only(left: 10, right: 10),
                                   child: TextField(
                                     controller: itemController,
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                       hintText: "Type Here",
                                       hintStyle: TextStyle(
                                         color: Colors.black26,
@@ -134,7 +134,7 @@ class _CreateListState extends State<CreateList> {
                                     });
                                   }
                                 },
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.add_box_outlined,
                                   color: tc1,
                                 ),
@@ -160,11 +160,11 @@ class _CreateListState extends State<CreateList> {
                         child: ListView.builder(
                           shrinkWrap: true,
                           itemCount: itemList.length,
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           itemBuilder: (context, index) {
                             return ClipRRect(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
+                                  const BorderRadius.all(Radius.circular(10)),
                               child: Padding(
                                 padding: const EdgeInsets.only(bottom: 5),
                                 child: Container(
@@ -179,7 +179,7 @@ class _CreateListState extends State<CreateList> {
                                     // item name
                                     title: Text(
                                       itemList[index],
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontWeight: FontWeight.w500,
                                           color: tc1),
                                     ),
@@ -187,24 +187,24 @@ class _CreateListState extends State<CreateList> {
                                     // item price
                                     subtitle: Row(
                                       children: [
-                                        Text(
+                                        const Text(
                                           '\$ 20',
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               color: tc2),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10,
                                         ),
                                         // quantity
-                                        Container(
+                                        SizedBox(
                                           width: 60,
                                           child: TextField(
                                             keyboardType: TextInputType.number,
                                             textAlign: TextAlign.center,
-                                            style: TextStyle(color: tc2),
+                                            style: const TextStyle(color: tc2),
                                             decoration: InputDecoration(
-                                                contentPadding: EdgeInsets.all(8),
+                                                contentPadding: const EdgeInsets.all(8),
                                                 hintText: 'Qty',
                                                 hintStyle: TextStyle(
                                                     color: tc2.withOpacity(0.5)),
@@ -225,7 +225,7 @@ class _CreateListState extends State<CreateList> {
                                       ],
                                     ),
                                     // edit button
-                                    trailing: Icon(
+                                    trailing: const Icon(
                                       Icons.edit,
                                       color: tc1,
                                     ),
@@ -256,7 +256,7 @@ class _CreateListState extends State<CreateList> {
               bottom: 16.0,
               right: 16.0,
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   boxShadow: [
                     BoxShadow(
                         color: Colors.black54,
@@ -287,11 +287,11 @@ class _CreateListState extends State<CreateList> {
                       titleController.clear();
                     }
                   },
-                  shape: CircleBorder(side: BorderSide(color: tc3, width: 5.0)),
-                  padding: EdgeInsets.all(10.0),
+                  shape: const CircleBorder(side: BorderSide(color: tc3, width: 5.0)),
+                  padding: const EdgeInsets.all(10.0),
                   fillColor: tc1,
                   splashColor: tc2,
-                  child: Icon(
+                  child: const Icon(
                     Icons.add,
                     color: tc5,
                     size: 40.0,

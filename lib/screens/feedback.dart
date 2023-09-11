@@ -100,7 +100,7 @@ class FeedbackPage extends StatelessWidget {
             //publish button
             ElevatedButton(
               onPressed: (){}, 
-              child: Text(
+              child: const Text(
                 "Publsih Feedback",
                 style: TextStyle(color: Colors.black),
               ),

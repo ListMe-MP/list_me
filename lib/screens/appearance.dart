@@ -21,7 +21,7 @@ class AppearancePage extends StatelessWidget {
           backgroundColor: tc4,
           foregroundColor: tc1,
         ),
-      body: Column(
+      body: const Column(
         children: [
           AppearanceBar(text: "Dark Theme"),
           AppearanceBar(text: "Font", showToggleSwitch: false),

@@ -76,7 +76,7 @@ class _CategoryPageState extends State<CategoryPage> {
         foregroundColor: tc1,
       ),
       body: Stack(children: [
-        Background(),
+        const Background(),
         Container(
           child: SingleChildScrollView(
             child: Column(
@@ -89,7 +89,7 @@ class _CategoryPageState extends State<CategoryPage> {
                   onMenuItemSelected: (item) => onSelected(context, item),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 30.0),
+                  padding: const EdgeInsets.only(top: 30.0),
                   child: Stack(
                     children: [
                       Text(
@@ -110,13 +110,20 @@ class _CategoryPageState extends State<CategoryPage> {
                   ),
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 25.0,
                 ),
 
                 Container(
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
+                  width: 350,
+                  height: 80,
+                  decoration: ShapeDecoration(
+                      color: const Color(0x7FD4D4D4),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      )),
+                  child: const Padding(
+                    padding: EdgeInsets.all(10.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -135,16 +142,9 @@ class _CategoryPageState extends State<CategoryPage> {
                       ],
                     ),
                   ),
-                  width: 350,
-                  height: 80,
-                  decoration: ShapeDecoration(
-                      color: Color(0x7FD4D4D4),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      )),
                 ),
                 
-                 SizedBox(
+                 const SizedBox(
                   height: 25.0,
                 ),
 
@@ -152,7 +152,7 @@ class _CategoryPageState extends State<CategoryPage> {
                   padding: const EdgeInsets.all(10.0),
                   child: Container(
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
-                    color: Color(0X7fd4d4d4)),
+                    color: const Color(0X7fd4d4d4)),
                     height: 400,
 
                     child: ListView.builder(

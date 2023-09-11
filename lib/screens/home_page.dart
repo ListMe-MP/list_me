@@ -19,11 +19,11 @@ class HomePage extends StatelessWidget {
         body: Stack(
           children: [
             // backkground style
-            Background(),
+            const Background(),
     
             // components
             Container(
-              padding: EdgeInsets.only(top: 10, bottom: 10),
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
     
                     // title
                     Padding(
-                      padding: EdgeInsets.only(top: 60.0),
+                      padding: const EdgeInsets.only(top: 60.0),
                       child: Stack(
                         children: <Widget>[
                           // Stroked text as border.
@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
                             style: GoogleFonts.castoro(
                               fontSize: 40,
                               shadows: [
-                                Shadow(
+                                const Shadow(
                                     blurRadius: 10.0,
                                     color: Colors.black,
                                     offset: Offset(2, -2))
@@ -74,7 +74,7 @@ class HomePage extends StatelessWidget {
                         builder: (context, value, child) {
                           return GridView.builder(
                               itemCount: value.buttonTypes.length,
-                              padding: EdgeInsets.all(36.0),
+                              padding: const EdgeInsets.all(36.0),
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2),

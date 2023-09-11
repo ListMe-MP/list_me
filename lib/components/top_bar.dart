@@ -40,11 +40,11 @@ class TopBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ToggleSwitch(
-            borderColor: [tc2],
+            borderColor: const [tc2],
             minWidth: 70.0,
             minHeight: 20,
             cornerRadius: 20.0,
-            activeBgColors: [
+            activeBgColors: const [
               [tc1],
               [tc3],
             ],
@@ -53,12 +53,12 @@ class TopBar extends StatelessWidget {
             inactiveFgColor: tc1,
             initialLabelIndex: 1,
             totalSwitches: 2,
-            labels: ['Voice', ' enable'],
+            labels: const ['Voice', ' enable'],
             radiusStyle: true,
             onToggle: onToggle,
           ),
           PopupMenuButton<MenuItem>(
-            icon: Icon(
+            icon: const Icon(
               Icons.menu_rounded,
               color: tc1,
               size: 36,
@@ -66,7 +66,7 @@ class TopBar extends StatelessWidget {
             onSelected: onMenuItemSelected,
             itemBuilder: (context) => [
               ...MenuItems.itemsFirst.map(buildItem).toList(),
-              PopupMenuDivider(),
+              const PopupMenuDivider(),
               ...MenuItems.itemsSecond.map(buildItem).toList(),
             ],
           ),

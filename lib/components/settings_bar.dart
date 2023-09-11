@@ -24,8 +24,8 @@ class SettingsBar extends StatelessWidget {
                           height: 40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Color.fromRGBO(131, 193, 193, 1),
-                            boxShadow: [
+                            color: const Color.fromRGBO(131, 193, 193, 1),
+                            boxShadow: const [
                               BoxShadow(
                                 color: Colors.black,
                                 blurRadius: 4,
@@ -39,7 +39,7 @@ class SettingsBar extends StatelessWidget {
                           child:  Row(
                             children: [
                               Padding(
-                                padding: EdgeInsets.all(10.0),
+                                padding: const EdgeInsets.all(10.0),
                                 child: Icon(
                                  icon, 
                                   ),
@@ -47,15 +47,15 @@ class SettingsBar extends StatelessWidget {
                               
                              
                                 Padding(
-                                  padding: EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Text(
                                    title,
                                     style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                                     ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                               
-                                Padding(
+                                const Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: Icon(
                                     Ionicons.chevron_forward, 

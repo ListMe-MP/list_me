@@ -20,14 +20,14 @@ class CategoriesPage extends StatelessWidget {
         ),
       body: Column(
         children: [
-          CategoriesBar(text: "Bakery"),
-          CategoriesBar(text: "Fast Food"),
-          CategoriesBar(text: "Vagetables"),
-          CategoriesBar(text: "Fruit"),
-          CategoriesBar(text: "Dairy"),
+          const CategoriesBar(text: "Bakery"),
+          const CategoriesBar(text: "Fast Food"),
+          const CategoriesBar(text: "Vagetables"),
+          const CategoriesBar(text: "Fruit"),
+          const CategoriesBar(text: "Dairy"),
   
         Container(
-          child: Row(
+          child: const Row(
             children: [
             ],
           ),

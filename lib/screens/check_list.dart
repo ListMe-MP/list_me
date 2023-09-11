@@ -1,18 +1,13 @@
 
 
-import 'package:another_flushbar/flushbar.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/flushbars.dart';
-import 'package:list_me/components/itemcard.dart';
 import 'package:list_me/components/maintitle.dart';
 import 'package:list_me/components/top_bar.dart';
 import 'package:list_me/screens/Untitled_List_04_page.dart';
 
-import '../components/flushbars.dart';
 import '../utils/navigationMenu.dart';
 import 'create_list.dart';
 
@@ -31,13 +26,13 @@ class CheckList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Check List", style: TextStyle(color: tc1),textAlign: TextAlign.justify,),
+      appBar: AppBar(title: const Text("Check List", style: TextStyle(color: tc1),textAlign: TextAlign.justify,),
       backgroundColor: tc4,
           foregroundColor: tc1,
       ),
       body: Stack(
         children: [
-          Background(),
+          const Background(),
           Container(
             child: Column(
               children: [
@@ -47,21 +42,21 @@ class CheckList extends StatelessWidget {
                         onMenuItemSelected: (item) => onSelected(context, item),
                         ),
 
-                        MainTitle(),
+                        const MainTitle(),
                        Expanded(child:   ListView.builder(
                             itemCount: items.length ,
                             itemBuilder: (context, int index) { 
                             return   Container(
-                                      margin: EdgeInsets.fromLTRB(0, 0,0, 10),
+                                      margin: const EdgeInsets.fromLTRB(0, 0,0, 10),
                                       child: Row(
                                        children: [
                                         Expanded( child:
                                          Container(
-                                        margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                        margin: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                                         decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
-                                      color: Color.fromRGBO(131, 193, 193, 1),
-                                     boxShadow: [
+                                      color: const Color.fromRGBO(131, 193, 193, 1),
+                                     boxShadow: const [
                                     BoxShadow(
                                      color: Colors.black,
                                      blurRadius: 4,
@@ -78,7 +73,7 @@ class CheckList extends StatelessWidget {
                                            return CheckList04(data:items[index]);
                                           },),);
                                         }, 
-                                   icon: Icon(Icons.arrow_forward),
+                                   icon: const Icon(Icons.arrow_forward),
                                      color:Colors.black,
                                      ),
                                         iconColor: Colors.black,
@@ -89,10 +84,10 @@ class CheckList extends StatelessWidget {
                                  ),
                                   IconButton(onPressed: () {
                                     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-                                       return CreateList();
+                                       return const CreateList();
                                     },),);
                                   }, 
-                                 icon: Icon(Icons.mode_edit_outline_sharp),
+                                 icon: const Icon(Icons.mode_edit_outline_sharp),
                                   color:Colors.black,
                               ),
                                 IconButton(onPressed: () {
@@ -118,7 +113,7 @@ class CheckList extends StatelessWidget {
                                   // );
                                   // },
                                 }, 
-                               icon: Icon(Icons.delete),
+                               icon: const Icon(Icons.delete),
                                color:Colors.black,
                              ),
                                  ],
