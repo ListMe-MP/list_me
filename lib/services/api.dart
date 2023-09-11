@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -22,6 +23,26 @@ class Api {
       }
     } catch (e) {
       debugPrint(e.toString());
+    }
+  }
+
+  //get method 
+
+  static getProduct() async{
+    
+    var url = Uri.parse("${baseUrl}get_Product");
+
+    try {
+      final res= await http.get(url);
+      if(res.statusCode==200){
+        var data = jsonDecode(res.body);
+        print(data);
+    } else {
+      
+    }
+
+     } catch (e) {
+        print(e.toString());
     }
   }
 }
