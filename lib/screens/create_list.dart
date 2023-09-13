@@ -1,7 +1,9 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/maintitle.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 import '../components/top_bar.dart';
 import '../services/api.dart';
 import '../utils/navigationMenu.dart';
@@ -18,6 +20,11 @@ class _CreateListState extends State<CreateList> {
   var titleController = TextEditingController();
   var itemController = TextEditingController();
   List<String> itemList = [];
+
+  // speech to text objects
+  var text = "";
+  var isListning = false;
+  SpeechToText speechToText = SpeechToText();
 
   @override
   Widget build(BuildContext context) {
@@ -93,9 +100,61 @@ class _CreateListState extends State<CreateList> {
                           ),
                           child: Row(
                             children: [
+                              // microphone button
+                              AvatarGlow(
+                                endRadius: 20,
+                                animate: isListning,
+                                duration: Duration(milliseconds: 2000),
+                                glowColor: tc1,
+                                repeat: true,
+                                repeatPauseDuration:
+                                    Duration(milliseconds: 100),
+                                showTwoGlows: true,
+                                child: GestureDetector(
+                                  onTapDown: (details) async {
+                                    if (!isListning) {
+                                      var available =
+                                          await speechToText.initialize();
+                                      if (available) {
+                                        setState(() {
+                                          isListning = true;
+                                          speechToText.listen(
+                                            onResult: (result) {
+                                              text = result.recognizedWords;
+                                              itemController.text = text;
+                                            },
+                                          );
+                                        });
+                                      }
+                                    }
+                                  },
+                                  onTapCancel: () {
+                                    setState(() {
+                                      isListning = false;
+                                    });
+                                    speechToText.stop();
+                                  },
+                                  child: CircleAvatar(
+                                    backgroundColor: tf.withOpacity(0.9),
+                                    radius: 15,
+                                    child: IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          isListning
+                                              ? Icons.mic
+                                              : Icons.mic_off,
+                                          color: tc1,
+                                          size: 15,
+                                        )),
+                                  ),
+                                ),
+                              ),
+
+                              // text field
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsets.only(left: 10, right: 10),
+                                  padding: const EdgeInsets.only(
+                                      left: 10, right: 10),
                                   child: TextField(
                                     controller: itemController,
                                     decoration: const InputDecoration(
@@ -175,7 +234,7 @@ class _CreateListState extends State<CreateList> {
                                       'assets/images/items/item0.png',
                                       fit: BoxFit.cover,
                                     ),
-                              
+
                                     // item name
                                     title: Text(
                                       itemList[index],
@@ -183,7 +242,7 @@ class _CreateListState extends State<CreateList> {
                                           fontWeight: FontWeight.w500,
                                           color: tc1),
                                     ),
-                              
+
                                     // item price
                                     subtitle: Row(
                                       children: [
@@ -204,14 +263,18 @@ class _CreateListState extends State<CreateList> {
                                             textAlign: TextAlign.center,
                                             style: const TextStyle(color: tc2),
                                             decoration: InputDecoration(
-                                                contentPadding: const EdgeInsets.all(8),
+                                                contentPadding:
+                                                    const EdgeInsets.all(8),
                                                 hintText: 'Qty',
                                                 hintStyle: TextStyle(
-                                                    color: tc2.withOpacity(0.5)),
-                                                enabledBorder: OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                        color: tc2
-                                                            .withOpacity(0.5)))),
+                                                    color:
+                                                        tc2.withOpacity(0.5)),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color:
+                                                                tc2.withOpacity(
+                                                                    0.5)))),
                                             onChanged: (value) {
                                               setState(() {
                                                 _quntity =
@@ -287,7 +350,8 @@ class _CreateListState extends State<CreateList> {
                       titleController.clear();
                     }
                   },
-                  shape: const CircleBorder(side: BorderSide(color: tc3, width: 5.0)),
+                  shape: const CircleBorder(
+                      side: BorderSide(color: tc3, width: 5.0)),
                   padding: const EdgeInsets.all(10.0),
                   fillColor: tc1,
                   splashColor: tc2,
@@ -303,7 +367,3 @@ class _CreateListState extends State<CreateList> {
         ));
   }
 }
-
-
-
-
