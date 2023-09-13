@@ -8,7 +8,9 @@ import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/flushbars.dart';
 import 'package:list_me/components/maintitle.dart';
 import 'package:list_me/components/top_bar.dart';
+import 'package:list_me/model/product_model.dart';
 import 'package:list_me/screens/Untitled_List_04_page.dart';
+import 'package:list_me/services/api.dart';
 
 import '../utils/navigationMenu.dart';
 import 'create_list.dart';
@@ -22,11 +24,11 @@ class CheckList extends StatefulWidget {
 class _CheckListState extends State<CheckList> {
   List<String> items = [];
 
-  @override
-  void initState() {
-    super.initState();
-    getTitleFromServer();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getTitleFromServer();
+  // }
 
   // Future<void> fetchDataFromServer() async {
   //   try {         
@@ -52,31 +54,37 @@ class _CheckListState extends State<CheckList> {
   //   }
   // }
 
-  Future <List >getTitleFromServer() async {
-    var url= Uri.parse("http://localhost:2000/api/get_product/");
-    late http.Response response; 
+//   Future<List<String>> getTitleFromServer() async {
+//   var url = Uri.parse("http://localhost:2000/api/get_product/");
+//   late http.Response response;
 
-    try { 
-      response = await http.get(url);
-      if(response.statusCode==200) {
+//   try {
+//     response = await http.get(url);
+//     if (response.statusCode == 200) {
+//       Map<String, dynamic> title = jsonDecode(response.body);
+//       List<dynamic> titleName = title["results"];
 
-        Map title = jsonDecode(response.body);
-        List<dynamic> titleName = title ["results"];
+//       List<String> ltitles = [];
 
-        for (var item in titleName) {
-          var id = item['id'];
-          var ltitle = item['ltitle'];
-        }
-      } else {
-        return Future.error("Something gone wrong, ${response.statusCode}");
-      }
-      
-    } catch (e) {
-      return Future.error(e.toString());
-      
-    }
-      return items; 
-  }
+//       for (var item in titleName) {
+//         var id = item['id'];
+//         var ltitle = item['ltitle'];
+//         ltitles.add(ltitle);
+//       }
+
+//       setState(() {
+//         items = ltitles;
+//       });
+
+//       return items;
+//     } else {
+//       return Future.error("Something went wrong, ${response.statusCode}");
+//     }
+//   } catch (e) {
+//     return Future.error(e.toString());
+//   }
+// }
+
   
 
   @override
@@ -87,108 +95,129 @@ class _CheckListState extends State<CheckList> {
           foregroundColor: tc1,
       ),
       body: 
-      Stack(
-        children: [
-          const Background(),
-          Container(
-            child: Column(
-              children: [
-                TopBar(onToggle: (index) {
-                          print('switched to:$index');
-                        },
-                        onMenuItemSelected: (item) => onSelected(context, item),
-                        ),
-
-                        const MainTitle(),
-                       Expanded(child:   ListView.builder(
-                            itemCount: items.length ,
-                            itemBuilder: (context, int index) { 
-                            return   Container(
-                                      margin: const EdgeInsets.fromLTRB(0, 0,0, 10),
-                                      child: Row(
-                                       children: [
-                                        Expanded( child:
-                                         Container(
-                                        margin: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                        decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: const Color.fromRGBO(131, 193, 193, 1),
-                                     boxShadow: const [
-                                    BoxShadow(
-                                     color: Colors.black,
-                                     blurRadius: 4,
-                                    offset: Offset(0, 4),
-                                      spreadRadius: 0,
-                                      ),
-                                    ]
-                                     ),
-                                      
-                                       child: ListTile(
-                                        title: Text(items[index]),
-                                        trailing:  IconButton(onPressed: () {
-                                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-                                           return CheckList04(data:items[index]);
-                                          },),);
-                                        }, 
-                                   icon: const Icon(Icons.arrow_forward),
-                                     color:Colors.black,
-                                     ),
-                                        iconColor: Colors.black,
-                                        onTap: () {},
-                                      ),
-                                 ),
-                                 
-                                 ),
-                                  IconButton(onPressed: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-                                       return const CreateList();
-                                    },),);
-                                  }, 
-                                 icon: const Icon(Icons.mode_edit_outline_sharp),
-                                  color:Colors.black,
-                              ),
-                                IconButton(onPressed: () {
-                                  final temp = items.removeAt(index);
-                                  FlushBars().undo(
-                                    message: "You still have a chance to undo it",
-                                    onUndo: () {
-                                      Navigator.pop (context);
-                                      items.insert(index, temp); 
-
-                                    },
-                                    duration: const Duration(seconds: 6),
-                                  ). show (context);
-
-
-                                  // void removeItem(int index) {
-                                  //   final Item = items.removeAt(index);
-
-                               
-                                  // key?.currentState.removeItem(
-                                  //   index, 
-                                  //   (context, Animation) => buildItem (items, index)
-                                  // );
-                                  // },
-                                }, 
-                               icon: const Icon(Icons.delete),
-                               color:Colors.black,
-                             ),
-                                 ],
-                               ),
-                              );
+    FutureBuilder <List<Product>>(
+    future: Api.getProduct(),
+    builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      // Show a loading indicator while data is being fetched.
+      return CircularProgressIndicator();
+    } else if (snapshot.hasError) {
+      // Handle the error case.
+      return Text('Error: ${snapshot.error}');
+    } else if (snapshot.data != null) {
+      // Handle the case where data is null.
+      return Text('No data available.');
+    } else if (snapshot.data!.isEmpty) {
+      // Handle the case where data is an empty list.
+      return Text('No products available.');
+    } else {
+      // Data is available, you can safely access snapshot.data.
+      List <Product> pdata = snapshot.data!;
+      return Stack(
+            children: [
+              const Background(),
+              Container(
+                child: Column(
+                  children: [
+                    TopBar(onToggle: (index) {
+                              print('switched to:$index');
                             },
-                           ),)
-                      
-
-
-                
-              ],
-            ),
-          ),
-        ],
+                            onMenuItemSelected: (item) => onSelected(context, item),
+                            ),
+      
+                            const MainTitle(),
+                           Expanded(child:   ListView.builder(
+                                itemCount: pdata.length ,
+                                itemBuilder: (BuildContext context, int index) { 
+                                return   Container(
+                                          margin: const EdgeInsets.fromLTRB(0, 0,0, 10),
+                                          child: Row(
+                                           children: [
+                                            Expanded( child:
+                                             Container(
+                                            margin: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                            decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: const Color.fromRGBO(131, 193, 193, 1),
+                                         boxShadow: const [
+                                        BoxShadow(
+                                         color: Colors.black,
+                                         blurRadius: 4,
+                                        offset: Offset(0, 4),
+                                          spreadRadius: 0,
+                                          ),
+                                        ]
+                                         ),
+                                          
+                                           child: ListTile(
+                                            title: Text(pdata[index].listTitle!),
+                                            trailing:  IconButton(onPressed: () {
+                                              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+                                               return CheckList04(data:pdata[index].itemName);
+                                              },),);
+                                            }, 
+                                       icon: const Icon(Icons.arrow_forward),
+                                         color:Colors.black,
+                                         ),
+                                            iconColor: Colors.black,
+                                            onTap: () {},
+                                          ),
+                                     ),
+                                     
+                                     ),
+                                      IconButton(onPressed: () {
+                                        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+                                           return const CreateList();
+                                        },),);
+                                      }, 
+                                     icon: const Icon(Icons.mode_edit_outline_sharp),
+                                      color:Colors.black,
+                                  ),
+                                    IconButton(onPressed: () {
+                                      final temp = pdata.removeAt(index);
+                                      FlushBars().undo(
+                                        message: "You still have a chance to undo it",
+                                        onUndo: () {
+                                          Navigator.pop (context);
+                                          pdata.insert(index, temp); 
+      
+                                        },
+                                        duration: const Duration(seconds: 6),
+                                      ). show (context);
+      
+      
+                                      // void removeItem(int index) {
+                                      //   final Item = items.removeAt(index);
+      
+                                   
+                                      // key?.currentState.removeItem(
+                                      //   index, 
+                                      //   (context, Animation) => buildItem (items, index)
+                                      // );
+                                      // },
+                                    }, 
+                                   icon: const Icon(Icons.delete),
+                                   color:Colors.black,
+                                 ),
+                                     ],
+                                   ),
+                                  );
+                                },
+                               ),)
+                          
+      
+      
+                    
+                  ],
+                ),
+              ),
+            ],
+          );
+          }
+        }
       ),
     );
   }
   
-  buildItem(List<String> items, int index) {}
+  buildItem(List<String> pdata, int index) {}
 }
