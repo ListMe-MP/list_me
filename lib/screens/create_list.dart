@@ -335,10 +335,11 @@ class _CreateListState extends State<CreateList> {
                   onPressed: () {
                     if (titleController.text.isNotEmpty &&
                         itemList.isNotEmpty) {
-                      print("itemList: $itemList");
+                      // print("itemList: $itemList");
                       var data = {
                         "ltitle": titleController.text,
                         "items": itemList,
+                        "isCheck":false,
                       };
 
                       Api.addProduct(data);

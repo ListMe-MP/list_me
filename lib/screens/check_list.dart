@@ -12,6 +12,7 @@ import 'package:list_me/model/product_model.dart';
 import 'package:list_me/screens/Untitled_List_04_page.dart';
 import 'package:list_me/services/api.dart';
 
+import '../services/api.dart';
 import '../utils/navigationMenu.dart';
 import 'create_list.dart';
 import 'package:http/http.dart' as http;
@@ -22,13 +23,21 @@ class CheckList extends StatefulWidget {
 }
 
 class _CheckListState extends State<CheckList> {
-  List<String> items = [];
+  // List pdata = [];
+
+
+  @override
+  void initState() {
+    super.initState();
+    // getTitleFromServer();
+  }
 
   // @override
   // void initState() {
   //   super.initState();
   //   getTitleFromServer();
   // }
+
 
   // Future<void> fetchDataFromServer() async {
   //   try {         
@@ -53,6 +62,60 @@ class _CheckListState extends State<CheckList> {
   //     print('Error: $e');
   //   }
   // }
+
+
+//  Future<List<String>> getTitleFromServer() async {
+
+//   Future<List<String>> getTitleFromServer() async {
+
+//   var url = Uri.parse("http://localhost:2000/api/get_product/");
+//   late http.Response response;
+
+//   try {
+//     response = await http.get(url);
+//     if (response.statusCode == 200) {
+
+//       Map<String, dynamic> data = jsonDecode(response.body);
+//       List<dynamic> titleList = data["products"];
+
+//       List<String> titles = [];
+//       for (var item in titleList) {
+//         String lTitle = item['lTitle'];
+//         titles.add(lTitle);
+//       }
+
+//       setState(() {
+//         pdata = titles; // Update the items list with the fetched titles
+//       });
+
+//       Map<String, dynamic> title = jsonDecode(response.body);
+//       List<dynamic> titleName = title["results"];
+
+//       List<String> ltitles = [];
+
+//       for (var item in titleName) {
+//         var id = item['id'];
+//         var ltitle = item['ltitle'];
+//         ltitles.add(ltitle);
+//       }
+
+//       setState(() {
+//         items = ltitles;
+//       });
+
+//       return items;
+
+//     } else {
+//       return Future.error("Something went wrong, ${response.statusCode}");
+//     }
+//   } catch (e) {
+//     return Future.error(e.toString());
+//   }
+
+
+
+
+// }
 
 //   Future<List<String>> getTitleFromServer() async {
 //   var url = Uri.parse("http://localhost:2000/api/get_product/");
@@ -85,6 +148,7 @@ class _CheckListState extends State<CheckList> {
 //   }
 // }
 
+
   
 
   @override
@@ -95,6 +159,21 @@ class _CheckListState extends State<CheckList> {
           foregroundColor: tc1,
       ),
       body: 
+
+      FutureBuilder(
+        future: Api.getProduct(),
+        builder: (context, snapshot) {
+          if(snapshot.connectionState== ConnectionState.waiting){
+            return CircularProgressIndicator();
+          }
+          else{
+           List?  pdata = snapshot.data!.toList();
+           
+            print(pdata[0]);
+            return Stack(
+            children: [
+             // const Background(),
+
     FutureBuilder <List<Product>>(
     future: Api.getProduct(),
     builder: (context, snapshot) {
@@ -116,6 +195,7 @@ class _CheckListState extends State<CheckList> {
       return Stack(
             children: [
               const Background(),
+
               Container(
                 child: Column(
                   children: [
@@ -126,9 +206,25 @@ class _CheckListState extends State<CheckList> {
                             ),
       
                             const MainTitle(),
+
+                        //     ElevatedButton(onPressed: 
+                        //     () async{
+                        //     var product = await Api.getProduct();
+                        //     print(product);
+                        //     }
+                        // , child: Text('submit')),
+                           Expanded(child:   ListView.builder(
+                                itemCount: pdata!.length ,
+                                itemBuilder: (context, int index) { 
+
                            Expanded(child:   ListView.builder(
                                 itemCount: pdata.length ,
                                 itemBuilder: (BuildContext context, int index) { 
+
+                           Expanded(child:   ListView.builder(
+                                itemCount: pdata.length ,
+                                itemBuilder: (BuildContext context, int index) { 
+
                                 return   Container(
                                           margin: const EdgeInsets.fromLTRB(0, 0,0, 10),
                                           child: Row(
@@ -150,10 +246,17 @@ class _CheckListState extends State<CheckList> {
                                          ),
                                           
                                            child: ListTile(
+
+                                            title: Text(pdata[index]['lTitle']),
+                                            trailing:  IconButton(onPressed: () {
+                                              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+                                               return CheckList04(data:pdata[index]);
+
                                             title: Text(pdata[index].listTitle!),
                                             trailing:  IconButton(onPressed: () {
                                               Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
                                                return CheckList04(data:pdata[index].itemName);
+
                                               },),);
                                             }, 
                                        icon: const Icon(Icons.arrow_forward),
@@ -219,5 +322,11 @@ class _CheckListState extends State<CheckList> {
     );
   }
   
+
+  // buildItem(List<String> pdata int  index) {}
+
   buildItem(List<String> pdata, int index) {}
+
+  buildItem(List<String> pdata, int index) {}
+
 }
