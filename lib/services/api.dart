@@ -28,11 +28,18 @@ class Api {
 
   //get method 
 
+<<<<<<< HEAD
   static Future<List> getProduct() async {
     print("called");
   List products = [];
+=======
+  static  Future <List<Product>>getProduct() async {
+  List<Product> products = [];
+>>>>>>> 1c8ac4e4d1fc984c52e50a27ea8eb3259b1ea559
 
-  var url = Uri.parse("${baseUrl}get_Product");
+  // var url = Uri.parse("${baseUrl}get_Product");
+  var url = Uri.parse("http://localhost:2000/api/get_product/");
+  late http.Response response;
 
   try {
     final res = await http.get(url);
@@ -61,6 +68,7 @@ class Api {
     
   } catch (e) {
     print(e.toString());
+    return [];
   }
   // print("pp/"+products[0]['lTitle'].toString());
   return products;

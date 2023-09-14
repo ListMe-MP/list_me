@@ -8,7 +8,9 @@ import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/flushbars.dart';
 import 'package:list_me/components/maintitle.dart';
 import 'package:list_me/components/top_bar.dart';
+import 'package:list_me/model/product_model.dart';
 import 'package:list_me/screens/Untitled_List_04_page.dart';
+import 'package:list_me/services/api.dart';
 
 import '../services/api.dart';
 import '../utils/navigationMenu.dart';
@@ -23,11 +25,19 @@ class CheckList extends StatefulWidget {
 class _CheckListState extends State<CheckList> {
   // List pdata = [];
 
+<<<<<<< HEAD
   @override
   void initState() {
     super.initState();
     // getTitleFromServer();
   }
+=======
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getTitleFromServer();
+  // }
+>>>>>>> 1c8ac4e4d1fc984c52e50a27ea8eb3259b1ea559
 
   // Future<void> fetchDataFromServer() async {
   //   try {         
@@ -53,13 +63,18 @@ class _CheckListState extends State<CheckList> {
   //   }
   // }
 
+<<<<<<< HEAD
 //  Future<List<String>> getTitleFromServer() async {
+=======
+//   Future<List<String>> getTitleFromServer() async {
+>>>>>>> 1c8ac4e4d1fc984c52e50a27ea8eb3259b1ea559
 //   var url = Uri.parse("http://localhost:2000/api/get_product/");
 //   late http.Response response;
 
 //   try {
 //     response = await http.get(url);
 //     if (response.statusCode == 200) {
+<<<<<<< HEAD
 //       Map<String, dynamic> data = jsonDecode(response.body);
 //       List<dynamic> titleList = data["products"];
 
@@ -72,14 +87,35 @@ class _CheckListState extends State<CheckList> {
 //       setState(() {
 //         pdata = titles; // Update the items list with the fetched titles
 //       });
+=======
+//       Map<String, dynamic> title = jsonDecode(response.body);
+//       List<dynamic> titleName = title["results"];
+
+//       List<String> ltitles = [];
+
+//       for (var item in titleName) {
+//         var id = item['id'];
+//         var ltitle = item['ltitle'];
+//         ltitles.add(ltitle);
+//       }
+
+//       setState(() {
+//         items = ltitles;
+//       });
+
+//       return items;
+>>>>>>> 1c8ac4e4d1fc984c52e50a27ea8eb3259b1ea559
 //     } else {
 //       return Future.error("Something went wrong, ${response.statusCode}");
 //     }
 //   } catch (e) {
 //     return Future.error(e.toString());
 //   }
+<<<<<<< HEAD
 
 //   return pdata;
+=======
+>>>>>>> 1c8ac4e4d1fc984c52e50a27ea8eb3259b1ea559
 // }
 
   
@@ -92,6 +128,7 @@ class _CheckListState extends State<CheckList> {
           foregroundColor: tc1,
       ),
       body: 
+<<<<<<< HEAD
       FutureBuilder(
         future: Api.getProduct(),
         builder: (context, snapshot) {
@@ -105,6 +142,29 @@ class _CheckListState extends State<CheckList> {
             return Stack(
             children: [
              // const Background(),
+=======
+    FutureBuilder <List<Product>>(
+    future: Api.getProduct(),
+    builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      // Show a loading indicator while data is being fetched.
+      return CircularProgressIndicator();
+    } else if (snapshot.hasError) {
+      // Handle the error case.
+      return Text('Error: ${snapshot.error}');
+    } else if (snapshot.data != null) {
+      // Handle the case where data is null.
+      return Text('No data available.');
+    } else if (snapshot.data!.isEmpty) {
+      // Handle the case where data is an empty list.
+      return Text('No products available.');
+    } else {
+      // Data is available, you can safely access snapshot.data.
+      List <Product> pdata = snapshot.data!;
+      return Stack(
+            children: [
+              const Background(),
+>>>>>>> 1c8ac4e4d1fc984c52e50a27ea8eb3259b1ea559
               Container(
                 child: Column(
                   children: [
@@ -115,6 +175,7 @@ class _CheckListState extends State<CheckList> {
                             ),
       
                             const MainTitle(),
+<<<<<<< HEAD
                         //     ElevatedButton(onPressed: 
                         //     () async{
                         //     var product = await Api.getProduct();
@@ -124,6 +185,11 @@ class _CheckListState extends State<CheckList> {
                            Expanded(child:   ListView.builder(
                                 itemCount: pdata!.length ,
                                 itemBuilder: (context, int index) { 
+=======
+                           Expanded(child:   ListView.builder(
+                                itemCount: pdata.length ,
+                                itemBuilder: (BuildContext context, int index) { 
+>>>>>>> 1c8ac4e4d1fc984c52e50a27ea8eb3259b1ea559
                                 return   Container(
                                           margin: const EdgeInsets.fromLTRB(0, 0,0, 10),
                                           child: Row(
@@ -145,10 +211,17 @@ class _CheckListState extends State<CheckList> {
                                          ),
                                           
                                            child: ListTile(
+<<<<<<< HEAD
                                             title: Text(pdata[index]['lTitle']),
                                             trailing:  IconButton(onPressed: () {
                                               Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
                                                return CheckList04(data:pdata[index]);
+=======
+                                            title: Text(pdata[index].listTitle!),
+                                            trailing:  IconButton(onPressed: () {
+                                              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+                                               return CheckList04(data:pdata[index].itemName);
+>>>>>>> 1c8ac4e4d1fc984c52e50a27ea8eb3259b1ea559
                                               },),);
                                             }, 
                                        icon: const Icon(Icons.arrow_forward),
@@ -214,5 +287,9 @@ class _CheckListState extends State<CheckList> {
     );
   }
   
+<<<<<<< HEAD
   // buildItem(List<String> pdata int  index) {}
+=======
+  buildItem(List<String> pdata, int index) {}
+>>>>>>> 1c8ac4e4d1fc984c52e50a27ea8eb3259b1ea559
 }
