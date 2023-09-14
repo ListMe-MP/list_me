@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:list_me/model/product_model.dart';
 
 class Api {
-  static const baseUrl = "http://192.168.8.101/api/";
+  static const baseUrl = "http://192.168.8.183/api/";
 
   static addProduct(Map pdata) async {
     var url = Uri.parse("${baseUrl}add_product");
@@ -28,8 +28,9 @@ class Api {
 
   //get method 
 
-  static getProduct() async {
-  List<Product> products = [];
+  static Future<List> getProduct() async {
+    print("called");
+  List products = [];
 
   var url = Uri.parse("${baseUrl}get_Product");
 
@@ -37,24 +38,30 @@ class Api {
     final res = await http.get(url);
     if (res.statusCode == 200) {
       var data = jsonDecode(res.body);
+     
 
       // Assuming the API response includes fields for pimage, pprice, and pquantity
-      List<dynamic> productList = data['products'];
+       products = data['products'];
 
-      for (var value in productList) {
-        products.add(Product(
-          item: value['pname'],
-          pimage: value['pimage'],    // Fetch pimage from API response
-          pprice: value['pprice'],    // Fetch pprice from API response
-          pquantity: value['pquantity'],  // Fetch pquantity from API response
-        ));
-      }
-      return products;
+      // for (var value in productList) { 
+      //   products.add(Product(
+      //     item: value['pname'],
+      //     pimage: value['pimage'],    // Fetch pimage from API response
+      //     pprice: value['pprice'],    // Fetch pprice from API response
+      //     pquantity: value['pquantity'],  // Fetch pquantity from API response
+      //   ));
+      // }
+      // print("pp/"+data['products'][0]['lTitle'].toString());
+      
+      
     } else {
       //print("Failed to get response");
       return [];
     }
+    
   } catch (e) {
     print(e.toString());
   }
+  // print("pp/"+products[0]['lTitle'].toString());
+  return products;
   } }
