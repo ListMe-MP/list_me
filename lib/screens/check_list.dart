@@ -23,94 +23,7 @@ class CheckList extends StatefulWidget {
 }
 
 class _CheckListState extends State<CheckList> {
-  // List pdata = [];
 
-
-  @override
-  void initState() {
-    super.initState();
-    // getTitleFromServer();
-  }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   getTitleFromServer();
-  // }
-
-
-  // Future<void> fetchDataFromServer() async {
-  //   try {         
-  //     // Replace 'YOUR_API_ENDPOINT' with the actual endpoint to fetch data
-  //     final response = await http.get(Uri.parse("http://localhost:2000/api/get_product/"));
-
-  //     if (response.statusCode == 200) {
-  //       final data = json.decode(response.body);
-  //       if (data is List) {
-  //         // Assuming the server returns a list of strings
-  //         setState(() {
-  //           items = List<String>.from(data);
-  //         });
-  //       } else {
-  //         // Handle the response if it's not a list of strings
-  //       }
-  //     } else {
-  //       // Handle errors or non-200 status codes
-  //     }
-  //   } catch (e) {
-  //     // Handle any exceptions that occur during the HTTP request
-  //     print('Error: $e');
-  //   }
-  // }
-
-
-//  Future<List<String>> getTitleFromServer() async {
-
-//   Future<List<String>> getTitleFromServer() async {
-
-//   var url = Uri.parse("http://localhost:2000/api/get_product/");
-//   late http.Response response;
-
-//   try {
-//     response = await http.get(url);
-//     if (response.statusCode == 200) {
-
-//       Map<String, dynamic> data = jsonDecode(response.body);
-//       List<dynamic> titleList = data["products"];
-
-//       List<String> titles = [];
-//       for (var item in titleList) {
-//         String lTitle = item['lTitle'];
-//         titles.add(lTitle);
-//       }
-
-//       setState(() {
-//         pdata = titles; // Update the items list with the fetched titles
-//       });
-
-//       Map<String, dynamic> title = jsonDecode(response.body);
-//       List<dynamic> titleName = title["results"];
-
-//       List<String> ltitles = [];
-
-//       for (var item in titleName) {
-//         var id = item['id'];
-//         var ltitle = item['ltitle'];
-//         ltitles.add(ltitle);
-//       }
-
-//       setState(() {
-//         items = ltitles;
-//       });
-
-//       return items;
-
-//     } else {
-//       return Future.error("Something went wrong, ${response.statusCode}");
-//     }
-//   } catch (e) {
-//     return Future.error(e.toString());
-//   }
 
 
 
@@ -160,18 +73,18 @@ class _CheckListState extends State<CheckList> {
       ),
       body: 
 
-      FutureBuilder(
-        future: Api.getProduct(),
-        builder: (context, snapshot) {
-          if(snapshot.connectionState== ConnectionState.waiting){
-            return CircularProgressIndicator();
-          }
-          else{
-           List?  pdata = snapshot.data!.toList();
+      // FutureBuilder(
+      //   future: Api.getProduct(),
+      //   builder: (context, snapshot) {
+      //     if(snapshot.connectionState== ConnectionState.waiting){
+      //       return CircularProgressIndicator();
+      //     }
+      //     else{
+      //      List?  pdata = snapshot.data!.toList();
            
-            print(pdata[0]);
-            return Stack(
-            children: [
+      //       print(pdata[0]);
+      //       return Stack(
+      //       children: [
              // const Background(),
 
     FutureBuilder <List<Product>>(
@@ -213,13 +126,13 @@ class _CheckListState extends State<CheckList> {
                         //     print(product);
                         //     }
                         // , child: Text('submit')),
-                           Expanded(child:   ListView.builder(
-                                itemCount: pdata!.length ,
-                                itemBuilder: (context, int index) { 
+                          //  Expanded(child:   ListView.builder(
+                          //       itemCount: pdata!.length ,
+                          //       itemBuilder: (context, int index) { 
 
-                           Expanded(child:   ListView.builder(
-                                itemCount: pdata.length ,
-                                itemBuilder: (BuildContext context, int index) { 
+                          //  Expanded(child:   ListView.builder(
+                          //       itemCount: pdata.length ,
+                          //       itemBuilder: (BuildContext context, int index) { 
 
                            Expanded(child:   ListView.builder(
                                 itemCount: pdata.length ,
@@ -302,7 +215,7 @@ class _CheckListState extends State<CheckList> {
                                    icon: const Icon(Icons.delete),
                                    color:Colors.black,
                                  ),
-                                     ],
+                                          )))],
                                    ),
                                   );
                                 },
@@ -325,8 +238,9 @@ class _CheckListState extends State<CheckList> {
 
   // buildItem(List<String> pdata int  index) {}
 
-  buildItem(List<String> pdata, int index) {}
+ // buildItem(List<String> pdata, int index) {}
 
-  buildItem(List<String> pdata, int index) {}
+ // buildItem(List<String> pdata, int index) {}
 
-}
+
+//
