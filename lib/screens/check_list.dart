@@ -8,7 +8,9 @@ import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/flushbars.dart';
 import 'package:list_me/components/maintitle.dart';
 import 'package:list_me/components/top_bar.dart';
+import 'package:list_me/model/product_model.dart';
 import 'package:list_me/screens/Untitled_List_04_page.dart';
+import 'package:list_me/services/api.dart';
 
 import '../services/api.dart';
 import '../utils/navigationMenu.dart';
@@ -21,66 +23,44 @@ class CheckList extends StatefulWidget {
 }
 
 class _CheckListState extends State<CheckList> {
-  // List pdata = [];
 
-  @override
-  void initState() {
-    super.initState();
-    // getTitleFromServer();
-  }
 
-  // Future<void> fetchDataFromServer() async {
-  //   try {         
-  //     // Replace 'YOUR_API_ENDPOINT' with the actual endpoint to fetch data
-  //     final response = await http.get(Uri.parse("http://localhost:2000/api/get_product/"));
 
-  //     if (response.statusCode == 200) {
-  //       final data = json.decode(response.body);
-  //       if (data is List) {
-  //         // Assuming the server returns a list of strings
-  //         setState(() {
-  //           items = List<String>.from(data);
-  //         });
-  //       } else {
-  //         // Handle the response if it's not a list of strings
-  //       }
-  //     } else {
-  //       // Handle errors or non-200 status codes
-  //     }
-  //   } catch (e) {
-  //     // Handle any exceptions that occur during the HTTP request
-  //     print('Error: $e');
-  //   }
-  // }
 
-//  Future<List<String>> getTitleFromServer() async {
+
+// }
+
+//   Future<List<String>> getTitleFromServer() async {
 //   var url = Uri.parse("http://localhost:2000/api/get_product/");
 //   late http.Response response;
 
 //   try {
 //     response = await http.get(url);
 //     if (response.statusCode == 200) {
-//       Map<String, dynamic> data = jsonDecode(response.body);
-//       List<dynamic> titleList = data["products"];
+//       Map<String, dynamic> title = jsonDecode(response.body);
+//       List<dynamic> titleName = title["results"];
 
-//       List<String> titles = [];
-//       for (var item in titleList) {
-//         String lTitle = item['lTitle'];
-//         titles.add(lTitle);
+//       List<String> ltitles = [];
+
+//       for (var item in titleName) {
+//         var id = item['id'];
+//         var ltitle = item['ltitle'];
+//         ltitles.add(ltitle);
 //       }
 
 //       setState(() {
-//         pdata = titles; // Update the items list with the fetched titles
+//         items = ltitles;
 //       });
+
+//       return items;
 //     } else {
 //       return Future.error("Something went wrong, ${response.statusCode}");
 //     }
 //   } catch (e) {
 //     return Future.error(e.toString());
 //   }
-
-//   return pdata;
 // }
+
 
   
 
@@ -92,19 +72,43 @@ class _CheckListState extends State<CheckList> {
           foregroundColor: tc1,
       ),
       body: 
-      FutureBuilder(
-        future: Api.getProduct(),
-        builder: (context, snapshot) {
-          if(snapshot.connectionState== ConnectionState.waiting){
-            return CircularProgressIndicator();
-          }
-          else{
-           List?  pdata = snapshot.data!.toList();
+
+      // FutureBuilder(
+      //   future: Api.getProduct(),
+      //   builder: (context, snapshot) {
+      //     if(snapshot.connectionState== ConnectionState.waiting){
+      //       return CircularProgressIndicator();
+      //     }
+      //     else{
+      //      List?  pdata = snapshot.data!.toList();
            
-            print(pdata[0]);
-            return Stack(
-            children: [
+      //       print(pdata[0]);
+      //       return Stack(
+      //       children: [
              // const Background(),
+
+    FutureBuilder <List<Product>>(
+    future: Api.getProduct(),
+    builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      // Show a loading indicator while data is being fetched.
+      return CircularProgressIndicator();
+    } else if (snapshot.hasError) {
+      // Handle the error case.
+      return Text('Error: ${snapshot.error}');
+    } else if (snapshot.data != null) {
+      // Handle the case where data is null.
+      return Text('No data available.');
+    } else if (snapshot.data!.isEmpty) {
+      // Handle the case where data is an empty list.
+      return Text('No products available.');
+    } else {
+      // Data is available, you can safely access snapshot.data.
+      List <Product> pdata = snapshot.data!;
+      return Stack(
+            children: [
+              const Background(),
+
               Container(
                 child: Column(
                   children: [
@@ -115,15 +119,25 @@ class _CheckListState extends State<CheckList> {
                             ),
       
                             const MainTitle(),
+
                         //     ElevatedButton(onPressed: 
                         //     () async{
                         //     var product = await Api.getProduct();
                         //     print(product);
                         //     }
                         // , child: Text('submit')),
+                          //  Expanded(child:   ListView.builder(
+                          //       itemCount: pdata!.length ,
+                          //       itemBuilder: (context, int index) { 
+
+                          //  Expanded(child:   ListView.builder(
+                          //       itemCount: pdata.length ,
+                          //       itemBuilder: (BuildContext context, int index) { 
+
                            Expanded(child:   ListView.builder(
-                                itemCount: pdata!.length ,
-                                itemBuilder: (context, int index) { 
+                                itemCount: pdata.length ,
+                                itemBuilder: (BuildContext context, int index) { 
+
                                 return   Container(
                                           margin: const EdgeInsets.fromLTRB(0, 0,0, 10),
                                           child: Row(
@@ -145,10 +159,17 @@ class _CheckListState extends State<CheckList> {
                                          ),
                                           
                                            child: ListTile(
+
                                             title: Text(pdata[index]['lTitle']),
                                             trailing:  IconButton(onPressed: () {
                                               Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
                                                return CheckList04(data:pdata[index]);
+
+                                            title: Text(pdata[index].listTitle!),
+                                            trailing:  IconButton(onPressed: () {
+                                              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+                                               return CheckList04(data:pdata[index].itemName);
+
                                               },),);
                                             }, 
                                        icon: const Icon(Icons.arrow_forward),
@@ -194,7 +215,7 @@ class _CheckListState extends State<CheckList> {
                                    icon: const Icon(Icons.delete),
                                    color:Colors.black,
                                  ),
-                                     ],
+                                          )))],
                                    ),
                                   );
                                 },
@@ -214,5 +235,12 @@ class _CheckListState extends State<CheckList> {
     );
   }
   
+
   // buildItem(List<String> pdata int  index) {}
-}
+
+ // buildItem(List<String> pdata, int index) {}
+
+ // buildItem(List<String> pdata, int index) {}
+
+
+//
