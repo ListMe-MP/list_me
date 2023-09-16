@@ -119,31 +119,26 @@ class _CheckList04State extends State<CheckList04> {
                               ),
                             ]),
                         //     child: ListTile(
-                        // title: Text(widget.foodItems[index]['foodItems']),
-                        //   trailing: Checkbox(
-                        //    value: widget.foodItems[index]['ischecked'],
-                        //       activeColor: Color.fromARGB(255, 69, 124, 243),
-                        //      tristate: true, // Fix typo here
-                        //     onChanged: (newBool) {
-                        //     setState(() {
-                        //         widget.foodItems[index]['ischecked'] = newBool;
-                        //              });
-                        //              },
-                        //              ),
+                        // title: Text(widget.items[index]['items']),
+                        //
                         child: ListTile(
-                          title: Text(widget.data['items'][index]['pname'].toString()),
-                          // trailing: Checkbox(
-                          //  value: widget.foodItems[index]['ischecked']== true,
-                          //     activeColor: const Color.fromRGBO(131, 193, 193, 1),
-                          //     checkColor: const Color.fromARGB(255, 1, 1, 1),
-                          //    tristate: true, // Fix typo here
-                          //   onChanged: (newBool) {
-                          //   setState(() {
-                          //      if (newBool == null || newBool) {
-                          //       widget.foodItems[index]['ischecked'] = newBool;
-                          //    } });
-                          //            },
-                          //            ),
+                          title: Text(
+                              widget.data['items'][index]['pname'].toString()),
+                          trailing: Checkbox(
+                            value: widget.data['items'][index]['ischecked'] ==
+                                true,
+                            activeColor: const Color.fromRGBO(131, 193, 193, 1),
+                            checkColor: const Color.fromARGB(255, 1, 1, 1),
+                            tristate: true, // Fix typo here
+                            onChanged: (newBool) {
+                              setState(() {
+                                if (newBool == null || newBool) {
+                                  widget.data['items'][index]['ischecked'] =
+                                      newBool;
+                                }
+                              });
+                            },
+                          ),
                         ),
                       );
                     },

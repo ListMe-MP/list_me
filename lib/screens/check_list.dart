@@ -131,10 +131,16 @@ class _CheckListState extends State<CheckList> {
                                 children: [
                                   SizedBox(height: 45),
                                   Center(
-                                      child: Text(
-                                    '" You have no any lists to show. \n Want to create? "',
-                                    textAlign: TextAlign.center,
-                                  )),
+                                    child: Text(
+                                      '" You have no any lists to show. \n Want to create? "',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize:
+                                            20, // Adjust the font size as needed
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 10,),
                                   ElevatedButton(
                                     onPressed: () {
                                       Navigator.push(
