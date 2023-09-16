@@ -22,12 +22,11 @@ class ApiFeedback{
       final res = await http.post(url, headers: {
         "Content-Type":"application/json",
       }, body: json.encode(pdata));
-      print("hello");
-
+      
        if(res.statusCode == 200){
         var data = jsonDecode(res.body.toString());
         print(data);
-        print("hii");
+        
 
       //
       }else{

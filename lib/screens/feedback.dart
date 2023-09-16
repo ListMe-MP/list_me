@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:list_me/services/apiFeedback.dart';
+import '../components/colors.dart';
 
 class FeedbackPage extends StatefulWidget {
   const FeedbackPage({super.key});
@@ -17,9 +18,15 @@ class _FeedbackPageState extends State<FeedbackPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Feedback"),
-      ),
+       appBar: AppBar(
+          title: const Text(
+            "Notifications",
+            style: TextStyle(color: tc1),
+            textAlign: TextAlign.justify,
+          ),
+          backgroundColor: tc4,
+          foregroundColor: tc1,
+        ),
       body: SingleChildScrollView(
         child: Column(
           children: [
