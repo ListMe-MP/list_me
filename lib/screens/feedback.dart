@@ -1,8 +1,18 @@
+// 
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:list_me/services/apiFeedback.dart';
 
-class FeedbackPage extends StatelessWidget {
+class FeedbackPage extends StatefulWidget {
   const FeedbackPage({super.key});
+
+  @override
+  State<FeedbackPage> createState() => _FeedbackPageState();
+}
+
+class _FeedbackPageState extends State<FeedbackPage> {
+  var feedbackController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +37,11 @@ class FeedbackPage extends StatelessWidget {
             
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
-                child: const Text(
-                  textAlign: TextAlign.left,
-                  "Rate your experience on using List Me",
-                  style: TextStyle(fontSize: 20),
-                  ),
-              ),
+              child: const Text(
+                textAlign: TextAlign.left,
+                "Rate your experience on using List Me",
+                style: TextStyle(fontSize: 20),
+                ),
             ),
       
             const SizedBox(height: 10,),
@@ -57,32 +65,19 @@ class FeedbackPage extends StatelessWidget {
       
             const SizedBox(height: 40,),
       
-            Container(
-              child: const Text(
-                "Leave your comments, if any, to improve us!",
-                textAlign: TextAlign.left,
-                style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 20),
-              ),
+            const Text(
+              "Leave your comments, if any, to improve us!",
+              textAlign: TextAlign.left,
+              style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 20),
             ),
 
             const SizedBox(height: 10,),
 
-            // SizedBox(
-            //   height: 100,
-            //   width: 300,
-            //   child: const TextField(
-            //     decoration: InputDecoration(
-            //       border: OutlineInputBorder(),
-            //       hintText: 'Comments',
-            //     ),
-            //   ),
-            // ),
-
-
-            const SizedBox(
+            SizedBox(
               height: 200,
               width: 300,
               child: TextField(
+                controller: feedbackController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Comments',
@@ -98,13 +93,34 @@ class FeedbackPage extends StatelessWidget {
 
 
             //publish button
+            // ElevatedButton(
+            //   onPressed: (){
+            //     var data = {
+            //       "pfeedback": feedbackController.text,
+            //     };
+            //     ApiFeedback.addfeedback(data);
+            //   }, 
+            //   child: const Text(
+            //     "Publsih Feedback",
+            //     style: TextStyle(color: Colors.black),
+            //   ),
+            // )
+
             ElevatedButton(
-              onPressed: (){}, 
+              onPressed: () {
+                var data = {
+                  "pfeedback": feedbackController.text,
+                };
+
+                ApiFeedback.addfeedback(data);
+                 // Send POST request to "/api/add_feedback"
+              },
               child: const Text(
-                "Publsih Feedback",
+                "Publish Feedback",
                 style: TextStyle(color: Colors.black),
               ),
             )
+
           ],
         ),
       ),
