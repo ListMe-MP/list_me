@@ -4,6 +4,7 @@ import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/top_bar.dart';
 import 'package:list_me/model/button_model.dart';
+import 'package:list_me/screens/help_&_support.dart';
 import 'package:provider/provider.dart';
 
 import '../components/buttons.dart';
@@ -95,7 +96,7 @@ class HomePage extends StatelessWidget {
                     ),
                     // horizontal line
                     const Padding(
-                      padding: EdgeInsets.all(25.0),
+                      padding: EdgeInsets.all(10.0),
                       child: Divider(
                         thickness: 1,
                         color: Color.fromRGBO(188, 253, 250, 1),
@@ -104,7 +105,30 @@ class HomePage extends StatelessWidget {
                     // child: Color.fromRGBO(188, 253, 250, 1),
     
                     // help button
-                    const Text("help"),
+                    TextButton(
+                      onPressed: () { 
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => HelpPage(),
+                          )
+                        );
+                       },
+                      child: Text("help")
+                    ),
+
+
+
+
+                    // TextButton(
+                    //   onPressed: (){
+                    //     Navigator.of(context).push(
+                    //       MaterialPageRoute(
+                    //         builder: (context) => HelpPage(),
+                    //         )
+                    //     );
+                    //   }, 
+                    //   child: Text("help")
+                    // )
                   ]),
             )
           ],
