@@ -1,6 +1,8 @@
 const express = require("express");
+const {connectToDb, getDb} = require('./db');
 
 const app = express();
+
 
 app.use(express.json());
 
@@ -10,6 +12,18 @@ app.use(express.urlencoded({
 
 const productList = [];
 const feedbackData = [];
+
+// Declare db in the outer scope
+let db;
+
+// Middleware to check if the database connection is ready
+app.use((req, res, next) => {
+    if (!getDb()) {
+        return res.status(500).json({ error: 'Database connection is not ready' });
+    }
+    next();
+});
+
 
 
 app.listen(3000, ()=>{
@@ -93,4 +107,46 @@ app.get("/api/get_product",(req,res)=> {
 
 
 }})
+
+// check connect to the database
+connectToDb((err) => {
+    if (err) {
+        console.error('Failed to connect to the database:', err);
+    } else {
+        console.log('Connected to the database successfully.');
+
+        db = getDb();
+
+        
+    }
+});
+
+app.get('/items', async (req, res) => {
+    try {
+        const db = getDb();
+        const items = await db.collection('items').find().sort({ item_name: 1 }).toArray();
+        console.log('Fetched items:', items); // Add this line for debugging
+        res.status(200).json(items);
+    } catch (error) {
+        console.error('Error fetching documents:', error);
+        res.status(500).json({ error: 'Could not fetch the documents' });
+    }
+});
+
+// POST route for adding items
+app.post('/items', (req, res) => {
+
+    const item = req.body;
+
+    db.collection('items')
+        .insertOne(item)
+        .then(result => {
+            res.status(201).json(result);
+        })
+        .catch(err => {
+            res.status(500).json({ err: 'Could not create a new document' });
+        });
+});
+
+
 
