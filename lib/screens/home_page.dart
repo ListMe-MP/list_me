@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
                           // Stroked text as border.
                           Text(
                             'List Me',
-                            style: GoogleFonts.castoro(
+                            style: GoogleFonts.poppins(
                               fontSize: 40,
                               shadows: [
                                 Shadow(
@@ -60,7 +60,7 @@ class HomePage extends StatelessWidget {
                           // Solid text as fill.
                           Text(
                             'List Me',
-                            style: GoogleFonts.castoro(
+                            style: GoogleFonts.poppins(
                               fontSize: 40,
                               color: tc6,
                             ),
