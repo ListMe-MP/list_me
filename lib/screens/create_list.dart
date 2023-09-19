@@ -1,7 +1,9 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/maintitle.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 import '../components/top_bar.dart';
 import '../services/api.dart';
 import '../utils/navigationMenu.dart';
@@ -19,6 +21,11 @@ class _CreateListState extends State<CreateList> {
   var itemController = TextEditingController();
   List<String> itemList = [];
 
+  // speech to text objects
+  var text = "";
+  var isListning = false;
+  SpeechToText speechToText = SpeechToText();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +40,7 @@ class _CreateListState extends State<CreateList> {
         ),
         body: Stack(
           children: [
-            Background(),
+            const Background(),
             Container(
               child: SingleChildScrollView(
                 child: Column(
@@ -48,23 +55,23 @@ class _CreateListState extends State<CreateList> {
                       ),
 
                       // title
-                      MainTitle(),
+                      const MainTitle(),
 
                       // textfield for title of the list
                       Container(
                         width: 350,
                         height: 40,
                         decoration: ShapeDecoration(
-                          color: Color(0x7FD4D4D4),
+                          color: tf,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.only(left: 10, right: 10),
+                          padding: const EdgeInsets.only(left: 10, right: 10),
                           child: TextField(
                             controller: titleController,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               hintText: "Untitled list-1",
                               hintStyle: TextStyle(
                                 color: Colors.white,
@@ -86,19 +93,71 @@ class _CreateListState extends State<CreateList> {
                           width: 350,
                           height: 40,
                           decoration: ShapeDecoration(
-                            color: Colors.white.withOpacity(0.35),
+                            color: tf.withOpacity(0.75),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
                           child: Row(
                             children: [
+                              // microphone button
+                              AvatarGlow(
+                                endRadius: 20,
+                                animate: isListning,
+                                duration: Duration(milliseconds: 2000),
+                                glowColor: tc1,
+                                repeat: true,
+                                repeatPauseDuration:
+                                    Duration(milliseconds: 100),
+                                showTwoGlows: true,
+                                child: GestureDetector(
+                                  onTapDown: (details) async {
+                                    if (!isListning) {
+                                      var available =
+                                          await speechToText.initialize();
+                                      if (available) {
+                                        setState(() {
+                                          isListning = true;
+                                          speechToText.listen(
+                                            onResult: (result) {
+                                              text = result.recognizedWords;
+                                              itemController.text = text;
+                                            },
+                                          );
+                                        });
+                                      }
+                                    }
+                                  },
+                                  onTapCancel: () {
+                                    setState(() {
+                                      isListning = false;
+                                    });
+                                    speechToText.stop();
+                                  },
+                                  child: CircleAvatar(
+                                    backgroundColor: tf.withOpacity(0.9),
+                                    radius: 15,
+                                    child: IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          isListning
+                                              ? Icons.mic
+                                              : Icons.mic_off,
+                                          color: tc1,
+                                          size: 15,
+                                        )),
+                                  ),
+                                ),
+                              ),
+
+                              // text field
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsets.only(left: 10, right: 10),
+                                  padding: const EdgeInsets.only(
+                                      left: 10, right: 10),
                                   child: TextField(
                                     controller: itemController,
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                       hintText: "Type Here",
                                       hintStyle: TextStyle(
                                         color: Colors.black26,
@@ -134,7 +193,7 @@ class _CreateListState extends State<CreateList> {
                                     });
                                   }
                                 },
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.add_box_outlined,
                                   color: tc1,
                                 ),
@@ -152,7 +211,7 @@ class _CreateListState extends State<CreateList> {
                         width: 350,
                         height: 390,
                         decoration: ShapeDecoration(
-                          color: Color(0x7FD4D4D4),
+                          color: tf.withOpacity(0.1),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -160,76 +219,83 @@ class _CreateListState extends State<CreateList> {
                         child: ListView.builder(
                           shrinkWrap: true,
                           itemCount: itemList.length,
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           itemBuilder: (context, index) {
                             return ClipRRect(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                              child: Container(
-                                color: Colors.white.withOpacity(0.1),
-                                // image of the item
-                                child: ListTile(
-                                  leading: Image.asset(
-                                    'assets/images/items/item0.png',
-                                    fit: BoxFit.cover,
-                                  ),
+                                  const BorderRadius.all(Radius.circular(10)),
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 5),
+                                child: Container(
+                                  color: tf.withOpacity(0.35),
+                                  // image of the item
+                                  child: ListTile(
+                                    leading: Image.asset(
+                                      'assets/images/items/item0.png',
+                                      fit: BoxFit.cover,
+                                    ),
 
-                                  // item name
-                                  title: Text(
-                                    itemList[index],
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        color: tc1),
-                                  ),
+                                    // item name
+                                    title: Text(
+                                      itemList[index],
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          color: tc1),
+                                    ),
 
-                                  // item price
-                                  subtitle: Row(
-                                    children: [
-                                      Text(
-                                        '\$ 20',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            color: tc2),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      // quantity
-                                      Container(
-                                        width: 60,
-                                        child: TextField(
-                                          keyboardType: TextInputType.number,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(color: tc2),
-                                          decoration: InputDecoration(
-                                              contentPadding: EdgeInsets.all(8),
-                                              hintText: 'Qty',
-                                              hintStyle: TextStyle(
-                                                  color: tc2.withOpacity(0.5)),
-                                              enabledBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      color: tc2
-                                                          .withOpacity(0.5)))),
-                                          onChanged: (value) {
-                                            setState(() {
-                                              _quntity =
-                                                  int.tryParse(value) ?? 0;
-                                            });
-                                          },
-                                          controller: TextEditingController(
-                                              text: _quntity.toString()),
+                                    // item price
+                                    subtitle: Row(
+                                      children: [
+                                        const Text(
+                                          '\$ 20',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              color: tc2),
                                         ),
-                                      )
-                                    ],
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        // quantity
+                                        SizedBox(
+                                          width: 60,
+                                          child: TextField(
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            style: const TextStyle(color: tc2),
+                                            decoration: InputDecoration(
+                                                contentPadding:
+                                                    const EdgeInsets.all(8),
+                                                hintText: 'Qty',
+                                                hintStyle: TextStyle(
+                                                    color:
+                                                        tc2.withOpacity(0.5)),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color:
+                                                                tc2.withOpacity(
+                                                                    0.5)))),
+                                            onChanged: (value) {
+                                              setState(() {
+                                                _quntity =
+                                                    int.tryParse(value) ?? 0;
+                                              });
+                                            },
+                                            controller: TextEditingController(
+                                                text: _quntity.toString()),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    // edit button
+                                    trailing: const Icon(
+                                      Icons.edit,
+                                      color: tc1,
+                                    ),
+                                    onTap: () {
+                                      // Add your onTap logic here
+                                    },
                                   ),
-                                  // edit button
-                                  trailing: Icon(
-                                    Icons.edit,
-                                    color: tc1,
-                                  ),
-                                  onTap: () {
-                                    // Add your onTap logic here
-                                  },
                                 ),
                               ),
                             );
@@ -253,7 +319,7 @@ class _CreateListState extends State<CreateList> {
               bottom: 16.0,
               right: 16.0,
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   boxShadow: [
                     BoxShadow(
                         color: Colors.black54,
@@ -269,10 +335,11 @@ class _CreateListState extends State<CreateList> {
                   onPressed: () {
                     if (titleController.text.isNotEmpty &&
                         itemList.isNotEmpty) {
-                      print("itemList: $itemList");
+                      // print("itemList: $itemList");
                       var data = {
                         "ltitle": titleController.text,
                         "items": itemList,
+                        "isCheck":false,
                       };
 
                       Api.addProduct(data);
@@ -284,11 +351,12 @@ class _CreateListState extends State<CreateList> {
                       titleController.clear();
                     }
                   },
-                  shape: CircleBorder(side: BorderSide(color: tc3, width: 5.0)),
-                  padding: EdgeInsets.all(10.0),
+                  shape: const CircleBorder(
+                      side: BorderSide(color: tc3, width: 5.0)),
+                  padding: const EdgeInsets.all(10.0),
                   fillColor: tc1,
                   splashColor: tc2,
-                  child: Icon(
+                  child: const Icon(
                     Icons.add,
                     color: tc5,
                     size: 40.0,
@@ -300,7 +368,3 @@ class _CreateListState extends State<CreateList> {
         ));
   }
 }
-
-
-
-

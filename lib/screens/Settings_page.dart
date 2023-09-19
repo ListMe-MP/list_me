@@ -4,11 +4,17 @@ import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/maintitle.dart';
 import 'package:list_me/components/settings_bar.dart';
+import 'package:list_me/screens/help_&_support.dart';
+import 'package:list_me/screens/notifications.dart';
+import 'package:list_me/screens/signup_page.dart';
 
 import '../components/top_bar.dart';
 
 import '../model/menu_item.dart';
 import '../utils/navigationMenu.dart';
+import 'appearance.dart';
+import 'categories.dart';
+import 'feedback.dart';
 
 
 class SettingsPage extends StatelessWidget {
@@ -50,136 +56,145 @@ class SettingsPage extends StatelessWidget {
                     
                         
 
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10,),
 
-                    // Text(
-                    //   "Settings",
-                    //   style: GoogleFonts.castoro(
-                    //     fontSize: 40, 
-                    //     fontWeight: FontWeight.w400, 
-                    //     shadows: [
-                    //       Shadow(
-                    //         offset: Offset(2, -2),
-                    //         blurRadius: 4,
-                    //       ),
-                    //     ],
-                    //     color: Color.fromRGBO(1, 229, 217, 1),
-    
-                    //   ),
-                    // ),
+                    const MainTitle(),
 
+                    const SizedBox(height: 50,),
 
-            MainTitle(),
-
-            // Padding(
-            //   padding: EdgeInsets.only(top: 60.0),
-            //     child: Stack(
-            //       children: <Widget>[
-            //     // Stroked text as border.
-            //         Text(
-            //           'List Me',
-            //               style: GoogleFonts.castoro(
-            //                 fontSize: 40,
-            //                 shadows: [
-            //                   Shadow(
-            //                     blurRadius: 10.0,
-            //                     color: Colors.black,
-            //                     offset: Offset(2, -2))
-            //                   ],
-            //                 foreground: Paint()
-            //                   ..style = PaintingStyle.stroke
-            //                   ..strokeWidth = 5
-            //                   ..color = tc5,
-            //               ),
-            //         ),
-            //     // Solid text as fill.
-            //         Text(
-            //           'List Me',
-            //           style: GoogleFonts.castoro(
-            //           fontSize: 40,
-            //           color: tc6,
-            //         ),
-            //         ),
-            //       ],
-            //     ),
-            // ),
-
-
-
-                //   Text(
-                //   'Settings',
-                //   style: GoogleFonts.castoro(
-                //     fontSize: 40,
-                //     shadows: [
-                //       Shadow(
-                //           blurRadius: 10.0,
-                //           color: Colors.black,
-                //           offset: Offset(2, -2))
-                //     ],
-                //     foreground: Paint()
-                //       ..style = PaintingStyle.stroke
-                //       ..strokeWidth = 5
-                //       ..color = tc5,
-                //   ),
-                // ),
-                // // Solid text as fill.
-                // Text(
-                //   'Settings',
-                //   style: GoogleFonts.castoro(
-                //     fontSize: 40,
-                //     color: tc6,
-                //   ),
-                // ),
-
-      
-                    const SizedBox(
-                      height: 50,
-                    ),
-      
-
+                    //Appearance bar
                     SettingsBar(
                       icon: Ionicons.person_outline, 
-                      title: "Profile"
+                      title: "Appearance",
+                      onTap: (){
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const AppearancePage()
+                          )
+                        );
+                      },
                     ),
 
-                    SizedBox(
-                      height: 15,
-                    ),
+                    const SizedBox(height: 15,),
 
+                    //Notification bar
                     SettingsBar(
                       icon: Ionicons.notifications_outline, 
-                      title: "Notification"
+                      title: "Notification",
+                      onTap: (){
+                        print('Tapped on title'); 
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const NotificationPage()
+                          )
+                        );
+                      },
                     ),
 
-                     SizedBox(
-                      height: 15,
-                    ),
+                    const SizedBox(height: 15,),
 
+                    //Share List bar
                     SettingsBar(
-                      icon: Ionicons.shield_outline, 
-                      title: "Data Privacy"
+                      icon: Ionicons.share_social_outline, 
+                      title: "Share List",
+                      onTap: (){
+                        showDialog(
+                          context: context, 
+                          builder: (ctx) => AlertDialog(
+                            title: const Text("List Me Account Needed"),
+                            content: const Text(
+                              "To share your lists, you need an account. You can create new account or sign in an existing account"
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: (){
+                                  Navigator.of(ctx).pop(); //close the dialog
+                                }, 
+                                child: const Text(
+                                  "Cancel",
+                                  style: TextStyle(color: Colors.green
+                                  ),
+                                )
+                              ),
+                              TextButton(
+                                onPressed: (){
+                                  Navigator.of(ctx).pop(); //close the dialog
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => const SignUpPage(), //Navigate to share page
+                                      ),
+                                  );
+                                },
+                                child: const Text(
+                                  "Ok",
+                                  style: TextStyle(color: Colors.green),
+                                ),
+                              )           
+                            ],
+                          )
+                        );
+                      },
                     ),
 
-                     SizedBox(
-                      height: 15,
+                    const SizedBox(height: 15),
+
+                    //Categories bar
+                    SettingsBar(
+                      icon: Ionicons.person_outline, 
+                      title: "Categories",
+                      onTap: (){
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const CategoriesPage()
+                          )
+                        );
+                      },
                     ),
 
+                    const SizedBox(height: 15,),
+
+                    //Data privacy bar
+                    SettingsBar(
+                      icon: Icons.feedback_outlined, 
+                      title: "Feedback",
+                      onTap: (){
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => FeedbackPage()
+                          )
+                        );
+                      },
+                    ),
+
+                    const SizedBox(height: 15,),
+
+                    //Help & support bar
                     SettingsBar(
                       icon: Ionicons.headset_outline, 
-                      title: "Help & Support"
+                      title: "Help & Support",
+                      onTap: (){
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const HelpPage()
+                          )
+                        );
+                      },
                     ),
 
-                     SizedBox(
-                      height: 15,
-                    ),
+                    const SizedBox(height: 15,),
 
+                    //About bar
                     SettingsBar(
                       icon: Ionicons.help_circle_outline, 
-                      title: "About"
+                      title: "About",
+                      onTap: (){
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const NotificationPage()
+                          )
+                        );
+                      },
                     ),
-           
                 ],
               ),
             ),

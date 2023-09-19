@@ -41,7 +41,7 @@ class SignInPage extends StatelessWidget {
 
                   //Sign In title
                   Padding(
-                    padding: EdgeInsets.only(top: 0.0),
+                    padding: const EdgeInsets.only(top: 0.0),
 
                     child: Stack(
                       children: <Widget>[
@@ -51,7 +51,7 @@ class SignInPage extends StatelessWidget {
                           style: GoogleFonts.castoro(
                             fontSize: 40,
                             shadows: [
-                              Shadow(
+                              const Shadow(
                                 blurRadius: 10.0,
                                 color: Colors.black,
                                 offset: Offset(2, -2))
@@ -74,40 +74,40 @@ class SignInPage extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox( height: 50,),
+                  const SizedBox( height: 50,),
 
-                  SignInSignUpBar(hintText: "Username",),
+                  const SignInSignUpBar(hintText: "Username",),
 
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
 
-                  SignInSignUpBar(hintText: "Password",),
+                  const SignInSignUpBar(hintText: "Password",),
               
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
 
                   //sign in button
                   ElevatedButton(
-                    onPressed: (){}, 
+                    onPressed: (){},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.greenAccent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)
+                      )
+                    ), 
                     child: const Text(
                       'Sign In',
                       style: TextStyle(
                         color: Colors.black
                       ),
                     ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)
-                      )
-                    ),
                   ),
 
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
 
                   Container(
-                    child: Text(
+                    child: const Text(
                       "New to List Me?",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontSize: 15,
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w400,
@@ -115,23 +115,23 @@ class SignInPage extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
 
                   //Sign up text button
                   GestureDetector(
                     onTap: (){
                       Navigator.push(
                         context, 
-                        MaterialPageRoute(builder: (context) => SignUpPage()),
+                        MaterialPageRoute(builder: (context) => const SignUpPage()),
                         );
                     },
-                    child: Text(
+                    child: const Text(
                       "Sign Up",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.blueGrey,
                         fontSize: 15,
                         fontFamily: 'Inter',
-                        fontWeight: FontWeight.w400
+                        fontWeight: FontWeight.w600
                        ),
                     ),
                   ),

@@ -10,16 +10,16 @@ void onSelected(BuildContext context, MenuItem item) {
   switch (item) {
     case MenuItems.itemSettings:
       Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => SettingsPage()),
+        MaterialPageRoute(builder: (context) => const SettingsPage()),
       );
       break;
     case MenuItems.itemShare:
       Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => SharePage()),
+        MaterialPageRoute(builder: (context) => const SharePage()),
       );
     case MenuItems.itemSignIn:
       Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => SignInPage()),
+        MaterialPageRoute(builder: (context) => const SignInPage()),
       );
       break;
     default:

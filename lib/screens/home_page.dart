@@ -4,6 +4,7 @@ import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/top_bar.dart';
 import 'package:list_me/model/button_model.dart';
+import 'package:list_me/screens/help_&_support.dart';
 import 'package:provider/provider.dart';
 
 import '../components/buttons.dart';
@@ -19,11 +20,11 @@ class HomePage extends StatelessWidget {
         body: Stack(
           children: [
             // backkground style
-            Background(),
+            const Background(),
     
             // components
             Container(
-              padding: EdgeInsets.only(top: 10, bottom: 10),
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -37,7 +38,7 @@ class HomePage extends StatelessWidget {
     
                     // title
                     Padding(
-                      padding: EdgeInsets.only(top: 60.0),
+                      padding: const EdgeInsets.only(top: 60.0),
                       child: Stack(
                         children: <Widget>[
                           // Stroked text as border.
@@ -46,7 +47,7 @@ class HomePage extends StatelessWidget {
                             style: GoogleFonts.poppins(
                               fontSize: 40,
                               shadows: [
-                                Shadow(
+                                const Shadow(
                                     blurRadius: 10.0,
                                     color: Colors.black,
                                     offset: Offset(2, -2))
@@ -74,7 +75,7 @@ class HomePage extends StatelessWidget {
                         builder: (context, value, child) {
                           return GridView.builder(
                               itemCount: value.buttonTypes.length,
-                              padding: EdgeInsets.all(36.0),
+                              padding: const EdgeInsets.all(36.0),
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2),
@@ -95,7 +96,7 @@ class HomePage extends StatelessWidget {
                     ),
                     // horizontal line
                     const Padding(
-                      padding: EdgeInsets.all(25.0),
+                      padding: EdgeInsets.all(10.0),
                       child: Divider(
                         thickness: 1,
                         color: Color.fromRGBO(188, 253, 250, 1),
@@ -104,7 +105,30 @@ class HomePage extends StatelessWidget {
                     // child: Color.fromRGBO(188, 253, 250, 1),
     
                     // help button
-                    const Text("help"),
+                    TextButton(
+                      onPressed: () { 
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => HelpPage(),
+                          )
+                        );
+                       },
+                      child: Text("help")
+                    ),
+
+
+
+
+                    // TextButton(
+                    //   onPressed: (){
+                    //     Navigator.of(context).push(
+                    //       MaterialPageRoute(
+                    //         builder: (context) => HelpPage(),
+                    //         )
+                    //     );
+                    //   }, 
+                    //   child: Text("help")
+                    // )
                   ]),
             )
           ],

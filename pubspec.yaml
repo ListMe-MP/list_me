@@ -43,6 +43,9 @@ dependencies:
   toggle_switch: ^2.1.0
   ionicons: ^0.2.2
   http: ^1.1.0
+  flutter_rating_bar: ^4.0.1
+  avatar_glow: ^2.0.2
+  speech_to_text: ^6.3.0
   
 
 dev_dependencies:

@@ -89,6 +89,7 @@ class _ChartState extends State<Chart> {
                   style: TextStyle(
                     fontSize: 17.0,
                   ),
+
                 ),
                 Text(
                   'LKR 12500.00',
@@ -119,6 +120,7 @@ class _ChartState extends State<Chart> {
           legend: Legend(
               isVisible: true, overflowMode: LegendItemOverflowMode.wrap),
         ),
+
         Padding(
           padding: const EdgeInsets.all(10.0),
           child: Container(
@@ -160,6 +162,7 @@ class _ChartState extends State<Chart> {
                       //   ),
                       // },
                     ),
+
                   ),
                 );
               },

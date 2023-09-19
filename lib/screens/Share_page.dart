@@ -8,7 +8,7 @@ class SharePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Share"),
+        title: const Text("Share List"),
         backgroundColor: tc4,
       ),
     );

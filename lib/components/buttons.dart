@@ -21,13 +21,13 @@ class ButtonItemTile extends StatelessWidget {
       padding: const EdgeInsets.all(5.0),
       child: Container(
         decoration: BoxDecoration(
-            color: Color.fromRGBO(4, 177, 170, 1),
+            color: const Color.fromRGBO(4, 177, 170, 1),
             borderRadius: BorderRadius.circular(8),
             border: Border.all(width: 3, color: tc2),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: tc2,
-                offset: const Offset(
+                offset: Offset(
                   1.0,
                   -1.0,
                 ), //Offset

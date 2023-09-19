@@ -17,44 +17,44 @@ class ItemCrad extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  item_name,
-                  style: TextStyle(fontSize: 15),
-                  
-                ),
-              ),
               height: 35,
               width: 190,
               alignment: Alignment.centerLeft,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10), color: Color(0x7FD4D4D4)),
+                  borderRadius: BorderRadius.circular(10), color: const Color(0x7FD4D4D4)),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  item_name,
+                  style: const TextStyle(fontSize: 15),
+                  
+                ),
+              ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
 
             Container(
-              child: Text(quantity),
               height: 35,
               width: 50,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10), color: Color(0x7FD4D4D4)),
+                  borderRadius: BorderRadius.circular(10), color: const Color(0x7FD4D4D4)),
+              child: Text(quantity),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
 
             Container(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(amount),
-              ),
               height: 35,
               width: 90,
               alignment: Alignment.centerRight,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10), color: Color(0x7FD4D4D4)),
+                  borderRadius: BorderRadius.circular(10), color: const Color(0x7FD4D4D4)),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(amount),
+              ),
             ),
-            SizedBox(width: 5),
+            const SizedBox(width: 5),
           ],
         ),
       ),
