@@ -53,7 +53,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   child: Text(
                       '"Make\nGrocery Shopping\nA Breeze\nWith\nOur\nList Me!"',
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.castoro(
+                      style: GoogleFonts.poppins(
                         textStyle: fstyle1,
                       )),
                 ),
@@ -65,7 +65,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   alignment: const Alignment(0, 0.3),
                   child: Text('"List\nWith Your Voice,\nNot\nWith Your Hands!"',
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.castoro(
+                      style: GoogleFonts.poppins(
                         textStyle: fstyle1,
                       )),
                 ),
@@ -78,7 +78,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   child: Text(
                       '"Experience\nGrocery Shopping\nLike Never\nBefore!"',
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.castoro(
+                      style: GoogleFonts.poppins(
                         textStyle: fstyle1,
                       )),
                 ),
