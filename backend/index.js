@@ -24,8 +24,7 @@ app.use((req, res, next) => {
     next();
 });
 
-
-
+// connect to the server
 app.listen(3000, ()=>{
     console.log("Connected to server at 3000");
 })
@@ -121,11 +120,26 @@ connectToDb((err) => {
     }
 });
 
-app.get('/items', async (req, res) => {
+// app.get('/items', async (req, res) => {
+//     try {
+//         const db = getDb();
+//         const items = await db.collection('items').find().sort({ item_name: 1 }).toArray();
+//         console.log('Fetched items:', items); // Add this line for debugging
+//         res.status(200).json(items);
+//     } catch (error) {
+//         console.error('Error fetching documents:', error);
+//         res.status(500).json({ error: 'Could not fetch the documents' });
+//     }
+// });
+
+app.get('/api/items', async (req, res) => {
     try {
+        // const searchTerm = req.query.searchTerm || ''; // Get user input from query parameter
         const db = getDb();
-        const items = await db.collection('items').find().sort({ item_name: 1 }).toArray();
-        console.log('Fetched items:', items); // Add this line for debugging
+        const items = await db.collection('items')
+            .find() 
+            .sort({ item_name: 1 })
+            .toArray();
         res.status(200).json(items);
     } catch (error) {
         console.error('Error fetching documents:', error);
@@ -133,8 +147,9 @@ app.get('/items', async (req, res) => {
     }
 });
 
+
 // POST route for adding items
-app.post('/items', (req, res) => {
+app.post('/api/items', (req, res) => {
 
     const item = req.body;
 

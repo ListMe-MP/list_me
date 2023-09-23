@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/maintitle.dart';
+import 'package:list_me/services/apisug.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import '../components/top_bar.dart';
 import '../services/api.dart';
 import '../utils/navigationMenu.dart';
+
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 class CreateList extends StatefulWidget {
   const CreateList({super.key});
@@ -155,18 +158,38 @@ class _CreateListState extends State<CreateList> {
                                 child: Padding(
                                   padding: const EdgeInsets.only(
                                       left: 10, right: 10),
-                                  child: TextField(
-                                    controller: itemController,
-                                    decoration: const InputDecoration(
-                                      hintText: "Type Here",
-                                      hintStyle: TextStyle(
-                                        color: Colors.black26,
-                                        fontSize: 15,
-                                        fontFamily: 'Castoro',
-                                        fontWeight: FontWeight.w400,
-                                        letterSpacing: 3,
+                                  child: TypeAheadFormField(
+                                    textFieldConfiguration:
+                                        TextFieldConfiguration(
+                                      controller: itemController,
+                                      decoration: const InputDecoration(
+                                        hintText: "Type Here",
+                                        hintStyle: TextStyle(
+                                          color: Colors.black26,
+                                          fontSize: 15,
+                                          fontFamily: 'Castoro',
+                                          fontWeight: FontWeight.w400,
+                                          letterSpacing: 3,
+                                        ),
                                       ),
                                     ),
+                                    suggestionsCallback: (pattern) async {
+                                      return SuggestionsApi.getSuggestions(
+                                          pattern);
+                                    },
+                                    itemBuilder: (context, suggestion) {
+                                      return ListTile(
+                                        // leading: Image.asset(
+                                        //   suggestion['item_image'],
+                                        //   fit: BoxFit.cover,
+                                        // ),
+                                        title: Text(suggestion['item_name']),
+                                      );
+                                    },
+                                    onSuggestionSelected: (suggestion) {
+                                      itemController.text =
+                                          suggestion['item_name'];
+                                    },
                                   ),
                                 ),
                               ),
@@ -177,7 +200,7 @@ class _CreateListState extends State<CreateList> {
                                   if (itemController.text.isNotEmpty) {
                                     setState(() {
                                       final rawItems = itemController.text
-                                          .split(RegExp(r'[,\s]'));
+                                          .split(RegExp(r'\s*(?:,|and)\s*'));
                                       final parsedItems = <String>[];
 
                                       for (final rawItem in rawItems) {
@@ -339,7 +362,7 @@ class _CreateListState extends State<CreateList> {
                       var data = {
                         "ltitle": titleController.text,
                         "items": itemList,
-                        "isCheck":false,
+                        "isCheck": false,
                       };
 
                       Api.addProduct(data);
