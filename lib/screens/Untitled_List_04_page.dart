@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:list_me/screens/create_list.dart';
 
-import '../components/background.dart';
+// import '../components/background.dart';
 import '../components/colors.dart';
 import '../components/top_bar.dart';
 import '../utils/navigationMenu.dart';
