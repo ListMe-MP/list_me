@@ -179,11 +179,37 @@ class _CreateListState extends State<CreateList> {
                                     },
                                     itemBuilder: (context, suggestion) {
                                       return ListTile(
-                                        // leading: Image.asset(
-                                        //   suggestion['item_image'],
-                                        //   fit: BoxFit.cover,
-                                        // ),
-                                        title: Text(suggestion['item_name']),
+                                        title: Row(
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(4),
+                                              child: Image.asset(
+                                                suggestion['item_image'],
+                                                fit: BoxFit.cover,
+                                                width: 40,
+                                                height: 40,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                                width:
+                                                    10), // Add spacing between image and text
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(suggestion['item_name']),
+                                                Text(
+                                                  '\$ ${suggestion['item_price']}',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w500,
+                                                    color: tc2,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       );
                                     },
                                     onSuggestionSelected: (suggestion) {
