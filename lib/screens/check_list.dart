@@ -101,13 +101,12 @@ class _CheckListState extends State<CheckList> {
               print('hello elif');
               return Text('You have no any lists to show');
             } else {
-              print('else');
               List? pdata = snapshot.data!.toList();
               print(pdata);
 
               return Stack(
                 children: [
-                  const Background(),
+                  // const Background(),
                   Container(
                     child: Column(
                       children: [
@@ -140,10 +139,12 @@ class _CheckListState extends State<CheckList> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 10,),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
                                   ElevatedButton(
                                     onPressed: () {
-                                      Navigator.push(
+                                      Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
                                           builder: (BuildContext context) {
@@ -233,30 +234,36 @@ class _CheckListState extends State<CheckList> {
                                             color: Colors.black,
                                           ),
                                           IconButton(
-                                            onPressed: () {
-                                              final temp =
-                                                  pdata.removeAt(index);
-                                              FlushBars()
-                                                  .undo(
-                                                    message:
-                                                        "You still have a chance to undo it",
-                                                    onUndo: () {
-                                                      Navigator.pop(context);
-                                                      pdata.insert(index, temp);
-                                                    },
-                                                    duration: const Duration(
-                                                        seconds: 6),
-                                                  )
-                                                  .show(context);
+                                            onPressed: () async {
+                                              await Api.deleteProduct(
+                                                  pdata[index]['id']);
 
-                                              // void removeItem(int index) {
-                                              //   final Item = items.removeAt(index);
+                                              pdata.removeAt(index);
+                                              setState(() {});
+                                              // FlushBars()
+                                              //     .undo(
+                                              //       message:
+                                              //           "You still have a chance to undo it",
+                                              //       onUndo: () {
+                                              //         Navigator.pop(context);
+                                              //         pdata.insert(
+                                              //             index,
+                                              //             pdata
+                                              //                 .removeAt(index));
+                                              //       },
+                                              //       duration: const Duration(
+                                              //           seconds: 6),
+                                              //     )
+                                              //     .show(context);
 
-                                              // key?.currentState.removeItem(
-                                              //   index,
-                                              //   (context, Animation) => buildItem (items, index)
-                                              // );
-                                              // },
+                                              //   void removeItem(int index) {
+                                              //     final Item = items.removeAt(index);
+
+                                              //   key?.currentState.removeItem(
+                                              //     index,
+                                              //     (context, Animation) => buildItem (items, index)
+                                              //   );
+                                              //   },
                                             },
                                             icon: const Icon(Icons.delete),
                                             color: Colors.black,
