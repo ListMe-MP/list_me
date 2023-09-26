@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/maintitle.dart';
+import 'package:list_me/model/product_model.dart';
 import 'package:list_me/services/apisug.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import '../components/top_bar.dart';
@@ -12,6 +13,7 @@ import '../utils/navigationMenu.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 class CreateList extends StatefulWidget {
+  
   const CreateList({super.key});
 
   @override
@@ -41,6 +43,49 @@ class _CreateListState extends State<CreateList> {
           backgroundColor: tc4,
           foregroundColor: tc1,
         ),
+
+        //edit function, load info to create list page from check list page
+        // body: FutureBuilder(
+        //   future: Api.getProduct(),
+        //   builder: (BuildContext context,AsyncSnapshot snapshot) {
+        //     if (snapshot.hasData) {
+        //       return const Center(
+        //         child: CircularProgressIndicator(),
+        //       );
+        //     } else {
+        //       List<Product> pdata = snapshot.data;
+
+        //       return ListView.builder(
+        //         itemCount: pdata.length,
+        //         itemBuilder: (BuildContext context, int index ) {
+        //             return ListTile(
+        //               leading: const Icon(Icons.circle)
+        //               ltitle: Text("${pdata[index].itemName}"),
+        //               subtitle: Text("${pdata[index].desc}"),
+        //                trailing: IconButton(
+        //                                           onPressed: () {
+        //                                             Navigator.push(
+        //                                               context,
+        //                                               MaterialPageRoute(
+        //                                                 builder: (BuildContext
+        //                                                     context) {
+        //                                                   return CheckList04(
+        //                                                       data:
+        //                                                           pdata[index]);
+        //                                                 },
+        //                                               ),
+        //                                             );
+        //                                           },
+        //                                           icon: const Icon(
+        //                                               Icons.arrow_forward),
+        //                                           color: Colors.black,
+        //                                         ) ,
+        //             )
+        //         },
+        //       );
+        //     }
+        //   };
+
         body: Stack(
           children: [
             const Background(),
