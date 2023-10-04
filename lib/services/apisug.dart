@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class SuggestionsApi {
-  static const baseUrl = "http://192.168.8.118/api/";
+  static const baseUrl = "http://192.168.168.232:3000/api/";
 
   static Future<List> getSuggestions(String query) async {
     final url = Uri.parse("${baseUrl}items?searchTerm=$query");

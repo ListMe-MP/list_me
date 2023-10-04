@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/maintitle.dart';
+import 'package:list_me/model/SelectedItem.dart';
 import 'package:list_me/model/product_model.dart';
 import 'package:list_me/services/apisug.dart';
 import 'package:speech_to_text/speech_to_text.dart';
@@ -13,7 +14,6 @@ import '../utils/navigationMenu.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 class CreateList extends StatefulWidget {
-  
   const CreateList({super.key});
 
   @override
@@ -24,7 +24,7 @@ class _CreateListState extends State<CreateList> {
   int _quntity = 1;
   var titleController = TextEditingController();
   var itemController = TextEditingController();
-  List<String> itemList = [];
+  List<ListItem> itemList = [];
 
   // speech to text objects
   var text = "";
@@ -218,10 +218,8 @@ class _CreateListState extends State<CreateList> {
                                         ),
                                       ),
                                     ),
-                                    suggestionsCallback: (pattern) async {
-                                      return SuggestionsApi.getSuggestions(
-                                          pattern);
-                                    },
+                                    suggestionsCallback: (pattern) =>
+                                        SuggestionsApi.getSuggestions(pattern),
                                     itemBuilder: (context, suggestion) {
                                       return ListTile(
                                         title: Row(
@@ -258,8 +256,17 @@ class _CreateListState extends State<CreateList> {
                                       );
                                     },
                                     onSuggestionSelected: (suggestion) {
-                                      itemController.text =
-                                          suggestion['item_name'];
+                                      // itemController.text =
+                                      //     suggestion['item_name'];
+                                      setState(() {
+                                        final item = ListItem(
+                                            itemName: suggestion['item_name'],
+                                            itemImage: suggestion['item_image'],
+                                            itemPrice:
+                                                suggestion['item_price']);
+                                        itemList.add(item);
+                                        itemController.clear();
+                                      });
                                     },
                                   ),
                                 ),
@@ -281,9 +288,9 @@ class _CreateListState extends State<CreateList> {
                                         }
                                       }
 
-                                      itemList.addAll(parsedItems
-                                          .where((item) => item.isNotEmpty));
-                                      itemController.clear();
+                                      // itemList.addAll(parsedItems
+                                      //     .where((item) => item.isNotEmpty));
+                                      // itemController.clear();
                                     });
                                   }
                                 },
@@ -315,6 +322,7 @@ class _CreateListState extends State<CreateList> {
                           itemCount: itemList.length,
                           padding: const EdgeInsets.all(10),
                           itemBuilder: (context, index) {
+                            final item = itemList[index];
                             return ClipRRect(
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(10)),
@@ -325,13 +333,13 @@ class _CreateListState extends State<CreateList> {
                                   // image of the item
                                   child: ListTile(
                                     leading: Image.asset(
-                                      'assets/images/items/item0.png',
+                                      item.itemImage,
                                       fit: BoxFit.cover,
                                     ),
 
                                     // item name
                                     title: Text(
-                                      itemList[index],
+                                      item.itemName,
                                       style: const TextStyle(
                                           fontWeight: FontWeight.w500,
                                           color: tc1),
@@ -340,8 +348,8 @@ class _CreateListState extends State<CreateList> {
                                     // item price
                                     subtitle: Row(
                                       children: [
-                                        const Text(
-                                          '\$ 20',
+                                        Text(
+                                          '\$ ${item.itemPrice}',
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               color: tc2),
@@ -429,10 +437,19 @@ class _CreateListState extends State<CreateList> {
                   onPressed: () {
                     if (titleController.text.isNotEmpty &&
                         itemList.isNotEmpty) {
-                      // print("itemList: $itemList");
-                      var data = {
+
+                      final itemArray = itemList.map((item) {
+                        return {
+                          "pname": item.itemName,
+                          "pimage": item.itemImage,
+                          "pprice": item.itemPrice,
+                          "pquantity": _quntity,
+                        };
+                      }).toList();
+
+                      final data = {
                         "ltitle": titleController.text,
-                        "items": itemList,
+                        "items": itemArray,
                         "isCheck": false,
                       };
 
