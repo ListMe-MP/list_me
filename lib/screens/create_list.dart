@@ -203,9 +203,10 @@ class _CreateListState extends State<CreateList> {
                                 child: Padding(
                                   padding: const EdgeInsets.only(
                                       left: 10, right: 10),
-                                  child: TypeAheadFormField(
+                                  child: TypeAheadField(
                                     textFieldConfiguration:
                                         TextFieldConfiguration(
+                                          autofocus: true,
                                       controller: itemController,
                                       decoration: const InputDecoration(
                                         hintText: "Type Here",
@@ -243,7 +244,7 @@ class _CreateListState extends State<CreateList> {
                                               children: [
                                                 Text(suggestion['item_name']),
                                                 Text(
-                                                  '\$ ${suggestion['item_price']}',
+                                                  'Rs. ${suggestion['item_price']}',
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w500,
                                                     color: tc2,
@@ -349,7 +350,7 @@ class _CreateListState extends State<CreateList> {
                                     subtitle: Row(
                                       children: [
                                         Text(
-                                          '\$ ${item.itemPrice}',
+                                          'Rs. ${item.itemPrice}',
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               color: tc2),
