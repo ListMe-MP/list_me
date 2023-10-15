@@ -206,7 +206,8 @@ class _CreateListState extends State<CreateList> {
                                   child: TypeAheadField(
                                     textFieldConfiguration:
                                         TextFieldConfiguration(
-                                          autofocus: true,
+                                          
+                                      autofocus: false,
                                       controller: itemController,
                                       decoration: const InputDecoration(
                                         hintText: "Type Here",
@@ -219,6 +220,9 @@ class _CreateListState extends State<CreateList> {
                                         ),
                                       ),
                                     ),
+                                    hideOnLoading: true,
+                                    hideOnEmpty: true,
+                                    
                                     suggestionsCallback: (pattern) =>
                                         SuggestionsApi.getSuggestions(pattern),
                                     itemBuilder: (context, suggestion) {
@@ -276,6 +280,7 @@ class _CreateListState extends State<CreateList> {
                               // add button
                               IconButton(
                                 onPressed: () {
+                                  print("pressed add button");
                                   if (itemController.text.isNotEmpty) {
                                     setState(() {
                                       final rawItems = itemController.text
@@ -289,9 +294,16 @@ class _CreateListState extends State<CreateList> {
                                         }
                                       }
 
-                                      // itemList.addAll(parsedItems
-                                      //     .where((item) => item.isNotEmpty));
-                                      // itemController.clear();
+                                      itemList.addAll(parsedItems
+                                          .where((item) => item.isNotEmpty)
+                                          .map((item) {
+                                        return ListItem(
+                                            itemName: item,
+                                            itemImage:
+                                                "assets/images/items/item0.png",
+                                            itemPrice: 0);
+                                      }));
+                                      itemController.clear();
                                     });
                                   }
                                 },
@@ -438,7 +450,6 @@ class _CreateListState extends State<CreateList> {
                   onPressed: () {
                     if (titleController.text.isNotEmpty &&
                         itemList.isNotEmpty) {
-
                       final itemArray = itemList.map((item) {
                         return {
                           "pname": item.itemName,
