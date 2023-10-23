@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  switcher_button: ^0.0.4
   sign_in_button: ^3.0.0
   flutter:
     sdk: flutter
@@ -47,6 +48,7 @@ dependencies:
   avatar_glow: ^2.0.2
   speech_to_text: ^6.3.0
   flutter_typeahead: ^4.7.0
+  shared_preferences:
   
 
 dev_dependencies:
