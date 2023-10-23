@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:switcher_button/switcher_button.dart';
+
+import '../model/ThemeModel.dart';
+
+// 
 
 class AppearanceBar extends StatefulWidget {
   final String text;
-  final bool showToggleSwitch; //New property
+  final bool showToggleSwitch; // New property
 
   const AppearanceBar({
     Key? key,
     required this.text,
-    this.showToggleSwitch = true, //Default to true if not specified
+    this.showToggleSwitch = false, // Default to false if not specified
   }) : super(key: key);
 
   @override
@@ -15,46 +21,38 @@ class AppearanceBar extends StatefulWidget {
 }
 
 class _AppearanceBarState extends State<AppearanceBar> {
-  bool isSwitchedOn = false;
-
-  void toggleSwitch() {
-    setState(() {
-      isSwitchedOn = !isSwitchedOn;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 70,
-      width: 500,
-      decoration: BoxDecoration(
-        color: Colors.blueGrey,
-        border: Border.all(color: Colors.black)
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              widget.text,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            if(widget.showToggleSwitch)
-              IconButton(
-               icon: Icon(
-               isSwitchedOn ? Icons.toggle_on : Icons.toggle_off,
-               color: Colors.black,
-               ),
-               onPressed: toggleSwitch,
-               iconSize: 40,
-             )
-             //conditionally show the toggle 
-              
-          ],
+    return Consumer(builder: (context, ThemeModel themeNotifier, child) {
+      return Container(
+        height: 70,
+        width: 500,
+        decoration: BoxDecoration(
+          color: Colors.blueGrey,
+          border: Border.all(color: Colors.black),
         ),
-      ),
-    );
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                widget.text,
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              if (widget.showToggleSwitch) // Conditionally display the SwitcherButton
+                SwitcherButton(
+                  value: themeNotifier.isdark ? false : true,
+                  onChange: (value) {
+                    themeNotifier.isdark
+                        ? themeNotifier.isDark = false
+                        : themeNotifier.isDark = true;
+                  },
+                ),
+            ],
+          ),
+        ),
+      );
+    });
   }
 }
