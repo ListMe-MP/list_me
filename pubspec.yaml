@@ -48,7 +48,7 @@ dependencies:
   avatar_glow: ^2.0.2
   speech_to_text: ^6.3.0
   flutter_typeahead: ^4.7.0
-  shared_preferences:
+  shared_preferences: ^2.0.6
   
 
 dev_dependencies:
