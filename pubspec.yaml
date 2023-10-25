@@ -78,10 +78,11 @@ flutter:
     # - assets/fonts/google_fonts
     - assets/images/
     - assets/images/items/
+    - assets/images/catimg/
     - assets/images/GroceryItems/Fruit/
     - assets/images/GroceryItems/Packages/
     - assets/images/GroceryItems/Toiletries/
-    - assets/images/GroceryItems/Vegetables/
+    - assets/images/GroceryItems/Vegetables/ 
 
     
   #   - images/a_dot_burr.jpeg

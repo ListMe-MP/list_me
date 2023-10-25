@@ -20,54 +20,54 @@ class _ChartState extends State<Chart> {
 
   List<Catagory> catagorys = [
     const Catagory(
-      catname: 'Grosery',
+      catname: 'Bakery',
       price: 5125,
-      urlAvatar: 'assets/images/logo.png',
+      urlAvatar: 'assets/images/catimg/bakery.png',
     ),
     const Catagory(
-      catname: 'Cosmatics',
+      catname: 'Cooking Essentials',
       price: 2750,
-      urlAvatar: 'assets/images/logo.png',
+      urlAvatar: 'assets/images/catimg/cooking_essentials.png',
     ),
     const Catagory(
-      catname: 'Fruit',
+      catname: 'Dairy',
       price: 2250,
-      urlAvatar: 'assets/images/logo.png',
+      urlAvatar: 'assets/images/catimg/dairy.png',
+    ),
+    const Catagory(
+      catname: 'Fruits',
+      price: 1375,
+      urlAvatar: 'assets/images/catimg/fruits.png',
+    ),
+    const Catagory(
+      catname: 'Health and Beauty',
+      price: 1000,
+      urlAvatar: 'assets/images/catimg/health_and_beauty.png',
+    ),
+    const Catagory(
+      catname: 'Meats',
+      price: 5125,
+      urlAvatar: 'assets/images/catimg/meats.png',
+    ),
+    const Catagory(
+      catname: 'Rice',
+      price: 2750,
+      urlAvatar: 'assets/images/catimg/rice.png',
+    ),
+    const Catagory(
+      catname: 'Seafood',
+      price: 2250,
+      urlAvatar: 'assets/images/catimg/seafood.png',
+    ),
+    const Catagory(
+      catname: 'Tea and Coffee',
+      price: 1375,
+      urlAvatar: 'assets/images/catimg/tea_and_coffee.png',
     ),
     const Catagory(
       catname: 'Vegetable',
-      price: 1375,
-      urlAvatar: 'assets/images/logo.png',
-    ),
-    const Catagory(
-      catname: 'Meat',
       price: 1000,
-      urlAvatar: 'assets/images/logo.png',
-    ),
-    const Catagory(
-      catname: 'Grosery',
-      price: 5125,
-      urlAvatar: 'assets/images/logo.png',
-    ),
-    const Catagory(
-      catname: 'Cosmatics',
-      price: 2750,
-      urlAvatar: 'assets/images/logo.png',
-    ),
-    const Catagory(
-      catname: 'Fruit',
-      price: 2250,
-      urlAvatar: 'assets/images/logo.png',
-    ),
-    const Catagory(
-      catname: 'Vegetable',
-      price: 1375,
-      urlAvatar: 'assets/images/logo.png',
-    ),
-    const Catagory(
-      catname: 'Meat',
-      price: 1000,
-      urlAvatar: 'assets/images/logo.png',
+      urlAvatar: 'assets/images/catimg/vegetable.png',
     ),
   ];
 
@@ -89,7 +89,6 @@ class _ChartState extends State<Chart> {
                   style: TextStyle(
                     fontSize: 17.0,
                   ),
-
                 ),
                 Text(
                   'LKR 12500.00',
@@ -120,7 +119,6 @@ class _ChartState extends State<Chart> {
           legend: Legend(
               isVisible: true, overflowMode: LegendItemOverflowMode.wrap),
         ),
-
         Padding(
           padding: const EdgeInsets.all(10.0),
           child: Container(
@@ -162,7 +160,6 @@ class _ChartState extends State<Chart> {
                       //   ),
                       // },
                     ),
-
                   ),
                 );
               },
@@ -175,16 +172,16 @@ class _ChartState extends State<Chart> {
 
   List<CatData> getChartData() {
     final List<CatData> chartData = [
-      CatData('Grosery', 5125),
-      CatData('Cosmatics', 2750),
-      CatData('Fruit', 2250),
-      CatData('Vegetable', 1375),
-      CatData('Meat', 1000),
-      CatData('Grosery', 5125),
-      CatData('Cosmatics', 2750),
-      CatData('Fruit', 2250),
-      CatData('Vegetable', 1375),
-      CatData('Meat', 1000),
+      CatData('Bakery', 5125),
+      CatData('Cooking Essentials', 2750),
+      CatData('Dairy', 2250),
+      CatData('Fruits', 1375),
+      CatData('Health and Beauty', 1000),
+      CatData('Meats', 5125),
+      CatData('Rice', 2750),
+      CatData('Seafood', 2250),
+      CatData('Tea and Coffee', 1375),
+      CatData('Vegetable', 1000),
     ];
     return chartData;
   }
