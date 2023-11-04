@@ -19,7 +19,7 @@ void onSelected(BuildContext context, MenuItem item) {
       );
     case MenuItems.itemSignIn:
       Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const SignInPage()),
+        MaterialPageRoute(builder: (context) => SignInPage()),
       );
       break;
     default:

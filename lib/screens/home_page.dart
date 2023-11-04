@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
           children: [
             // backkground style
             const Background(),
-    
+
             // components
             Container(
               padding: const EdgeInsets.only(top: 10, bottom: 10),
@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
                       },
                       onMenuItemSelected: (item) => onSelected(context, item),
                     ),
-    
+
                     // title
                     Padding(
                       padding: const EdgeInsets.only(top: 60.0),
@@ -103,21 +103,15 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     // child: Color.fromRGBO(188, 253, 250, 1),
-    
+
                     // help button
                     TextButton(
-                      onPressed: () { 
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => HelpPage(),
-                          )
-                        );
-                       },
-                      child: Text("help")
-                    ),
-
-
-
+                          ));
+                        },
+                        child: Text("help")),
 
                     // TextButton(
                     //   onPressed: (){
@@ -126,7 +120,7 @@ class HomePage extends StatelessWidget {
                     //         builder: (context) => HelpPage(),
                     //         )
                     //     );
-                    //   }, 
+                    //   },
                     //   child: Text("help")
                     // )
                   ]),
