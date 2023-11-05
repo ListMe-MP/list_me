@@ -8,7 +8,7 @@ class MenuItems {
   ];
 
   static const List<MenuItem> itemsSecond = [
-    itemSignOut,
+    itemSignIn,
   ];
 
   static const itemSettings = MenuItem(
@@ -21,5 +21,5 @@ class MenuItems {
     icon: Icons.share,
   );
 
-  static const itemSignOut = MenuItem(text: 'Sign Out', icon: Icons.login);
+  static const itemSignIn = MenuItem(text: 'Sign In', icon: Icons.login);
 }
