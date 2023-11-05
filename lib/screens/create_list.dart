@@ -5,13 +5,11 @@ import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/maintitle.dart';
 import 'package:list_me/model/SelectedItem.dart';
 import 'package:list_me/model/product_model.dart';
-import 'package:list_me/services/api/itemapi/itemapi.dart';
 import 'package:list_me/services/apisug.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import '../components/top_bar.dart';
 import '../services/api.dart';
 import '../utils/navigationMenu.dart';
-import 'package:list_me/model/item.dart';
 
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
@@ -32,17 +30,6 @@ class _CreateListState extends State<CreateList> {
   var text = "";
   var isListning = false;
   SpeechToText speechToText = SpeechToText();
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    loadData();
-  }
-
-  loadData() async {
-    List<Item> list = await ItemApi.getAllItems();
-    print(list.length);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -219,6 +206,7 @@ class _CreateListState extends State<CreateList> {
                                   child: TypeAheadField(
                                     textFieldConfiguration:
                                         TextFieldConfiguration(
+                                          
                                       autofocus: false,
                                       controller: itemController,
                                       decoration: const InputDecoration(
@@ -234,6 +222,7 @@ class _CreateListState extends State<CreateList> {
                                     ),
                                     hideOnLoading: true,
                                     hideOnEmpty: true,
+                                    
                                     suggestionsCallback: (pattern) =>
                                         SuggestionsApi.getSuggestions(pattern),
                                     itemBuilder: (context, suggestion) {
@@ -458,32 +447,32 @@ class _CreateListState extends State<CreateList> {
 
                 // submit
                 child: RawMaterialButton(
-                  onPressed: () async {
-                    await Api.createItem(
-                        "catagory1", "item", 100.02, "hgfug", "gsgh");
-                    // if (titleController.text.isNotEmpty &&
-                    //     itemList.isNotEmpty) {
-                    //   final itemArray = itemList.map((item) {
-                    //     return {
-                    //       "pname": item.itemName,
-                    //       "pimage": item.itemImage,
-                    //       "pprice": item.itemPrice,
-                    //       "pquantity": _quntity,
-                    //     };
-                    //   }).toList();
+                  onPressed: () {
+                    if (titleController.text.isNotEmpty &&
+                        itemList.isNotEmpty) {
+                      final itemArray = itemList.map((item) {
+                        return {
+                          "pname": item.itemName,
+                          "pimage": item.itemImage,
+                          "pprice": item.itemPrice,
+                          "pquantity": _quntity,
+                        };
+                      }).toList();
 
-                    //   final data = {
-                    //     "ltitle": titleController.text,
-                    //     "items": itemArray,
-                    //     "isCheck": false,
-                    //   };
+                      final data = {
+                        "ltitle": titleController.text,
+                        "items": itemArray,
+                        "isCheck": false,
+                      };
 
-                    //   setState(() {
-                    //     itemList.clear();
-                    //   });
+                      Api.addProduct(data);
 
-                    //   titleController.clear();
-                    // }
+                      setState(() {
+                        itemList.clear();
+                      });
+
+                      titleController.clear();
+                    }
                   },
                   shape: const CircleBorder(
                       side: BorderSide(color: tc3, width: 5.0)),
