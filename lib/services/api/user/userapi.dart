@@ -1,86 +1,48 @@
 import 'dart:convert';
-import 'package:list_me/utils/const.dart';
-import 'package:list_me/services/store_token.dart';
+
 import 'package:list_me/model/user.dart';
 import 'package:http/http.dart' as http;
 
 class UserApi {
   static Future<int> registerUser(User user) async {
-    int res = resFail;
+    int res = 0;
+    final String apiUrl =
+        'http://10.0.2.2:8800/api/users/register'; // Replace with your actual backend API endpoint
 
     try {
       final response = await http.post(
-        Uri.parse("http://10.0.2.2:8800/api/auth/register"),
+        Uri.parse(apiUrl),
         headers: <String, String>{
           'Content-Type': 'application/json',
         },
-        body: jsonEncode(<String, String>{
-          'username': user.username,
-          'email': user.email,
-          'password': user.password,
-        }),
+    body: jsonEncode(<String, String>{
+        'username': user.username,
+        'email': user.email,
+        'password': user.password,
+      }),
       );
 
       if (response.statusCode == 200) {
-        res = resOk;
+        // Registration successful
+        print('User registered successfully');
+        res = 1;
         return res;
+        // You can handle the response data here if needed.
+        // For example, you might want to store user data in your app's state.
       } else if (response.statusCode == 400) {
+        // Username is already taken
         final data = jsonDecode(response.body);
         final error = data['error'];
-print(error);
+        print('Registration error: $error');
         return res;
       } else {
+        // Handle other error cases
+        print('Registration failed with status code: ${response.statusCode}');
         return res;
       }
     } catch (error) {
+      print('Error registering user: $error');
       return res;
-    }
-  }
-
-  static Future<int> loginUser(String email, String password) async {
-    int res = resFail;
-    try {
-      final response = await http.post(
-        Uri.parse(EndPoint.login),
-        headers: <String, String>{
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode(<String, String>{
-          'email': email,
-          'password': password,
-        }),
-      );
-
-      if (response.statusCode == 200) {
-        final jsonResponse = jsonDecode(response.body);
-        final userJson = jsonResponse['user'] as Map<String, dynamic>;
-        final user = User.fromJson(userJson);
-        final token = jsonResponse['accessToken'];
-        await StoreToken.storeToken(token);
-        res = resOk;
-        return res;
-      } else {
-        return res;
-      }
-    } catch (e) {
-      print(e);
-      return res;
-    }
-  }
-
-  static Future<User> getCurrentUser() async {
-    String? token = await StoreToken.getToken();
-    final response = await http.get(
-      Uri.parse(EndPoint.current),
-      headers: {'Authorization': 'Bearer $token'},
-    );
-
-    if (response.statusCode == 200) {
-      final userJson = json.decode(response.body) as Map<String, dynamic>;
-      final user = User.fromJson(userJson);
-      return user;
-    } else {
-      throw Exception('Failed to get current user');
     }
   }
 }

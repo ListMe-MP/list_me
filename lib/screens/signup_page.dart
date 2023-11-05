@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:list_me/components/password_txtfiled.dart';
 import 'package:list_me/components/top_bar.dart';
 import 'package:list_me/model/user.dart';
 import 'package:list_me/screens/SignInSignUp_Bar.dart';
 import 'package:list_me/screens/signin_page.dart';
 import 'package:list_me/services/api/user/userapi.dart';
-import 'package:list_me/services/navigation/navigation.dart';
-import 'package:list_me/services/validate_handeler.dart';
 
 import '../components/background.dart';
 import '../components/colors.dart';
 import '../utils/navigationMenu.dart';
 
 class SignUpPage extends StatelessWidget {
-  SignUpPage({super.key});
-  final TextEditingController name = TextEditingController();
-  final TextEditingController email = TextEditingController();
-  final TextEditingController password = TextEditingController();
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  const SignUpPage({super.key});
+
   @override
   Widget build(BuildContext context) {
+    final TextEditingController name = TextEditingController();
+    final TextEditingController email = TextEditingController();
+    final TextEditingController password = TextEditingController();
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
     return Scaffold(
         appBar: AppBar(
           backgroundColor: tc4,
@@ -89,9 +87,6 @@ class SignUpPage extends StatelessWidget {
                         ),
 
                         SignInSignUpBar(
-                          validator: (value) {
-                            return Validater.genaralvalid(value!);
-                          },
                           hintText: "Username",
                           controller: name,
                         ),
@@ -101,32 +96,125 @@ class SignUpPage extends StatelessWidget {
                         ),
 
                         SignInSignUpBar(
-                          validator: (value) {
-                            return Validater.validEmail(value!);
-                          },
-                          hintText: "Email",
-                          controller: email,
+                          hintText: "Password",
+                          controller: password,
                         ),
 
                         const SizedBox(
                           height: 20,
                         ),
 
-                        PasswordtxtField(
-                          hintText: "Password",
-                          controller: password,
+                        SignInSignUpBar(
+                          hintText: "Email",
+                          controller: email,
                         ),
+
+                        //username
+                        // Container(
+                        //     width: 299,
+                        //     height: 37,
+                        //     decoration: ShapeDecoration(
+                        //       color: Color(0x7FD4D4D4),
+                        //       shape: RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.circular(10),
+                        //       ),
+                        //     ),
+                        //      child: Padding(
+                        //       padding: const EdgeInsets.all(8.0),
+                        //       child: TextField(
+                        //       keyboardType: TextInputType.name,
+                        //       style: TextStyle(
+                        //         color: Colors.white
+                        //       ),
+                        //       decoration: InputDecoration(
+                        //         border: InputBorder.none,
+                        //         contentPadding: EdgeInsets.only(bottom: 10, left: 12, right: 2, top: 2),
+                        //         hintText: 'username',
+                        //         hintStyle: TextStyle(
+                        //           color: Colors.white
+                        //         )
+                        //       ),
+
+                        //     )
+                        //     )
+                        //   ),
+
+                        //   SizedBox(
+                        //     height: 50,
+                        //   ),
+
+                        //   //password field
+                        //   Container(
+                        //     width: 299,
+                        //     height: 37,
+                        //     decoration: ShapeDecoration(
+                        //       color: Color(0x7FD4D4D4),
+                        //       shape: RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.circular(10),
+                        //       ),
+                        //     ),
+                        //      child: Padding(
+                        //       padding: const EdgeInsets.all(8.0),
+                        //       child: TextField(
+                        //       obscureText: true,
+                        //       style: TextStyle(
+                        //         color: Colors.white
+                        //       ),
+                        //       decoration: InputDecoration(
+                        //         border: InputBorder.none,
+                        //         contentPadding: EdgeInsets.only(bottom: 10, left: 12, right: 2, top: 2),
+                        //         hintText: 'password',
+                        //         hintStyle: TextStyle(
+                        //           color: Colors.white
+                        //         )
+                        //       ),
+                        //     )
+                        //     )
+                        //   ),
+
+                        //   SizedBox(
+                        //     height: 50,
+                        //   ),
+
+                        //   //email
+                        //   Container(
+                        //     width: 299,
+                        //     height: 37,
+                        //     decoration: ShapeDecoration(
+                        //       color: Color(0x7FD4D4D4),
+                        //       shape: RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.circular(10),
+                        //       ),
+                        //     ),
+                        //      child: Padding(
+                        //       padding: const EdgeInsets.all(8.0),
+                        //       child: TextField(
+                        //       obscureText: true,
+                        //       style: TextStyle(
+                        //         color: Colors.white
+                        //       ),
+                        //       decoration: InputDecoration(
+                        //         border: InputBorder.none,
+                        //         contentPadding: EdgeInsets.only(bottom: 10, left: 12, right: 2, top: 2),
+                        //         hintText: 'email',
+                        //         hintStyle: TextStyle(
+                        //           color: Colors.white
+                        //         )
+                        //       ),
+                        //     )
+                        //     )
+                        //   ),
 
                         const SizedBox(height: 50),
 
                         //sign in button
                         ElevatedButton(
-                          onPressed: () async {
+                          onPressed: () async{
                             User user = User(
                                 username: name.text,
                                 email: email.text,
                                 password: password.text);
-                            await signup(user, context);
+                           await signup(user);
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.greenAccent,
@@ -162,7 +250,7 @@ class SignUpPage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SignInPage()),
+                                  builder: (context) => const SignInPage()),
                             );
                           },
                           child: const Text(
@@ -184,17 +272,12 @@ class SignUpPage extends StatelessWidget {
         ));
   }
 
-  signup(User user, BuildContext context) async {
-    if (formKey.currentState!.validate()) {
-      int res = await UserApi.registerUser(user);
-      if (res == 1) {
-        openSignin(context);
-      } else {
-        email.clear();
-        name.clear();
-        password.clear();
-        print("no");
-      }
+  signup(User user) async {
+    int res = await UserApi.registerUser(user);
+    if (res == 1) {
+      print("ok");
+    } else {
+      print("nno");
     }
   }
 }
