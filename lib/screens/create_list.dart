@@ -88,7 +88,7 @@ class _CreateListState extends State<CreateList> {
 
         body: Stack(
           children: [
-            const Background(),
+            // const Background(),
             Container(
               child: SingleChildScrollView(
                 child: Column(
@@ -206,7 +206,6 @@ class _CreateListState extends State<CreateList> {
                                   child: TypeAheadField(
                                     textFieldConfiguration:
                                         TextFieldConfiguration(
-                                          
                                       autofocus: false,
                                       controller: itemController,
                                       decoration: const InputDecoration(
@@ -222,7 +221,6 @@ class _CreateListState extends State<CreateList> {
                                     ),
                                     hideOnLoading: true,
                                     hideOnEmpty: true,
-                                    
                                     suggestionsCallback: (pattern) =>
                                         SuggestionsApi.getSuggestions(pattern),
                                     itemBuilder: (context, suggestion) {
