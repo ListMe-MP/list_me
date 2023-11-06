@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:list_me/model/product_model.dart';
 
 class Api {
-  static const baseUrl = "http://192.168.1.103:3000/api/";
+  static const baseUrl = "http://192.168.8.183:3000/api/";
 
   static addProduct(Map pdata) async {
     var url = Uri.parse("${baseUrl}add_product");
