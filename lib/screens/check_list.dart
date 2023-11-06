@@ -1,5 +1,7 @@
 // import 'dart:convert';
 
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
@@ -20,65 +22,20 @@ class CheckList extends StatefulWidget {
 
 class _CheckListState extends State<CheckList> {
   // List pdata = [];
-
+  late TextEditingController controller;
   @override
   void initState() {
     super.initState();
     // getTitleFromServer();
+    controller = TextEditingController();
   }
 
-  // Future<void> fetchDataFromServer() async {
-  //   try {
-  //     // Replace 'YOUR_API_ENDPOINT' with the actual endpoint to fetch data
-  //     final response = await http.get(Uri.parse("http://localhost:2000/api/get_product/"));
-
-  //     if (response.statusCode == 200) {
-  //       final data = json.decode(response.body);
-  //       if (data is List) {
-  //         // Assuming the server returns a list of strings
-  //         setState(() {
-  //           items = List<String>.from(data);
-  //         });
-  //       } else {
-  //         // Handle the response if it's not a list of strings
-  //       }
-  //     } else {
-  //       // Handle errors or non-200 status codes
-  //     }
-  //   } catch (e) {
-  //     // Handle any exceptions that occur during the HTTP request
-  //     print('Error: $e');
-  //   }
-  // }
-
-//  Future<List<String>> getTitleFromServer() async {
-//   var url = Uri.parse("http://localhost:2000/api/get_product/");
-//   late http.Response response;
-
-//   try {
-//     response = await http.get(url);
-//     if (response.statusCode == 200) {
-//       Map<String, dynamic> data = jsonDecode(response.body);
-//       List<dynamic> titleList = data["products"];
-
-//       List<String> titles = [];
-//       for (var item in titleList) {
-//         String lTitle = item['lTitle'];
-//         titles.add(lTitle);
-//       }
-
-//       setState(() {
-//         pdata = titles; // Update the items list with the fetched titles
-//       });
-//     } else {
-//       return Future.error("Something went wrong, ${response.statusCode}");
-//     }
-//   } catch (e) {
-//     return Future.error(e.toString());
-//   }
-
-//   return pdata;
-// }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +55,6 @@ class _CheckListState extends State<CheckList> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return CircularProgressIndicator();
             } else if (!snapshot.hasData) {
-              print('hello elif');
               return Text('You have no any lists to show');
             } else {
               List? pdata = snapshot.data!.toList();
@@ -195,13 +151,20 @@ class _CheckListState extends State<CheckList> {
                                                 title: Text(
                                                     pdata[index]['lTitle']),
                                                 trailing: IconButton(
-                                                  onPressed: () {
+                                                  onPressed: () async {
+                                                    var amount =
+                                                        await openDialog();
+                                                        if(amount ==  null||amount.isEmpty) {
+                                                          amount='0';
+                                                        }
                                                     Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
-                                                        builder: (BuildContext
-                                                            context) {
+                                                        builder: (context) {
                                                           return CheckList04(
+                                                              amount:
+                                                                  double.parse(
+                                                                      amount!),
                                                               data:
                                                                   pdata[index]);
                                                         },
@@ -284,5 +247,35 @@ class _CheckListState extends State<CheckList> {
     );
   }
 
+  Future<String?> openDialog() {
+    return showDialog<String>(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Text(
+                "Enter amount you have",
+                style: TextStyle(color: tc1),
+              ),
+              content: TextField(
+                controller: controller,
+                keyboardType: TextInputType.number,
+                autofocus: true,
+                decoration: InputDecoration(hintText: 'Enter Amount'),
+                onSubmitted: (value) => submit(),
+              ),
+              actions: [
+                TextButton(
+                    onPressed: submit,
+                    child: Text(
+                      'Add Amount',
+                      style: TextStyle(color: tc3),
+                    ))
+              ],
+            ));
+  }
+
+  void submit() {
+    Navigator.of(context).pop(controller.text);
+    controller.clear();
+  }
   // buildItem(List<String> pdata int  index) {}
 }

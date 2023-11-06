@@ -454,13 +454,14 @@ class _CreateListState extends State<CreateList> {
                           "pimage": item.itemImage,
                           "pprice": item.itemPrice,
                           "pquantity": _quntity,
+                          "ischecked": false
                         };
                       }).toList();
 
                       final data = {
                         "ltitle": titleController.text,
                         "items": itemArray,
-                        "isCheck": false,
+                        "id": DateTime.now().toString()
                       };
 
                       Api.addProduct(data);

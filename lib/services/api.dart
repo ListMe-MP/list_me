@@ -77,13 +77,14 @@ class Api {
   }
 
   // delete method
-  static deleteProduct(int? id) async {
+  static deleteProduct(String? id) async {
     var url = Uri.parse("${baseUrl}delete/$id");
 
     final res = await http.post(url);
+    
     try {
       if (res.statusCode == 200) {
-        print('manika');
+        print('delete successfuly');
         print(jsonDecode(res.body));
       } else {
         print('Failed to delete');
