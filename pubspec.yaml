@@ -78,6 +78,7 @@ flutter:
     # - assets/fonts/google_fonts
     - assets/images/
     - assets/images/catimg/
+    - assets/images/items/
 
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
