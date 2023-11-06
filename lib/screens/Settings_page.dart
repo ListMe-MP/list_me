@@ -121,7 +121,7 @@ class SettingsPage extends StatelessWidget {
                                   Navigator.of(ctx).pop(); //close the dialog
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
-                                      builder: (context) =>  SignUpPage(), //Navigate to share page
+                                      builder: (context) => const SignUpPage(), //Navigate to share page
                                       ),
                                   );
                                 },

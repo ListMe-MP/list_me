@@ -5,42 +5,28 @@ import 'package:http/http.dart' as http;
 import 'package:list_me/model/product_model.dart';
 
 class Api {
-  static const baseUrl = "http://10.0.2.2:8800/api/";
+  static const baseUrl = "http://192.168.1.103:3000/api/";
 
-static Future <void> createItem(String category, String item, double price, String quantity, String img) async {
-  final String apiUrl = 'http://10.0.2.2:8800/api/items'; // Replace with your API endpoint URL
+  static addProduct(Map pdata) async {
+    var url = Uri.parse("${baseUrl}add_product");
 
-  try {
-    final response = await http.post(
-      Uri.parse(apiUrl),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode({
-        'category': category,
-        'item': item,
-        'price': price,
-        'quantity': quantity,
-        'img': img,
-      }),
-    );
+    try {
+      final res = await http.post(url,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: json.encode(pdata));
 
-    if (response.statusCode == 200) {
-      // Item created successfully
-      final Map<String, dynamic> responseData = json.decode(response.body);
-      print('Item created: $responseData');
-    } else {
-      // Handle API error
-      print('Failed to create item. Status code: ${response.statusCode}');
-      print('Response body: ${response.body}');
-      // You can handle the error response here
+      if (res.statusCode == 200) {
+        var data = jsonDecode(res.body.toString());
+        print(data);
+      } else {
+        print("Failded to get response");
+      }
+    } catch (e) {
+      debugPrint(e.toString());
     }
-  } catch (e) {
-    // Handle network or other errors
-    print('Error creating item: $e');
-    // You can handle the error here
   }
-}
 
   //get method
 

@@ -1,5 +1,4 @@
 {
-  "java.configuration.updateBuildConfiguration": "interactive",
-  "dart.flutterCreateAndroidLanguage": "java",
-  "githubPullRequests.ignoredPullRequestBranches": ["master"]
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "dart.flutterCreateAndroidLanguage": "java"
 }
