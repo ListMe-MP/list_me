@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:list_me/screens/create_list.dart';
@@ -6,6 +7,7 @@ import 'package:list_me/screens/create_list.dart';
 import '../components/background.dart';
 import '../components/colors.dart';
 import '../components/top_bar.dart';
+import '../services/api.dart';
 import '../utils/navigationMenu.dart';
 
 class CheckList04 extends StatefulWidget {
@@ -268,7 +270,32 @@ class _CheckList04State extends State<CheckList04> {
                       ),
                       Expanded(
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            saveCheckList();
+                            AnimatedButton(
+      text: 'Success Dialog',
+      color: Colors.green,
+      pressEvent: () {
+        AwesomeDialog(
+          context: context,
+          animType: AnimType.leftSlide,
+          headerAnimationLoop: false,
+          dialogType: DialogType.success,
+          showCloseIcon: true,
+          title: 'Succes',
+          desc:
+              'Dialog description here..................................................',
+          btnOkOnPress: () {
+            debugPrint('OnClcik');
+          },
+          btnOkIcon: Icons.check_circle,
+          onDismissCallback: (type) {
+            debugPrint('Dialog Dissmiss from callback $type');
+          },
+        ).show();
+      },
+    );
+                          },
                           child: Text(
                             "Save",
                             style: TextStyle(fontSize: 20),
@@ -334,5 +361,20 @@ class _CheckList04State extends State<CheckList04> {
       }
     }
     return totalAmount;
+  }
+
+  Future<void> saveCheckList() async {
+    List<dynamic> filteredList = widget.data['items']
+        .where((item) => item['ischecked'] == true)
+        .toList();
+    final data = {
+      "ltitle": widget.data['lTitle'],
+      "items": filteredList,
+      "id": widget.data['id'],
+      'total': total
+    };
+
+    await Api.saveCheckList(data);
+    
   }
 }
