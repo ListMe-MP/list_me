@@ -64,6 +64,41 @@ class Api {
     return products;
   }
 
+  //get check list
+  static Future<List> getList() async {
+    print("called get checklist");
+    List products = [];
+
+    var url = Uri.parse("${baseUrl}get_checklist");
+
+    try {
+      final res = await http.get(url);
+      if (res.statusCode == 200) {
+        var data = jsonDecode(res.body);
+
+        // Assuming the API response includes fields for pimage, pprice, and pquantity
+        products = data['products'];
+
+        // for (var value in productList) {
+        //   products.add(Product(
+        //     item: value['pname'],
+        //     pimage: value['pimage'],    // Fetch pimage from API response
+        //     pprice: value['pprice'],    // Fetch pprice from API response
+        //     pquantity: value['pquantity'],  // Fetch pquantity from API response
+        //   ));
+        // }
+        // print("pp/"+data['products'][0]['lTitle'].toString());
+      } else {
+        //print("Failed to get response");
+        return [];
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+    // print("pp/"+products[0]['lTitle'].toString());
+    return products;
+  }
+
   // Update put method
   static updateProduct(id, body) async {
     var url = Uri.parse("${baseUrl}update/$id");
