@@ -23,43 +23,7 @@ class _CategoryPageState extends State<CategoryPage> {
       item_name: 'Rice',
       quantity: '10 kg',
       amount: '1200.00',
-    ),
-    const Catagory(
-      item_name: 'Sugar',
-      quantity: '1 kg',
-      amount: '330.00',
-    ),
-    const Catagory(
-      item_name: 'Dhal',
-      quantity: '2 kg',
-      amount: '440.00',
-    ),
-    const Catagory(
-      item_name: 'Soya',
-      quantity: '0.5 kg',
-      amount: '475.00',
-    ),
-    const Catagory(
-      item_name: 'Flour',
-      quantity: '1.5 kg',
-      amount: '265.00',
-    ),
-    const Catagory(
-      item_name: 'Tea',
-      quantity: '0.2kg',
-      amount: '230.00',
-    ),
-    const Catagory(
-      item_name: 'Macaroni',
-      quantity: '1 kg',
-      amount: '220.00',
-    ),
-    const Catagory(
-      item_name: 'Salt',
-      quantity: '1 kg',
-      amount: '100.00',
-    ),
-      
+    )
 
   ];
 
