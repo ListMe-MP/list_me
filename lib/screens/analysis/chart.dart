@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:list_me/screens/analysis/catagory_page.dart';
+import 'package:list_me/services/api.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class Chart extends StatefulWidget {
@@ -28,104 +29,117 @@ class _ChartState extends State<Chart> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 25.0,
-        ),
-        Container(
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Your Total Monthly Cost',
-                  style: TextStyle(
-                    fontSize: 17.0,
-                  ),
-
-                ),
-                Text(
-                  'LKR 12500.00',
-                  style: TextStyle(
-                    fontSize: 40.0,
-                  ),
-                ),
-              ],
-            ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 25.0,
           ),
-          width: 350,
-          height: 90,
-          decoration: ShapeDecoration(
-              color: Color(0x7FD4D4D4),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              )),
-        ),
-        SfCircularChart(
-          series: <CircularSeries>[
-            DoughnutSeries<CatData, String>(
-              dataSource: _chartData,
-              xValueMapper: (CatData data, _) => data.item,
-              yValueMapper: (CatData data, _) => data.price,
-              //dataLabelSettings: DataLabelSettings(isVisible: true)
-            ),
-          ],
-          legend: Legend(
-              isVisible: true, overflowMode: LegendItemOverflowMode.wrap),
-        ),
-
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Color(0X7fd4d4d4)),
-            height: 400,
-            child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: catagorys.length,
-              itemBuilder: (BuildContext context, int index) {
-                final category = catagorys[index];
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => CategoryPage()));
-                  },
-                  child: Card(
-                    child: ListTile(
-                      leading: Container(
-                        width: 50,
-                        height: 50,
-                        child: Image.asset(
-                          category.urlAvatar,
-                          fit: BoxFit.cover,
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(60))),
+          FutureBuilder(
+              future: Api.getListTotal(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                } else if (!snapshot.hasData) {
+                  return Text('You have no any lists to show');
+                } else {
+                  double total = snapshot.data!.toDouble();
+                  print(total);
+                  return Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Your Total Monthly Cost',
+                            style: TextStyle(
+                              fontSize: 17.0,
+                            ),
+                          ),
+                          Text(
+                            "Rs. ${total.toString()}",
+                            style: TextStyle(
+                              fontSize: 40.0,
+                            ),
+                          ),
+                        ],
                       ),
-                      title: Text(category.catname),
-                      subtitle: Text('LKR ' + category.price.toString()),
-                      trailing: const Icon(Icons.arrow_forward),
-
-                      // onTap: (){
-                      //   Navigator.of(context).push(MaterialPageRoute(
-                      //     builder: CatagoryPage())
-                      //   ),
-                      // },
                     ),
+                    width: 350,
+                    height: 90,
+                    decoration: ShapeDecoration(
+                        color: Color(0x7FD4D4D4),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        )),
+                  );
+                }
+              }),
+          SfCircularChart(
+            series: <CircularSeries>[
+              DoughnutSeries<CatData, String>(
+                dataSource: _chartData,
+                xValueMapper: (CatData data, _) => data.item,
+                yValueMapper: (CatData data, _) => data.price,
+                //dataLabelSettings: DataLabelSettings(isVisible: true)
+              ),
+            ],
+            legend: Legend(
+                isVisible: true, overflowMode: LegendItemOverflowMode.wrap),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Color(0X7fd4d4d4)),
+              height: 400,
+              child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: catagorys.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final category = catagorys[index];
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => CategoryPage()));
+                    },
+                    child: Card(
+                      child: ListTile(
+                        leading: Container(
+                          width: 50,
+                          height: 50,
+                          child: Image.asset(
+                            category.urlAvatar,
+                            fit: BoxFit.cover,
+                          ),
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(60))),
+                        ),
+                        title: Text(category.catname),
+                        subtitle: Text('LKR ' + category.price.toString()),
+                        trailing: const Icon(Icons.arrow_forward),
 
-                  ),
-                );
-              },
+                        // onTap: (){
+                        //   Navigator.of(context).push(MaterialPageRoute(
+                        //     builder: CatagoryPage())
+                        //   ),
+                        // },
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
+
+    
     // Column(
     //   children: [
     //     SizedBox(
@@ -227,9 +241,7 @@ class _ChartState extends State<Chart> {
   }
 
   List<CatData> getChartData() {
-    final List<CatData> chartData = [
-      CatData('Catagory Name', 0)
-    ];
+    final List<CatData> chartData = [CatData('Catagory Name', 0)];
     return chartData;
   }
 }
