@@ -1,10 +1,8 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
-import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/maintitle.dart';
 import 'package:list_me/model/SelectedItem.dart';
-import 'package:list_me/model/product_model.dart';
 import 'package:list_me/services/apisug.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import '../components/top_bar.dart';
