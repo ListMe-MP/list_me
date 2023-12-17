@@ -21,10 +21,40 @@ class _ChartState extends State<Chart> {
 
   List<Catagory> catagorys = [
     const Catagory(
-      catname: 'Grosery',
-      price: 5125,
-      urlAvatar: 'assets/images/logo.png',
-    )
+      catname: 'Fruit',
+      price: 650,
+      urlAvatar: 'assets/images/catagory/fruits.png',
+    ),
+    const Catagory(
+      catname: 'Vegetable',
+      price: 300,
+      urlAvatar: 'assets/images/catagory/vegetable.png',
+    ),
+    const Catagory(
+      catname: 'Toiletries',
+      price: 250,
+      urlAvatar: 'assets/images/catagory/health_and_beauty.png',
+    ),
+    const Catagory(
+      catname: 'Rice',
+      price: 220,
+      urlAvatar: 'assets/images/catagory/rice.png',
+    ),
+    const Catagory(
+      catname: 'Dairy',
+      price: 150,
+      urlAvatar: 'assets/images/catagory/dairy.png',
+    ),
+    const Catagory(
+      catname: 'Bakery',
+      price: 80,
+      urlAvatar: 'assets/images/catagory/bakery.png',
+    ),
+    const Catagory(
+      catname: 'Meats',
+      price: 700,
+      urlAvatar: 'assets/images/catagory/meats.png',
+    ),
   ];
 
   @override
@@ -52,7 +82,7 @@ class _ChartState extends State<Chart> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Your Total Monthly Cost',
+                            'Your Total Cost',
                             style: TextStyle(
                               fontSize: 17.0,
                             ),
@@ -138,110 +168,17 @@ class _ChartState extends State<Chart> {
         ],
       ),
     );
-
-    
-    // Column(
-    //   children: [
-    //     SizedBox(
-    //       height: 25.0,
-    //     ),
-    //     Container(
-    //       child: Padding(
-    //         padding: const EdgeInsets.all(10.0),
-    //         child: Column(
-    //           crossAxisAlignment: CrossAxisAlignment.start,
-    //           children: [
-    //             Text(
-    //               'Your Total Monthly Cost',
-    //               style: TextStyle(
-    //                 fontSize: 17.0,
-    //               ),
-
-    //             ),
-    //             Text(
-    //               'LKR 12500.00',
-    //               style: TextStyle(
-    //                 fontSize: 40.0,
-    //               ),
-    //             ),
-    //           ],
-    //         ),
-    //       ),
-    //       width: 350,
-    //       height: 90,
-    //       decoration: ShapeDecoration(
-    //           color: Color(0x7FD4D4D4),
-    //           shape: RoundedRectangleBorder(
-    //             borderRadius: BorderRadius.circular(10),
-    //           )),
-    //     ),
-    //     SfCircularChart(
-    //       series: <CircularSeries>[
-    //         DoughnutSeries<CatData, String>(
-    //           dataSource: _chartData,
-    //           xValueMapper: (CatData data, _) => data.item,
-    //           yValueMapper: (CatData data, _) => data.price,
-    //           //dataLabelSettings: DataLabelSettings(isVisible: true)
-    //         ),
-    //       ],
-    //       legend: Legend(
-    //           isVisible: true, overflowMode: LegendItemOverflowMode.wrap),
-    //     ),
-
-    //     Padding(
-    //       padding: const EdgeInsets.all(10.0),
-    //       child: Container(
-    //         decoration: BoxDecoration(
-    //             borderRadius: BorderRadius.circular(10),
-    //             color: Color(0X7fd4d4d4)),
-    //         height: 400,
-    //         child: ListView.builder(
-    //           scrollDirection: Axis.vertical,
-    //           shrinkWrap: true,
-    //           itemCount: catagorys.length,
-    //           itemBuilder: (BuildContext context, int index) {
-    //             final category = catagorys[index];
-    //             return GestureDetector(
-    //               onTap: () {
-    //                 Navigator.of(context).push(MaterialPageRoute(
-    //                     builder: (context) => CategoryPage()));
-    //               },
-    //               child: Card(
-    //                 child: ListTile(
-    //                   leading: Container(
-    //                     width: 50,
-    //                     height: 50,
-    //                     child: Image.asset(
-    //                       category.urlAvatar,
-    //                       fit: BoxFit.cover,
-    //                     ),
-    //                     decoration: BoxDecoration(
-    //                         borderRadius:
-    //                             BorderRadius.all(Radius.circular(60))),
-    //                   ),
-    //                   title: Text(category.catname),
-    //                   subtitle: Text('LKR ' + category.price.toString()),
-    //                   trailing: const Icon(Icons.arrow_forward),
-
-    //                   // onTap: (){
-    //                   //   Navigator.of(context).push(MaterialPageRoute(
-    //                   //     builder: CatagoryPage())
-    //                   //   ),
-    //                   // },
-    //                 ),
-
-    //               ),
-    //             );
-    //           },
-    //         ),
-    //       ),
-    //     ),
-    //   ],
-    // );
   }
 
   List<CatData> getChartData() {
-    final List<CatData> chartData = [CatData('Catagory Name', 0)];
+    final List<CatData> chartData = [
+      CatData('Fruit', 650),
+      CatData('Vegetable', 300),
+      CatData('Toiletries', 250),
+      CatData('Rice', 220),
+      CatData('Dairy', 150),
+      CatData('Bakery', 80),
+    ];
     return chartData;
   }
 }
