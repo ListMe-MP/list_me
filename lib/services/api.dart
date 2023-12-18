@@ -6,7 +6,7 @@ import 'package:list_me/model/product_model.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 
 class Api {
-  static const baseUrl = "http://192.168.8.183:3000/api/";
+  static const baseUrl = "http://10.0.2.2:3000/api/";
 
   static addProduct(Map pdata) async {
     var url = Uri.parse("${baseUrl}add_product");
@@ -120,6 +120,38 @@ class Api {
     }
     // print("pp/"+products[0]['lTitle'].toString());
     return products;
+  }
+
+  //get check list
+  static Future<int> getListTotal() async {
+    var url = Uri.parse("${baseUrl}get_checklist_total");
+    int total =0;
+    try {
+      final res = await http.get(url);
+      if (res.statusCode == 200) {
+        var data = jsonDecode(res.body);
+
+        // Assuming the API response includes fields for pimage, pprice, and pquantity
+        total = data['totalSum'];
+
+        // for (var value in productList) {
+        //   products.add(Product(
+        //     item: value['pname'],
+        //     pimage: value['pimage'],    // Fetch pimage from API response
+        //     pprice: value['pprice'],    // Fetch pprice from API response
+        //     pquantity: value['pquantity'],  // Fetch pquantity from API response
+        //   ));
+        // }
+        // print("pp/"+data['products'][0]['lTitle'].toString());
+      } else {
+        //print("Failed to get response");
+        return total;
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+    // print("pp/"+products[0]['lTitle'].toString());
+    return total;
   }
 
   // Update put method
