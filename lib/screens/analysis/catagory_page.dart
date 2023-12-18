@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:list_me/components/background.dart';
@@ -16,51 +15,12 @@ class CategoryPage extends StatefulWidget {
 }
 
 class _CategoryPageState extends State<CategoryPage> {
-
   List<Catagory> catagorys = [
     const Catagory(
-
       item_name: 'Rice',
       quantity: '10 kg',
       amount: '1200.00',
-    ),
-    const Catagory(
-      item_name: 'Sugar',
-      quantity: '1 kg',
-      amount: '330.00',
-    ),
-    const Catagory(
-      item_name: 'Dhal',
-      quantity: '2 kg',
-      amount: '440.00',
-    ),
-    const Catagory(
-      item_name: 'Soya',
-      quantity: '0.5 kg',
-      amount: '475.00',
-    ),
-    const Catagory(
-      item_name: 'Flour',
-      quantity: '1.5 kg',
-      amount: '265.00',
-    ),
-    const Catagory(
-      item_name: 'Tea',
-      quantity: '0.2kg',
-      amount: '230.00',
-    ),
-    const Catagory(
-      item_name: 'Macaroni',
-      quantity: '1 kg',
-      amount: '220.00',
-    ),
-    const Catagory(
-      item_name: 'Salt',
-      quantity: '1 kg',
-      amount: '100.00',
-    ),
-      
-
+    )
   ];
 
   @override
@@ -109,11 +69,9 @@ class _CategoryPageState extends State<CategoryPage> {
                     ],
                   ),
                 ),
-
                 const SizedBox(
                   height: 25.0,
                 ),
-
                 Container(
                   width: 350,
                   height: 80,
@@ -143,18 +101,16 @@ class _CategoryPageState extends State<CategoryPage> {
                     ),
                   ),
                 ),
-                
-                 const SizedBox(
+                const SizedBox(
                   height: 25.0,
                 ),
-
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Container(
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
-                    color: const Color(0X7fd4d4d4)),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: const Color(0X7fd4d4d4)),
                     height: 400,
-
                     child: ListView.builder(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
@@ -164,8 +120,7 @@ class _CategoryPageState extends State<CategoryPage> {
                         return ItemCrad(
                           item_name: category.item_name,
                           quantity: category.quantity,
-                          amount:category.amount,
-
+                          amount: category.amount,
                         );
                       },
                     ),
@@ -178,8 +133,6 @@ class _CategoryPageState extends State<CategoryPage> {
       ]),
     );
   }
-
- 
 }
 
 class CatData {
