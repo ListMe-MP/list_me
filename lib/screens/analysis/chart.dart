@@ -98,6 +98,7 @@ class _ChartState extends State<Chart> {
                     ),
                     width: 350,
                     height: 100,
+
                     decoration: ShapeDecoration(
                         color: Color(0x7FD4D4D4),
                         shape: RoundedRectangleBorder(
