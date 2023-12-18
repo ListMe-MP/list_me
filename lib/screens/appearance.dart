@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../components/appearance_bar.dart';
 import '../components/colors.dart';
 
@@ -19,15 +18,7 @@ class AppearancePage extends StatelessWidget {
           backgroundColor: tc4,
           foregroundColor: tc1,
         ),
-      // body: const Column(
-      //   children: [
-      //     AppearanceBar(text: "Dark Theme"),
-      //     AppearanceBar(text: "Font", showToggleSwitch: false),
-      //     AppearanceBar(text: "Font Size", showToggleSwitch: false),
-      //     AppearanceBar(text: "Font Style", showToggleSwitch: false),
-
-      //   ],
-      // ),
+      
 
       body: const Column(
         children: [
@@ -41,6 +32,5 @@ class AppearancePage extends StatelessWidget {
     );
   }
 }
-
 
 
