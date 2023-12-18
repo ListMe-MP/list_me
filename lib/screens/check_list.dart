@@ -36,7 +36,7 @@ class _CheckListState extends State<CheckList> {
     controller.dispose();
     super.dispose();
   }
-
+ List? pdata;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +57,7 @@ class _CheckListState extends State<CheckList> {
             } else if (!snapshot.hasData) {
               return Text('You have no any lists to show');
             } else {
-              List? pdata = snapshot.data!.toList();
+             pdata = snapshot.data!.toList();
               print(pdata);
 
               return Stack(
@@ -81,7 +81,7 @@ class _CheckListState extends State<CheckList> {
                         //     print(product);
                         //     }
                         // , child: Text('submit')),
-                        pdata.isEmpty
+                        pdata!.isEmpty
                             ? Column(
                                 children: [
                                   SizedBox(height: 45),
@@ -149,7 +149,7 @@ class _CheckListState extends State<CheckList> {
                                                   ]),
                                               child: ListTile(
                                                 title: Text(
-                                                    pdata[index]['lTitle']),
+                                                    pdata![index]['lTitle']),
                                                 trailing: IconButton(
                                                   onPressed: () async {
                                                     var amount =
@@ -166,7 +166,7 @@ class _CheckListState extends State<CheckList> {
                                                                   double.parse(
                                                                       amount!),
                                                               data:
-                                                                  pdata[index]);
+                                                                  pdata![index]);
                                                         },
                                                       ),
                                                     );
@@ -199,9 +199,9 @@ class _CheckListState extends State<CheckList> {
                                           IconButton(
                                             onPressed: () async {
                                               await Api.deleteProduct(
-                                                  pdata[index]['id']);
+                                                  pdata![index]['id']);
 
-                                              pdata.removeAt(index);
+                                              pdata!.removeAt(index);
                                               setState(() {});
                                               // FlushBars()
                                               //     .undo(
@@ -276,6 +276,15 @@ class _CheckListState extends State<CheckList> {
   void submit() {
     Navigator.of(context).pop(controller.text);
     controller.clear();
+  }
+
+  void saveCheckList( List<dynamic> pdata){
+      //  final data = {
+      //                   "ltitle": ,
+      //                   "items": itemArray,
+      //                   "id": DateTime.now().toString()
+      //                 };
+      print(pdata);
   }
   // buildItem(List<String> pdata int  index) {}
 }

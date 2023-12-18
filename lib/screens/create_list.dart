@@ -1,10 +1,8 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
-import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/maintitle.dart';
 import 'package:list_me/model/SelectedItem.dart';
-import 'package:list_me/model/product_model.dart';
 import 'package:list_me/services/apisug.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import '../components/top_bar.dart';
@@ -30,6 +28,18 @@ class _CreateListState extends State<CreateList> {
   var text = "";
   var isListning = false;
   SpeechToText speechToText = SpeechToText();
+
+  void editItem(int index) {
+    // Set the item details to the text field for editing
+    setState(() {
+      itemController.text = itemList[index].itemName;
+    });
+
+    // Remove the item from the itemList
+    setState(() {
+      itemList.removeAt(index);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -334,80 +344,107 @@ class _CreateListState extends State<CreateList> {
                           padding: const EdgeInsets.all(10),
                           itemBuilder: (context, index) {
                             final item = itemList[index];
-                            return ClipRRect(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
-                              child: Padding(
-                                padding: const EdgeInsets.only(bottom: 5),
-                                child: Container(
-                                  color: tf.withOpacity(0.35),
-                                  // image of the item
-                                  child: ListTile(
-                                    leading: Image.asset(
-                                      item.itemImage,
-                                      fit: BoxFit.cover,
-                                    ),
+                            return Dismissible(
+                              key: Key(item.itemName),
+                              direction: DismissDirection.startToEnd,
+                              onDismissed: (direction) {
+                                // removed the dismissed item from the list
+                                setState(() {
+                                  itemList.removeAt(index);
+                                });
+                      
+                              },
+                              background: Container(
+                                alignment: Alignment.centerLeft,
+                                padding: EdgeInsets.only(left: 20),
+                                color: tc6,
+                                child: Icon(
+                                  Icons.delete,
+                                  color: Colors.white,
+                                ),
+                                
+                              ),
+                              child: ClipRRect(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(10)),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 5),
+                                  child: Container(
+                                    color: tf.withOpacity(0.35),
+                                    // image of the item
+                                    child: ListTile(
+                                        leading: Image.asset(
+                                          item.itemImage,
+                                          fit: BoxFit.cover,
+                                        ),
 
-                                    // item name
-                                    title: Text(
-                                      item.itemName,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          color: tc1),
-                                    ),
-
-                                    // item price
-                                    subtitle: Row(
-                                      children: [
-                                        Text(
-                                          'Rs. ${item.itemPrice}',
-                                          style: TextStyle(
+                                        // item name
+                                        title: Text(
+                                          item.itemName,
+                                          style: const TextStyle(
                                               fontWeight: FontWeight.w500,
-                                              color: tc2),
+                                              color: tc1),
                                         ),
-                                        const SizedBox(
-                                          width: 10,
+
+                                        // item price
+                                        subtitle: Row(
+                                          children: [
+                                            Text(
+                                              'Rs. ${item.itemPrice}',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w500,
+                                                  color: tc2),
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            // quantity
+                                            SizedBox(
+                                              width: 60,
+                                              child: TextField(
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                textAlign: TextAlign.center,
+                                                style:
+                                                    const TextStyle(color: tc2),
+                                                decoration: InputDecoration(
+                                                    contentPadding:
+                                                        const EdgeInsets.all(8),
+                                                    hintText: 'Qty',
+                                                    hintStyle: TextStyle(
+                                                        color: tc2
+                                                            .withOpacity(0.5)),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                            borderSide: BorderSide(
+                                                                color: tc2
+                                                                    .withOpacity(
+                                                                        0.5)))),
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    _quntity =
+                                                        int.tryParse(value) ??
+                                                            0;
+                                                  });
+                                                },
+                                                controller:
+                                                    TextEditingController(
+                                                        text: _quntity
+                                                            .toString()),
+                                              ),
+                                            )
+                                          ],
                                         ),
-                                        // quantity
-                                        SizedBox(
-                                          width: 60,
-                                          child: TextField(
-                                            keyboardType: TextInputType.number,
-                                            textAlign: TextAlign.center,
-                                            style: const TextStyle(color: tc2),
-                                            decoration: InputDecoration(
-                                                contentPadding:
-                                                    const EdgeInsets.all(8),
-                                                hintText: 'Qty',
-                                                hintStyle: TextStyle(
-                                                    color:
-                                                        tc2.withOpacity(0.5)),
-                                                enabledBorder:
-                                                    OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                            color:
-                                                                tc2.withOpacity(
-                                                                    0.5)))),
-                                            onChanged: (value) {
-                                              setState(() {
-                                                _quntity =
-                                                    int.tryParse(value) ?? 0;
-                                              });
-                                            },
-                                            controller: TextEditingController(
-                                                text: _quntity.toString()),
+                                        // edit button
+                                        trailing: GestureDetector(
+                                          onTap: () {
+                                            editItem(index);
+                                          },
+                                          child: const Icon(
+                                            Icons.edit,
+                                            color: tc1,
                                           ),
-                                        )
-                                      ],
-                                    ),
-                                    // edit button
-                                    trailing: const Icon(
-                                      Icons.edit,
-                                      color: tc1,
-                                    ),
-                                    onTap: () {
-                                      // Add your onTap logic here
-                                    },
+                                        )),
                                   ),
                                 ),
                               ),
@@ -423,69 +460,57 @@ class _CreateListState extends State<CreateList> {
                               .vertical, // Replace this with the number of ListTiles you want
                         ),
                       ),
+
+                      // Create button
+                      Container(
+                        alignment: Alignment.bottomRight,
+                        margin: EdgeInsets.all(16),
+
+                        // submit
+                        child: RawMaterialButton(
+                          onPressed: () {
+                            if (titleController.text.isNotEmpty &&
+                                itemList.isNotEmpty) {
+                              final itemArray = itemList.map((item) {
+                                return {
+                                  "pname": item.itemName,
+                                  "pimage": item.itemImage,
+                                  "pprice": item.itemPrice,
+                                  "pquantity": _quntity,
+                                  "ischecked": false
+                                };
+                              }).toList();
+
+                              final data = {
+                                "ltitle": titleController.text,
+                                "items": itemArray,
+                                "id": DateTime.now().toString()
+                              };
+
+                              Api.addProduct(data);
+
+                              setState(() {
+                                itemList.clear();
+                              });
+
+                              titleController.clear();
+                            }
+                          },
+                          shape: const CircleBorder(
+                              side: BorderSide(color: tc3, width: 5.0)),
+                          padding: const EdgeInsets.all(10.0),
+                          fillColor: tc1,
+                          splashColor: tc2,
+                          child: const Icon(
+                            Icons.add,
+                            color: tc5,
+                            size: 40.0,
+                          ),
+                        ),
+                      )
                     ]),
               ),
             ),
-
-            // Create button
-            Positioned(
-              bottom: 16.0,
-              right: 16.0,
-              child: Container(
-                decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black54,
-                        spreadRadius: 2,
-                        blurRadius: 4,
-                        offset: Offset(2, 2))
-                  ],
-                  shape: BoxShape.circle,
-                ),
-
-                // submit
-                child: RawMaterialButton(
-                  onPressed: () {
-                    if (titleController.text.isNotEmpty &&
-                        itemList.isNotEmpty) {
-                      final itemArray = itemList.map((item) {
-                        return {
-                          "pname": item.itemName,
-                          "pimage": item.itemImage,
-                          "pprice": item.itemPrice,
-                          "pquantity": _quntity,
-                          "ischecked": false
-                        };
-                      }).toList();
-
-                      final data = {
-                        "ltitle": titleController.text,
-                        "items": itemArray,
-                        "id": DateTime.now().toString()
-                      };
-
-                      Api.addProduct(data);
-
-                      setState(() {
-                        itemList.clear();
-                      });
-
-                      titleController.clear();
-                    }
-                  },
-                  shape: const CircleBorder(
-                      side: BorderSide(color: tc3, width: 5.0)),
-                  padding: const EdgeInsets.all(10.0),
-                  fillColor: tc1,
-                  splashColor: tc2,
-                  child: const Icon(
-                    Icons.add,
-                    color: tc5,
-                    size: 40.0,
-                  ),
-                ),
-              ),
-            )
           ],
         ));
   }
