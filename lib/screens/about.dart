@@ -23,7 +23,7 @@ class About extends StatelessWidget {
           children: [
             // Add your sentences here using Text widgets
             Text(
-              '## About ListMe',
+              'About ListMe',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
@@ -41,7 +41,7 @@ class About extends StatelessWidget {
 
             // Example:
             Text(
-              '### Unique Features',
+              'Unique Features',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
@@ -64,7 +64,7 @@ class About extends StatelessWidget {
 
             // Example:
             Text(
-              '### Eco-Friendly and Inclusive',
+              'Eco-Friendly and Inclusive',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
@@ -82,7 +82,7 @@ class About extends StatelessWidget {
 
             // Example:
             Text(
-              '### Objectives',
+              'Objectives',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
@@ -105,7 +105,7 @@ class About extends StatelessWidget {
 
             // Example:
             Text(
-              '### Feasibility Analysis',
+              'Feasibility Analysis',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
@@ -118,7 +118,7 @@ class About extends StatelessWidget {
 
             // Example:
             Text(
-              '### Privacy Policy',
+              'Privacy Policy',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
