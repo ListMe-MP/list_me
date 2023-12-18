@@ -22,7 +22,7 @@ class _ChartState extends State<Chart> {
   List<Catagory> catagorys = [
     const Catagory(
       catname: 'Fruit',
-      price: 650,
+      price: 665,
       urlAvatar: 'assets/images/catagory/fruits.png',
     ),
     const Catagory(
@@ -97,7 +97,7 @@ class _ChartState extends State<Chart> {
                       ),
                     ),
                     width: 350,
-                    height: 90,
+                    height: 100,
                     decoration: ShapeDecoration(
                         color: Color(0x7FD4D4D4),
                         shape: RoundedRectangleBorder(
@@ -172,7 +172,7 @@ class _ChartState extends State<Chart> {
 
   List<CatData> getChartData() {
     final List<CatData> chartData = [
-      CatData('Fruit', 650),
+      CatData('Fruit', 665),
       CatData('Vegetable', 300),
       CatData('Toiletries', 250),
       CatData('Rice', 220),

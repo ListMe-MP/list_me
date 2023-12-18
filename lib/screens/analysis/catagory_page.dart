@@ -17,9 +17,34 @@ class CategoryPage extends StatefulWidget {
 class _CategoryPageState extends State<CategoryPage> {
   List<Catagory> catagorys = [
     const Catagory(
-      item_name: 'Rice',
-      quantity: '10 kg',
-      amount: '1200.00',
+      item_name: 'Apple_Red',
+      quantity: '3',
+      amount: '195.0',
+    ),
+    const Catagory(
+      item_name: 'Mango',
+      quantity: '2',
+      amount: '180.0',
+    ),
+    const Catagory(
+      item_name: 'Orange',
+      quantity: '1',
+      amount: '55.0',
+    ),
+    const Catagory(
+      item_name: 'Avacado',
+      quantity: '1',
+      amount: '120.0',
+    ),
+    const Catagory(
+      item_name: 'Pineapple',
+      quantity: '1',
+      amount: '75.0',
+    ),
+    const Catagory(
+      item_name: 'Banana',
+      quantity: '1',
+      amount: '40.0',
     )
   ];
 
@@ -53,7 +78,7 @@ class _CategoryPageState extends State<CategoryPage> {
                   child: Stack(
                     children: [
                       Text(
-                        'Grosery Item',
+                        'Fruit',
                         style: GoogleFonts.castoro(
                             fontSize: 35.0,
                             foreground: Paint()
@@ -61,7 +86,7 @@ class _CategoryPageState extends State<CategoryPage> {
                               ..strokeWidth = 5
                               ..color = tc5),
                       ),
-                      Text('Grosery Item',
+                      Text('Fruit',
                           style: GoogleFonts.castoro(
                             fontSize: 35.0,
                             color: tc6,
@@ -74,7 +99,7 @@ class _CategoryPageState extends State<CategoryPage> {
                 ),
                 Container(
                   width: 350,
-                  height: 80,
+                  height: 90,
                   decoration: ShapeDecoration(
                       color: const Color(0x7FD4D4D4),
                       shape: RoundedRectangleBorder(
@@ -86,13 +111,13 @@ class _CategoryPageState extends State<CategoryPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Grosery Item Cost',
+                          'Fruit Item Cost',
                           style: TextStyle(
                             fontSize: 15.0,
                           ),
                         ),
                         Text(
-                          'LKR 5125.00',
+                          'LKR 665.00',
                           style: TextStyle(
                             fontSize: 35.0,
                           ),
