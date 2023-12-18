@@ -4,6 +4,7 @@ import 'package:list_me/components/background.dart';
 import 'package:list_me/components/colors.dart';
 import 'package:list_me/components/maintitle.dart';
 import 'package:list_me/components/settings_bar.dart';
+import 'package:list_me/screens/about.dart';
 import 'package:list_me/screens/help_&_support.dart';
 import 'package:list_me/screens/notifications.dart';
 import 'package:list_me/screens/signup_page.dart';
@@ -190,7 +191,7 @@ class SettingsPage extends StatelessWidget {
                       onTap: (){
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const NotificationPage()
+                            builder: (context) => const About()
                           )
                         );
                       },
