@@ -5,7 +5,11 @@ import 'package:http/http.dart' as http;
 import 'package:list_me/model/product_model.dart';
 
 class Api {
+
+  
+
   static const baseUrl = "http://192.168.9.90:3000/api/";
+
 
   static addProduct(Map pdata) async {
     var url = Uri.parse("${baseUrl}add_product");
@@ -62,6 +66,27 @@ class Api {
     }
     // print("pp/"+products[0]['lTitle'].toString());
     return products;
+  }
+   static saveCheckList(Map pdata) async {
+    var url = Uri.parse("${baseUrl}save_checkList");
+
+    try {
+      final res = await http.post(url,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: json.encode(pdata));
+
+      if (res.statusCode == 200) {
+        var data = jsonDecode(res.body.toString());
+        print('gggg');
+
+      } else {
+        print("Failded to get response");
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   //get check list
