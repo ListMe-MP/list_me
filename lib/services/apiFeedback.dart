@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 class ApiFeedback{
   //static const baseUrl = "http://192.168.8.118/apiFeedback/";
-  static const baseUrl = "http://192.168.9.90:3000/api/";
+  static const baseUrl = "http://192.168.8.103:3000/api/";
    //static const baseUrl = "http://192.168.8.101/api_feedback/";
   
   static addfeedback(Map pdata) async

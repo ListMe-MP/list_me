@@ -38,7 +38,7 @@ class _AnalyseState extends State<Analyse> {
           body: TabBarView(
             children: [
               Tab(child: const Chart()), // Replace with actual content
-              Tab(child: Text("Content for Month")),
+              Tab(child: const Chart()),
               Tab(child: Text("Content for Day")),
             ],
           ),
